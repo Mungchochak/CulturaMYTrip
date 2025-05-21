@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.example.jobby.Model.ShardResponseData;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class AnalysisPageController {
 
@@ -74,5 +78,14 @@ public class AnalysisPageController {
 
                 }
         );
+    }
+
+    @FXML
+    protected void handleOpenStreamlit() {
+        try {
+            Desktop.getDesktop().browse(new URI("https://jobbybobby.streamlit.app/"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }

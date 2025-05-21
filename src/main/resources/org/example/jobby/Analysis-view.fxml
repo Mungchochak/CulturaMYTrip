@@ -21,7 +21,7 @@
       <children>
          <HBox>
             <children>
-               <VBox prefHeight="854.0" prefWidth="56.0" style="-fx-background-color: #0D005F;" HBox.hgrow="ALWAYS">
+               <VBox prefHeight="854.0" prefWidth="56.0" style="-fx-background-color: #0D005F;" alignment="CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                   <children>
                      <AnchorPane prefHeight="648.0" prefWidth="51.0" VBox.vgrow="ALWAYS">
                         <children>
@@ -32,10 +32,18 @@
                            </ImageView>
                            <ComboBox layoutX="-1.0" layoutY="15.0" opacity="0.0" prefHeight="34.0" prefWidth="50.0" style="-fx-border-image-insets: image 2.png;" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="15.0" />
                         </children>
-                        <VBox.margin>
-                           <Insets bottom="50.0" />
-                        </VBox.margin>
                      </AnchorPane>
+
+                     <!-- ✅ New Button to Open Streamlit App -->
+                     <Button fx:id="openStreamlitButton"
+                             text="Bobby"
+                             onAction="#handleOpenStreamlit"
+                             prefWidth="50.0"
+                             prefHeight="100.0"
+                             wrapText="true"
+                             style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" />
+
+                     <!-- Existing Settings Button -->
                      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="50.0" style="-fx-background-radius: 20; -fx-background-color: #0D005F;" VBox.vgrow="ALWAYS">
                         <graphic>
                            <ImageView fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
