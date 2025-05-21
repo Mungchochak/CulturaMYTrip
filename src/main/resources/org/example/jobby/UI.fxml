@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" spacing="20" style="-fx-padding: 20;">
+    <!-- Header -->
+    <HBox spacing="20" alignment="CENTER_RIGHT">
+        <Label text="# About us" style="-fx-font-weight: bold;"/>
+        <Label text="Subscription"/>
+        <Label text="Contact Us"/>
+    </HBox>
+
+    <!-- Title -->
+    <Label text="## Analysis Report" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <!-- Skill Matching -->
+    <VBox spacing="5">
+        <Label text="**Skill Matching:**" style="-fx-font-weight: bold;"/>
+        <Label text="Python, SQL, Machine Learning, Pandas, Tableau, Communication, Problem-Solving"/>
+        <Separator/>
+    </VBox>
+
+    <!-- Position Suggested -->
+    <VBox spacing="5">
+        <Label text="### Position Suggested:" style="-fx-font-weight: bold;"/>
+        <Label text="- Role: Data Science"/>
+        <Label text="- Level: Mid-Level"/>
+        <Separator/>
+    </VBox>
+
+    <!-- Working Experience -->
+    <VBox spacing="5">
+        <Label text="### Working Experience:" style="-fx-font-weight: bold;"/>
+        <Label text="- Data Scientist at XYZ Analytics from January 2025 to Present"/>
+        <Label text="Intern: Data Analyst at Intel from June 2024 to December 2024"/>
+        <Label text="*no employment gaps detected*" style="-fx-font-style: italic;"/>
+        <Separator/>
+    </VBox>
+
+    <!-- Language and Soft Skills -->
+    <VBox spacing="5">
+        <Label text="### Language and Soft Skills:" style="-fx-font-weight: bold;"/>
+        <Label text="The resume demonstrates strong soft skills:"/>
+        <Label text="- Leadership: Mention of leading a team of analysts."/>
+        <Label text="- Collaboration: Worked across departments with engineers and product managers."/>
+        <Label text="- Communication: Presented insights to non-technical audiences effectively."/>
+        <Label text="**Tone: Professional, concise, and focused on outcomes.**" style="-fx-font-weight: bold;"/>
+        <Separator/>
+    </VBox>
+
+    <!-- Keyword Density Analysis -->
+    <VBox spacing="5">
+        <Label text="### Keyword Density Analysis:" style="-fx-font-weight: bold;"/>
+        <Label text="The resume frequently uses key terms like &quot;Python&quot; (8 times) and &quot;SQL&quot; (6 times), which aligns well with data science roles."/>
+        <Label text="**However, terms like &quot;Deep Learning&quot; are missing.** The use of &quot;Machine Learning&quot; is moderate and consistent." style="-fx-font-weight: bold;"/>
+        <Separator/>
+    </VBox>
+
+    <!-- Recommended Salary -->
+    <VBox spacing="5">
+        <Label text="### Recommended Salary:" style="-fx-font-weight: bold;"/>
+        <Label text="RM4,500-RM6,000"/>
+        <Separator/>
+    </VBox>
+
+    <!-- Score -->
+    <VBox spacing="5">
+        <Label text="Score: **78/100**" style="-fx-font-weight: bold;"/>
+        <Separator/>
+    </VBox>
+
+    <!-- Buttons -->
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Reject" style="-fx-background-color: #ff6b6b; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Consider" style="-fx-background-color: #ffd166; -fx-text-fill: black; -fx-font-weight: bold;"/>
+        <Button text="Pass" style="-fx-background-color: #06d6a0; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+</VBox>
