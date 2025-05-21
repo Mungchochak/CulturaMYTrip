@@ -100,7 +100,7 @@
                            </HBox>
                            <Button fx:id="UploadFile" mnemonicParsing="false" onAction="#UploadFileClick" prefHeight="200.0" prefWidth="296.0" style="-fx-background-radius: 20; -fx-background-color: #ACBDD9; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 3;" text="Click here to upload your file" VBox.vgrow="ALWAYS">
                               <font>
-                                 <Font size="21.0" />
+                                 <Font name="Helvetica" size="17.0" />
                               </font></Button>
                            <MenuButton mnemonicParsing="false" prefHeight="38.0" prefWidth="262.0" style="-fx-background-radius: 20;" text="Select Position" textOverrun="LEADING_ELLIPSIS" VBox.vgrow="ALWAYS">
                               <items>
@@ -112,8 +112,14 @@
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="279.0" prefWidth="331.0" spacing="30.0" VBox.vgrow="ALWAYS">
                         <children>
-                           <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-radius: 20; -fx-background-color: #5977AE;" text="Reset" />
-                           <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-radius: 20; -fx-background-color: #5977AE;" text="Submit" />
+                           <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-radius: 20; -fx-background-color: #5977AE;" text="Reset">
+                              <font>
+                                 <Font name="Helvetica" size="13.0" />
+                              </font></Button>
+                           <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-radius: 20; -fx-background-color: #5977AE;" text="Submit">
+                              <font>
+                                 <Font name="Helvetica" size="13.0" />
+                              </font></Button>
                         </children>
                      </VBox>
                   </children>
@@ -138,20 +144,20 @@
                   <children>
                      <VBox prefHeight="128.0" prefWidth="996.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="Skill Matching:" textAlignment="CENTER" wrappingWidth="107.7806625366211">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="Skill Matching:" wrappingWidth="191.7806625366211" VBox.vgrow="ALWAYS">
                               <VBox.margin>
                                  <Insets left="8.0" top="5.0" />
                               </VBox.margin>
+                              <font>
+                                 <Font name="Helvetica" size="20.0" />
+                              </font>
                            </Text>
-                           <Label fx:id="SkillMatchingContent" alignment="CENTER" contentDisplay="CENTER" prefHeight="111.0" prefWidth="1078.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Label fx:id="SkillMatchingContent" alignment="CENTER" contentDisplay="CENTER" prefHeight="111.0" prefWidth="1078.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Java | Spring Boot | React | Angular | TypeScript | Node.js | GraphQL | Docker | Kubernetes | AWS | GCP | Firebase | MongoDB | MySQL | PostgreSQL | Redis | Git | CI/CD | RESTful APIs" wrapText="true" VBox.vgrow="ALWAYS">
                               <opaqueInsets>
                                  <Insets right="10.0" />
                               </opaqueInsets>
                               <font>
-                                 <Font size="20.0" />
+                                 <Font name="Helvetica" size="20.0" />
                               </font>
                               <padding>
                                  <Insets left="10.0" right="10.0" />
@@ -171,20 +177,20 @@
                   <children>
                      <VBox prefHeight="203.0" prefWidth="467.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Working Experience:" wrappingWidth="160.7806625366211">
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Working Experience:" wrappingWidth="243.7806625366211">
                               <font>
-                                 <Font size="16.0" />
+                                 <Font size="20.0" />
                               </font>
                               <VBox.margin>
                                  <Insets left="8.0" top="5.0" />
                               </VBox.margin>
                            </Text>
-                           <Label fx:id="WorkingExperienceContent" prefHeight="207.0" prefWidth="638.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Label fx:id="WorkingExperienceContent" prefHeight="207.0" prefWidth="638.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="The candidate has experience in Software Engineer at Google, developed scalable REST APls using Java Spring Boot and GCP services, responsible for leading a team to launch a real-time chat feature. As Full Stack Developer at Shopify, created e-commerce dashboards using React and Node.js, responsible for payment integrations. Developed projects like JobHub using Java Spring Boot and React, and HealthTrack using Flutter and Firebase. Technologies include Java, React, Docker AWS GCP and MonaoDR." wrapText="true" VBox.vgrow="ALWAYS">
                               <padding>
                                  <Insets left="10.0" right="10.0" />
                               </padding>
                               <font>
-                                 <Font size="15.0" />
+                                 <Font name="Helvetica" size="15.0" />
                               </font></Label>
                         </children>
                         <HBox.margin>
@@ -193,18 +199,21 @@
                      </VBox>
                      <VBox prefHeight="203.0" prefWidth="259.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personality:" wrappingWidth="160.7806625366211">
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personality:" wrappingWidth="199.7806625366211">
                               <font>
-                                 <Font size="16.0" />
+                                 <Font size="20.0" />
                               </font>
                               <VBox.margin>
                                  <Insets left="8.0" top="5.0" />
                               </VBox.margin>
                            </Text>
-                           <Label fx:id="PersonalityContent" prefHeight="179.0" prefWidth="730.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Label fx:id="PersonalityContent" prefHeight="179.0" prefWidth="730.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Alex demonstrates strong leadership, technical expertise, and problem-solving skills through leading cross-functional teams and delivering scalable solutions. His proactive approach, attention to detail, and ability to collaborate effectively with diverse teams highlight his adaptability and user-centric mindset. The successful launch of features and high-rated projects further showcase his creativity and commitment to quality." wrapText="true" VBox.vgrow="ALWAYS">
                               <padding>
                                  <Insets left="10.0" right="10.0" />
-                              </padding></Label>
+                              </padding>
+                              <font>
+                                 <Font name="Helvetica" size="15.0" />
+                              </font></Label>
                         </children>
                         <HBox.margin>
                            <Insets />
@@ -219,34 +228,40 @@
                   <children>
                      <VBox style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="ra" text="Language and Soft Skills:" wrappingWidth="196.79999999999995">
+                           <Text strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="ra" text="Language and Soft Skills:" wrappingWidth="323.79999999999995">
                               <font>
-                                 <Font size="16.0" />
+                                 <Font size="20.0" />
                               </font>
                               <VBox.margin>
                                  <Insets left="8.0" top="5.0" />
                               </VBox.margin>
                            </Text>
-                           <Label fx:id="SoftSkillsContent" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="144.0" prefWidth="719.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Label fx:id="SoftSkillsContent" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="144.0" prefWidth="719.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="The candidate demonstrates strong communication and leadership skills, evidenced by leading a cross-functional team and collaborating with diverse stakeholders. Their adaptability and teamwork are highlighted through agile development and cross-functional collaboration. Proficient in English (native) and Spanish (professional), they exhibit detail-oriented, proactive, and fast-learning traits." wrapText="true" VBox.vgrow="ALWAYS">
                               <padding>
                                  <Insets left="10.0" right="10.0" />
-                              </padding></Label>
+                              </padding>
+                              <font>
+                                 <Font name="Helvetica" size="15.0" />
+                              </font></Label>
                         </children>
                      </VBox>
                      <VBox style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Position Suggested:" wrappingWidth="153.3138656616211">
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Position Suggested:" wrappingWidth="216.3138656616211">
                               <font>
-                                 <Font size="16.0" />
+                                 <Font size="20.0" />
                               </font>
                               <VBox.margin>
                                  <Insets left="8.0" top="5.0" />
                               </VBox.margin>
                            </Text>
-                           <Label fx:id="PositionContent" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="397.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Label fx:id="PositionContent" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="397.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="* Full Stack Software Engineer - Matching(95%)  * Java Spring Boot Developer - Matching(90%)  * Cloud Solutions Engineer - Matching(88%)  * React/Node.js Developer - Matching(85%)  * DevOps Engineer - Matching(82%)" wrapText="true" VBox.vgrow="ALWAYS">
                               <padding>
                                  <Insets left="10.0" right="10.0" />
-                              </padding></Label>
+                              </padding>
+                              <font>
+                                 <Font name="Helvetica" size="15.0" />
+                              </font></Label>
                         </children>
                      </VBox>
                   </children>
@@ -258,33 +273,36 @@
                   <children>
                      <VBox prefHeight="77.0" prefWidth="728.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="ra" text="Basic information:" wrappingWidth="196.79999999999995">
+                           <Text strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="ra" text="Basic information:" wrappingWidth="254.79999999999995">
                               <font>
-                                 <Font size="16.0" />
+                                 <Font name="System Bold" size="20.0" />
                               </font>
                               <VBox.margin>
                                  <Insets left="8.0" top="5.0" />
                               </VBox.margin>
                            </Text>
-                           <Label fx:id="InformationContent" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="144.0" prefWidth="812.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Label fx:id="InformationContent" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="144.0" prefWidth="812.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Alex Johnson is a highly skilled Full Stack Software Engineer based in San Francisco, CA, with a Bachelor's in Computer Science from the University of Toronto. Proficient in Java, Spring Boot, React, and cloud technologies (AWS, GCP), they excel in agile, user-centric development. Their experience at Google and Shopify highlights expertise in scalable web applications and microservices. Fluent in English and Spanish, they are well-suited for tech-driven roles in cloud-based industries, particularly in North America." wrapText="true" VBox.vgrow="ALWAYS">
                               <padding>
                                  <Insets left="10.0" right="10.0" />
-                              </padding></Label>
+                              </padding>
+                              <font>
+                                 <Font name="Helvetica" size="15.0" />
+                              </font></Label>
                         </children>
                      </VBox>
                      <VBox prefWidth="172.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Recommended Salary:" wrappingWidth="153.3138656616211">
+                           <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Recommended Salary:" textAlignment="CENTER" wrappingWidth="225.3138656616211">
                               <font>
-                                 <Font size="16.0" />
+                                 <Font size="20.0" />
                               </font>
                               <VBox.margin>
                                  <Insets left="8.0" top="5.0" />
                               </VBox.margin>
                            </Text>
-                           <Label fx:id="SalaryContent" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="256.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" textAlignment="CENTER" underline="true" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Label fx:id="SalaryContent" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="123.0" prefWidth="294.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="RM15000-25000" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
                               <font>
-                                 <Font size="34.0" />
+                                 <Font name="Helvetica" size="30.0" />
                               </font></Label>
                         </children>
                      </VBox>
@@ -293,11 +311,11 @@
                      <Insets left="20.0" right="20.0" />
                   </VBox.margin>
                </HBox>
-               <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="1118.0">
+               <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="1118.0">
                   <children>
-                     <HBox alignment="CENTER" prefHeight="43.0" prefWidth="256.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                     <HBox alignment="CENTER" prefHeight="48.0" prefWidth="294.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Score:" textAlignment="CENTER" wrappingWidth="88.7806625366211" HBox.hgrow="ALWAYS">
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Score:" textAlignment="CENTER" wrappingWidth="99.7806625366211" HBox.hgrow="ALWAYS">
                               <font>
                                  <Font size="28.0" />
                               </font>
@@ -305,12 +323,12 @@
                                  <Insets />
                               </HBox.margin>
                            </Text>
-                           <Label fx:id="ScoreContent" alignment="CENTER" prefHeight="38.0" prefWidth="149.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                           <Label fx:id="ScoreContent" alignment="CENTER" prefHeight="38.0" prefWidth="165.0" text="70/100" HBox.hgrow="ALWAYS">
                               <font>
-                                 <Font size="24.0" />
+                                 <Font name="Helvetica" size="28.0" />
                               </font>
                               <HBox.margin>
-                                 <Insets top="5.0" />
+                                 <Insets />
                               </HBox.margin>
                            </Label>
                         </children>
