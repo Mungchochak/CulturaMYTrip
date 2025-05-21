@@ -59,7 +59,7 @@ public class DeepSeekChat {
     public static String callDeepSeekAPI(String conversation,String systemPrompt) throws IOException {
         // 1. 构建请求JSON
         JSONObject requestBody = new JSONObject();
-        requestBody.put("model", "deepseek-reasoner");  // 指定模型
+        requestBody.put("model", "deepseek-chat");  // 指定模型
 
 
         // 构建消息数组

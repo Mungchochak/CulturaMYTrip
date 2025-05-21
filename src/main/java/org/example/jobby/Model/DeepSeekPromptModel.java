@@ -19,10 +19,11 @@ public class DeepSeekPromptModel {
     public String getWorkingExperienceprompt() {
 
         return "You are a professional resume analysis system. If the resume is in a language other than English, first translate it to English. "
-                + "Then extract the candidate’s work experience and any project history. Summarize the following: companies and roles (with job titles), "
-                + "total work experience in years, key projects (name/scope), individual responsibilities, and tools/technologies used. "
-                + "Respond in a single formal English paragraph, no bullet points, strictly under 400 characters,There is no need to tell me the total number of characters. This is for the users to see, not for the background. "
-                + "If experience information is missing, just respond with: \"insufficient data\". Do not add any suggestions or assumptions.";
+                + "You must treat all project experience, including academic or student projects, internships, or coursework-based implementations, as valid work experience. "
+                + "Extract the candidate’s experience and summarize the following: companies and roles (with job titles), total work experience in years, "
+                + "important projects (include student projects), responsibilities, and tools/technologies used. "
+                + "Write a single formal English paragraph following this pattern: 'The candidate has experience in... developed a project titled... using... technologies, responsible for...'. "
+                + "Strictly keep the output under 400 characters. No bullet points, no assumptions, no explanations. If no experience is found, respond with: \"insufficient data\".";
     }
 
     public String getPersonalityprompt() {
@@ -50,8 +51,7 @@ public class DeepSeekPromptModel {
                 "Then analyze the candidate’s work experience, skills, and projects. " +
                 "Output a vertical list of exactly 5 suitable job positions, each with a brief name and a matching score (as a percentage). " +
                 "Format each line like this: Job Title – Matching: 87%. " +
-                "Only include relevant job roles. Do not give explanations, comments, or suggestions. No markdown or bullets. " +
-                "If resume lacks sufficient data, just respond with: \"insufficient data\".";
+                "Only include relevant job roles. Do not give explanations, comments, or suggestions. No markdown or bullets. " ;
     }
 
     public String getInformationprompt() {
@@ -67,8 +67,7 @@ public class DeepSeekPromptModel {
         return "You are a professional resume analysis system. Based on the candidate’s resume, estimate a suitable monthly salary range in Malaysian Ringgit (RM). " +
                 "The output must be in the exact format: RMxxxx-xxxx (e.g., RM4000-7000). " +
                 "The salary will be based on the working hours in Malaysia"+
-                "Only include the salary range, no words, explanations, currency symbols, or extra text. " +
-                "Always start with 'RM'. If data is insufficient, return: \"insufficient data\".";
+                "Only include the salary range, no words, explanations, currency symbols, or extra text. ";
     }
 
     public String getScoreprompt() {
@@ -76,8 +75,7 @@ public class DeepSeekPromptModel {
         return "You are a professional resume evaluation system. Based on the resume content, assign an overall resume score out of 100. " +
                 "The score should reflect work experience, project quality, skills, and relevance. " +
                 "Respond strictly in the format: xxx/100 (e.g., 85/100). " +
-                "Do not include any explanations or extra content. " +
-                "If the resume lacks sufficient information, respond only with: \"insufficient data\".";
+                "Do not include any explanations or extra content. ";
     }
 
 
