@@ -17,6 +17,7 @@ public class Main extends Application {
         stage.setTitle("JOBBY");
         stage.setScene(scene);
 
+
         // 禁用全屏快捷键（如 F11、Ctrl+Cmd+F、Esc）
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // 不允许退出
         stage.setFullScreen(false);                                     // 不启用全屏

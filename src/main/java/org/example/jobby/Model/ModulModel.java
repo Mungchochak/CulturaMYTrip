@@ -45,6 +45,10 @@ public class ModulModel {
         });
     }
 
+    public void OffClickDisplayFullcontent(Label label) {
+        label.setOnMouseClicked(null);
+    }
+
     private static final String TEXT = ". . . . . . .";
     private static final Map<Label, Timeline> activeTimelines = new HashMap<>();
 

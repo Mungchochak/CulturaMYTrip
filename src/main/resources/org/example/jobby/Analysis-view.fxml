@@ -100,7 +100,7 @@
                                  <Insets left="10.0" top="20.0" />
                               </padding>
                            </HBox>
-                           <Button fx:id="UploadFile" mnemonicParsing="false" onAction="#UploadFileClick" prefHeight="200.0" prefWidth="296.0" style="-fx-background-radius: 20; -fx-background-color: #ACBDD9; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 3;" text="Click here to upload your file" VBox.vgrow="ALWAYS">
+                           <Button fx:id="UploadFile" mnemonicParsing="false" onAction="#UploadFileClick" prefHeight="200.0" prefWidth="296.0" style="-fx-background-radius: 20; -fx-background-color: #ACBDD9; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 3;" stylesheets="@../../../CSS/ButtonPress.css" text="Click here to upload your file" VBox.vgrow="ALWAYS">
                               <font>
                                  <Font name="Helvetica" size="17.0" />
                               </font></Button>

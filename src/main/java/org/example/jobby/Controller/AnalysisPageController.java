@@ -6,10 +6,12 @@ import javafx.scene.control.Label;
 import org.example.jobby.Model.ModulModel;
 import org.example.jobby.Model.ShardResponseData;
 
+
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javafx.scene.control.Button;
 
 public class AnalysisPageController {
 
@@ -34,34 +36,26 @@ public class AnalysisPageController {
     private Label NameContent;
     @FXML
     private Label GraduatedContent;
-
-
     @FXML
-    private void initialize() {
+    private Button UploadFile;
 
-        ModulModel modulModel = new ModulModel();
-        modulModel.ClickDisplayFullcontent(SkillMatchingContent);
-        modulModel.ClickDisplayFullcontent(WorkingExperienceContent);
-        modulModel.ClickDisplayFullcontent(PersonalityContent);
-        modulModel.ClickDisplayFullcontent(SoftSkillsContent);
-        modulModel.ClickDisplayFullcontent(PositionContent);
-        modulModel.ClickDisplayFullcontent(InformationContent);
-        modulModel.ClickDisplayFullcontent(NameContent);
-        modulModel.ClickDisplayFullcontent(GraduatedContent);
 
-    }
+
 
 
 
     @FXML
     protected void UploadFileClick() {
+
+
         PDFScanner scanner = new PDFScanner();
 
 
         scanner.PDFScanner(
                 () -> {
                     ClearText();
-
+                    OffEnlargeContent();
+                    UploadFile.setDisable(true);
                     StartLoadingAnimation();
 
 
@@ -71,10 +65,12 @@ public class AnalysisPageController {
                         StopLoadingAnimation();
                         ModulModel.WarningPopup();
                         DeepSeekChat.FaildConnection=false;
+                        UploadFile.setDisable(false);
                     }else {
 
 
                         StopLoadingAnimation();
+                        UploadFile.setDisable(false);
 
 
                         SkillMatchingContent.setText(ShardResponseData.responseModel.getSkillMatchingResponse());
@@ -108,6 +104,8 @@ public class AnalysisPageController {
                         GraduatedContent.setText(ShardResponseData.responseModel.getGraduatedResponse());
                         System.out.println("GraduatedContent is " + ShardResponseData.responseModel.getGraduatedResponse());
 
+                        EnlargeContent();
+
                     }
 
 
@@ -116,6 +114,36 @@ public class AnalysisPageController {
                 }
         );
     }
+
+    @FXML
+    private void EnlargeContent() {
+
+        ModulModel modulModel = new ModulModel();
+        modulModel.ClickDisplayFullcontent(SkillMatchingContent);
+        modulModel.ClickDisplayFullcontent(WorkingExperienceContent);
+        modulModel.ClickDisplayFullcontent(PersonalityContent);
+        modulModel.ClickDisplayFullcontent(SoftSkillsContent);
+        modulModel.ClickDisplayFullcontent(PositionContent);
+        modulModel.ClickDisplayFullcontent(InformationContent);
+        modulModel.ClickDisplayFullcontent(NameContent);
+        modulModel.ClickDisplayFullcontent(GraduatedContent);
+
+    }
+
+    @FXML
+    private void OffEnlargeContent(){
+        ModulModel modulModel = new ModulModel();
+        modulModel.OffClickDisplayFullcontent(SkillMatchingContent);
+        modulModel.OffClickDisplayFullcontent(WorkingExperienceContent);
+        modulModel.OffClickDisplayFullcontent(PersonalityContent);
+        modulModel.OffClickDisplayFullcontent(SoftSkillsContent);
+        modulModel.OffClickDisplayFullcontent(PositionContent);
+        modulModel.OffClickDisplayFullcontent(InformationContent);
+        modulModel.OffClickDisplayFullcontent(NameContent);
+        modulModel.OffClickDisplayFullcontent(GraduatedContent);
+    }
+
+
 
     @FXML
     private void StartLoadingAnimation() {
