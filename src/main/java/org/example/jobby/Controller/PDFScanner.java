@@ -16,11 +16,18 @@ public class PDFScanner {
 
     public DeepSeekPromptModel deepSeekPromptModel = new DeepSeekPromptModel();
     public DeepSeekResponseModel deepSeekResponseModel = new DeepSeekResponseModel();
+    private static final JFileChooser fileChooser = new JFileChooser();
 
     public void PDFScanner(Runnable onStart, Runnable onFinish) {
+
+
         SwingUtilities.invokeLater(() -> {
-            JFileChooser fileChooser = new JFileChooser();
+
             fileChooser.setDialogTitle("Select a PDF file");
+            JDialog dialog = new JDialog();
+            dialog.setAlwaysOnTop(true);  // ✅ 设置始终在前
+            dialog.setModal(true);        // 模态，阻止其他窗口操作
+
 
             fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
                 public boolean accept(File f) {
@@ -32,7 +39,7 @@ public class PDFScanner {
                 }
             });
 
-            int result = fileChooser.showOpenDialog(null);
+            int result = fileChooser.showOpenDialog(dialog);
 
             if (result == JFileChooser.APPROVE_OPTION) {
                 // ✅ 用户确认后才显示“Loading...”
@@ -40,6 +47,8 @@ public class PDFScanner {
 
                 File selectedFile = fileChooser.getSelectedFile();
                 try {
+
+                    System.out.println("Running");
                     String content = extractTextFromPDF(selectedFile.getAbsolutePath());
 
                     deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSkillMatchingprompt()));
@@ -50,6 +59,8 @@ public class PDFScanner {
                     deepSeekResponseModel.setInformationResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getInformationprompt()));
                     deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSalaryprompt()));
                     deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getScoreprompt()));
+                    deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getNameprompt()));
+                    deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getGraduatedprompt()));
 
 
                     ShardResponseData.responseModel = deepSeekResponseModel;
@@ -68,6 +79,7 @@ public class PDFScanner {
     private static String extractTextFromPDF(String filePath) throws IOException {
         try (PDDocument document = Loader.loadPDF(new File(filePath))) {
             PDFTextStripper stripper = new PDFTextStripper();
+            System.out.println(stripper.getText(document));
             return stripper.getText(document);
         }
     }

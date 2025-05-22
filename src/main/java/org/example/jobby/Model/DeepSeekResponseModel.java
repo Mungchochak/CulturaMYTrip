@@ -9,6 +9,26 @@ public class DeepSeekResponseModel {
     private String InformationResponse;
     private String SalaryResponse;
     private String ScoreResponse;
+    private String NameResponse;
+
+    public String getNameResponse() {
+        return NameResponse;
+    }
+
+    public void setNameResponse(String nameResponse) {
+        NameResponse = nameResponse;
+    }
+
+    public String getGraduatedResponse() {
+        return GraduatedResponse;
+    }
+
+    public void setGraduatedResponse(String graduatedResponse) {
+        GraduatedResponse = graduatedResponse;
+    }
+
+    private String GraduatedResponse;
+
 
     public String getWorkExperienceResponse() {
         return WorkExperienceResponse;
