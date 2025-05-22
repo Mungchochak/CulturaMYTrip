@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 

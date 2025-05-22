@@ -3,11 +3,9 @@ package org.example.jobby.Controller;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import org.example.jobby.Model.DeepSeekPromptModel;
 import org.example.jobby.Model.ModulModel;
 import org.example.jobby.Model.ShardResponseData;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -69,7 +67,7 @@ public class AnalysisPageController {
 
                 },
                 () -> {
-                    if (DeepSeekChat.FaildConnection==true){
+                    if (DeepSeekChat.FaildConnection){
                         StopLoadingAnimation();
                         ModulModel.WarningPopup();
                         DeepSeekChat.FaildConnection=false;

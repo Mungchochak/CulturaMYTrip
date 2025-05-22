@@ -6,12 +6,8 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import org.json.JSONObject;
 import org.json.JSONArray;  // 需要添加这个import
-
-import static org.example.jobby.Model.ModulModel.WarningPopup;
 
 public class DeepSeekChat {
 
