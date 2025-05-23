@@ -1,8 +1,16 @@
 package org.example.jobby.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import org.example.jobby.Model.ModulModel;
 import org.example.jobby.Model.ShardResponseData;
 
@@ -12,6 +20,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.Cursor;
 
 public class AnalysisPageController {
 
@@ -219,4 +229,100 @@ public class AnalysisPageController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private Button gearButton;
+
+
+    private Popup optionsPopup; // Store the popup so you can hide/show as needed
+
+    @FXML
+    public void initialize() {
+        gearButton.setOnAction(event -> showOptionsPopup());
+    }
+    private void switchScene(String sceneName) {
+        try {
+            Parent newRoot = null;
+            switch (sceneName) {
+                case "Company_Info":
+                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/Company_Info.fxml"));
+                    break;
+                case "PositionDesc":
+                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+                    break;
+                default:
+                    System.err.println("Unknown scene: " + sceneName);
+                    return;
+            }
+            Stage stage = (Stage) gearButton.getScene().getWindow();
+            stage.setScene(new Scene(newRoot));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void showOptionsPopup() {
+        if (optionsPopup != null && optionsPopup.isShowing()) {
+            optionsPopup.hide();
+            return;
+        }
+
+        // VBox for popup content
+        VBox popupContent = new VBox(8);
+        popupContent.setStyle("-fx-background-color: white; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10; -fx-effect: dropshadow(gaussian, #33333355, 10,0,2,4);");
+        popupContent.setPrefWidth(250);
+
+        // Option 1: Company_Info
+        HBox companyInfoOption = makePopupOption(
+                "/org/example/jobby/Company_Info.png",
+                "Company Information",
+                () -> {
+                    switchScene("Company_Info");
+                    optionsPopup.hide();
+                }
+        );
+
+        // Option 2: PositionDesc
+        HBox positionDescOption = makePopupOption(
+                "/org/example/jobby/PositionDesc.png",
+                "Position Description",
+                () -> {
+                    switchScene("PositionDesc");
+                    optionsPopup.hide();
+                }
+        );
+
+        popupContent.getChildren().addAll(companyInfoOption, positionDescOption);
+
+        // Create or reuse the Popup
+        optionsPopup = new Popup();
+        optionsPopup.getContent().add(popupContent);
+        optionsPopup.setAutoHide(true);
+
+        // Show near gearIcon
+        // Convert gearIcon to screen coordinates
+        double x = gearButton.localToScreen(gearButton.getBoundsInLocal()).getMinX();
+        double y = gearButton.localToScreen(gearButton.getBoundsInLocal()).getMaxY() + 4;
+        optionsPopup.show(gearButton.getScene().getWindow(), x, y);
+    }
+
+    // Utility method to create an option with image + label + click event
+    private HBox makePopupOption(String imagePath, String label, Runnable onClick) {
+        ImageView optionIcon = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
+        optionIcon.setFitWidth(28);
+        optionIcon.setFitHeight(28);
+        Label optionLabel = new Label(label);
+        optionLabel.setStyle("-fx-font-size: 15px; -fx-padding: 0 0 0 10px;");
+
+        HBox box = new HBox(optionIcon, optionLabel);
+        box.setSpacing(10);
+        box.setAlignment(Pos.CENTER_LEFT);
+        box.setStyle("-fx-padding: 8 12 8 8; -fx-background-radius: 8;");
+        box.setOnMouseEntered(e -> box.setStyle("-fx-background-color: #E7F0FB; -fx-padding: 8 12 8 8; -fx-background-radius: 8;"));
+        box.setOnMouseExited(e -> box.setStyle("-fx-background-color: white; -fx-padding: 8 12 8 8; -fx-background-radius: 8;"));
+        box.setOnMouseClicked(e -> onClick.run());
+        box.setCursor(Cursor.HAND);
+        return box;
+    }
+
 }

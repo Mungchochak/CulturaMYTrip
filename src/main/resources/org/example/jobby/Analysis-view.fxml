@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -27,7 +26,7 @@
                         <children>
                            <ImageView fitHeight="69.0" fitWidth="54.0" layoutX="-3.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
                               <image>
-                                 <Image url="@image%202.png" />
+                                 <Image url="@image 2.png" />
                               </image>
                            </ImageView>
                            <ComboBox layoutX="-1.0" layoutY="15.0" opacity="0.0" prefHeight="34.0" prefWidth="50.0" style="-fx-border-image-insets: image 2.png;" AnchorPane.bottomAnchor="612.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="15.0" />
@@ -36,25 +35,14 @@
 
                      <!-- ✅ New Button to Open Streamlit App -->
                      <Button fx:id="openStreamlitButton" onAction="#handleOpenStreamlit" prefHeight="100.0" prefWidth="50.0" style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" text="Bobby" wrapText="true" />
-
-                     <!-- Existing Settings Button -->
-                     <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="50.0" style="-fx-background-radius: 20; -fx-background-color: #0D005F;" VBox.vgrow="ALWAYS">
+                     <Button fx:id="gearButton" mnemonicParsing="false" style="-fx-background-color: #0D005F;" stylesheets="@../../../CSS/ButtonPress.css" text="Gear " textFill="#041636">
                         <graphic>
-                           <ImageView fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fx:id="gearIcon" fitHeight="37.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@icons8-settings-64%20(1).png" />
+                                 <Image url="@icons8-settings-64 (1).png" />
                               </image>
-                              <viewport>
-                                 <Rectangle2D />
-                              </viewport>
                            </ImageView>
                         </graphic>
-                        <padding>
-                           <Insets bottom="50.0" />
-                        </padding>
-                        <VBox.margin>
-                           <Insets bottom="10.0" />
-                        </VBox.margin>
                      </Button>
                   </children>
                   <padding>

@@ -16,6 +16,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1500, 800);
         stage.setTitle("JOBBY");
         stage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("/CSS/ButtonPress.css").toExternalForm());
 
 
         // 禁用全屏快捷键（如 F11、Ctrl+Cmd+F、Esc）
