@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import org.example.jobby.Model.DeepSeekPromptFollowupModel;
 import org.example.jobby.Model.ModulModel;
 import org.example.jobby.Model.ShardResponseData;
 
@@ -114,6 +115,10 @@ public class AnalysisPageController {
                         GraduatedContent.setText(ShardResponseData.responseModel.getGraduatedResponse());
                         System.out.println("GraduatedContent is " + ShardResponseData.responseModel.getGraduatedResponse());
 
+
+
+
+
                         EnlargeContent();
 
                     }
@@ -128,15 +133,20 @@ public class AnalysisPageController {
     @FXML
     private void EnlargeContent() {
 
+
         ModulModel modulModel = new ModulModel();
-        modulModel.ClickDisplayFullcontent(SkillMatchingContent);
-        modulModel.ClickDisplayFullcontent(WorkingExperienceContent);
-        modulModel.ClickDisplayFullcontent(PersonalityContent);
-        modulModel.ClickDisplayFullcontent(SoftSkillsContent);
-        modulModel.ClickDisplayFullcontent(PositionContent);
-        modulModel.ClickDisplayFullcontent(InformationContent);
-        modulModel.ClickDisplayFullcontent(NameContent);
-        modulModel.ClickDisplayFullcontent(GraduatedContent);
+
+        ShardResponseData.promptFollowupModel = new DeepSeekPromptFollowupModel();
+        System.out.println(ShardResponseData.responseModel.getSecondSkillMatchingResponse());
+
+        modulModel.ClickDisplayFullcontent(SkillMatchingContent, ShardResponseData.responseModel.getSecondSkillMatchingResponse());
+        modulModel.ClickDisplayFullcontent(WorkingExperienceContent,ShardResponseData.responseModel.getSecondWorkExperienceResponse());
+        modulModel.ClickDisplayFullcontent(PersonalityContent,ShardResponseData.responseModel.getSecondPersonalityResponse());
+        modulModel.ClickDisplayFullcontent(SoftSkillsContent,ShardResponseData.responseModel.getSecondSoftSkillsResponse());
+        modulModel.ClickDisplayFullcontent(PositionContent,ShardResponseData.responseModel.getSecondPositionResponse());
+        modulModel.ClickDisplayFullcontent(InformationContent,ShardResponseData.responseModel.getSecondInformationResponse());
+        modulModel.ClickDisplayFullcontent(NameContent,ShardResponseData.responseModel.getSecondNameResponse());
+        modulModel.ClickDisplayFullcontent(GraduatedContent,ShardResponseData.responseModel.getSecondGraduatedResponse());
 
     }
 
@@ -184,17 +194,17 @@ public class AnalysisPageController {
         PositionContent.setAlignment(Pos.CENTER_LEFT);
         InformationContent.setAlignment(Pos.CENTER_LEFT);
         PersonalityContent.setAlignment(Pos.CENTER_LEFT);
-        SkillMatchingContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: Regular;");
-        WorkingExperienceContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: Regular;");
-        SoftSkillsContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: Regular;");
-        PositionContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: Regular;");
-        InformationContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: Regular;");
-        NameContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: Regular;");
-        GraduatedContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: Regular;");
-        SalaryContent.setStyle("-fx-font-size: 30px;" + "-fx-font-weight: Regular;");
-        ScoreContent.setStyle("-fx-font-size: 28px;" + "-fx-font-weight: Regular;");
-        PersonalityContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: Regular;");
-        ModulModel.stop();
+        SkillMatchingContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: normal;");
+        WorkingExperienceContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
+        SoftSkillsContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
+        PositionContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
+        InformationContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: norma;");
+        NameContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: normal;");
+        GraduatedContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: normal;");
+        SalaryContent.setStyle("-fx-font-size: 30px;" + "-fx-font-weight: normal;");
+        ScoreContent.setStyle("-fx-font-size: 28px;" + "-fx-font-weight: normal;");
+        PersonalityContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
+        ModulModel.stopAnimatedLoading();
     }
 
     @FXML
@@ -253,8 +263,10 @@ public class AnalysisPageController {
                     System.err.println("Unknown scene: " + sceneName);
                     return;
             }
-            Stage stage = (Stage) gearButton.getScene().getWindow();
-            stage.setScene(new Scene(newRoot));
+            Stage newStage = new Stage();
+            newStage.setTitle(sceneName); // 可选：设置窗口标题
+            newStage.setScene(new Scene(newRoot));
+            newStage.show(); // 显示新窗口
         } catch (IOException e) {
             e.printStackTrace();
         }

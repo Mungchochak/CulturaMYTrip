@@ -5,10 +5,6 @@ public class DeepSeekPromptModel {
 
     public String getSkillMatchingprompt() {
 
-//        return "You are an expert resume analyzer. Please extract and summarize this person's core professional skills, technologies, and tools based on their resume. "
-//                + "Focus only on technical abilities such as programming languages, frameworks, and databases. "
-//                + "Respond with only skill keywords separated by the '|' symbol (e.g., Java | Spring | MySQL), in a single formal English line, strictly under 100 characters. "
-//                + "Do not include any explanations or analysis.";
 
         return "You are a professional resume analysis system. If the resume is in a language other than English, first translate it to English. "
                 + "You are an expert in analyzing all academic and professional fields. Please extract and summarize this person's core hard skills, technologies, methods, and tools based on their resume. "
@@ -19,30 +15,49 @@ public class DeepSeekPromptModel {
                 + "There is no need to tell me the total number of characters. This is for the users to see, not for the background. "
                 + "If the content is not a resume, please reply: The document is not related to the resume. "
                 + "Your reply must be in English.";
+
+
     }
 
     public String getWorkingExperienceprompt() {
 
+//        return "You are a professional resume analysis system. If the resume is in a language other than English, first translate it to English. "
+//                + "You must treat all forms of work and project-based activities as valid professional experience. This includes clinical practice, medical roles, internships, academic research, thesis work, course-based projects, student competitions, capstone projects, and classroom implementations. "
+//                + "Even if the experience is from university or college, such as a course project or group assignment, it must be included. "
+//                + "Do not limit interpretation to technical or software roles. All professions, including healthcare, engineering, education, and research are valid. "
+//                + "Extract and summarize the candidate’s experience: job titles or roles (if any), organizations or institutions, total years of experience (estimated if needed), significant projects (including academic ones), responsibilities, and technologies or methods used. "
+//                + "Write a single formal English paragraph in this format: 'The candidate has experience as... at... from... to..., where they...'. "
+//                + "Strictly limit the output to under 450 characters (including spaces and symbols). Do not use bullet points, explanations, or assumptions. "
+//                + "Only if the content clearly lacks any form of professional or project-based experience, respond with: \"insufficient data\". "
+//                + "Do not mention character count. The reply must be in English.";
         return "You are a professional resume analysis system. If the resume is in a language other than English, first translate it to English. "
-                + "You must treat all forms of work and project-based activities as valid professional experience. This includes clinical practice, medical roles, internships, academic research, thesis work, course-based projects, student competitions, capstone projects, and classroom implementations. "
-                + "Even if the experience is from university or college, such as a course project or group assignment, it must be included. "
-                + "Do not limit interpretation to technical or software roles. All professions, including healthcare, engineering, education, and research are valid. "
-                + "Extract and summarize the candidate’s experience: job titles or roles (if any), organizations or institutions, total years of experience (estimated if needed), significant projects (including academic ones), responsibilities, and technologies or methods used. "
-                + "Write a single formal English paragraph in this format: 'The candidate has experience as... at... from... to..., where they...'. "
-                + "Strictly limit the output to under 450 characters (including spaces and symbols). Do not use bullet points, explanations, or assumptions. "
-                + "Only if the content clearly lacks any form of professional or project-based experience, respond with: \"insufficient data\". "
-                + "Do not mention character count. The reply must be in English.";
+                + "Treat all forms of work and project-based activities as valid experience — including internships, clinical work, academic research, course projects, thesis, capstones, or competitions. "
+                + "Extract and summarize the candidate’s experience: role(s), institution(s), approximate dates, projects or tasks, and tools used. "
+                + "Respond with a formal English paragraph in this format: 'The candidate has experience as... at... from... to..., where they...'. "
+                + "Strictly limit the output to 450 characters. Do not use bullets or add assumptions. "
+                + "If no relevant experience is found, reply: insufficient data.";
+
     }
 
     public String getPersonalityprompt() {
 
-        return "You are a professional resume analysis system. If the resume is in a language other than English, translate it to English first. " +
-                "Then analyze and summarize the candidate’s personality traits based on their descriptions of projects, roles, and experience. " +
-                "Focus on traits like leadership, creativity, problem-solving, collaboration, attention to detail, etc. " +
-                "Write a single formal English paragraph, no bullet points, strictly under 260 characters(including Spaces and all symbols),There is no need to tell me the total number of characters. This is for the users to see, not for the background. " +
-                "Do not include any assumptions, suggestions, or system messages. If insufficient data is found, return: \"insufficient data\"."
-                +"If the content is not a resume, please reply : The document is not related to the resume"
-                +"The reply must be in English";
+//        return "You are a professional resume analysis system. If the resume is in a language other than English, translate it to English first. " +
+//                "Then analyze and summarize the candidate’s personality traits based on their descriptions of projects, roles, and experience. " +
+//                "Focus on traits like leadership, creativity, problem-solving, collaboration, attention to detail, etc. " +
+//                "Write a single formal English paragraph, no bullet points, strictly under 260 characters(including Spaces and all symbols),There is no need to tell me the total number of characters. This is for the users to see, not for the background. " +
+//                "Do not include any assumptions, suggestions, or system messages. If insufficient data is found, return: \"insufficient data\"."
+//                +"If the content is not a resume, please reply : The document is not related to the resume"
+//                +"The reply must be in English";
+
+
+            return "You are a professional resume analysis system. If the resume is in a language other than English, translate it to English first. "
+                    + "Analyze and summarize the candidate’s personality traits based on descriptions of their roles, responsibilities, and projects. "
+                    + "Focus on traits such as leadership, creativity, problem-solving, collaboration, attention to detail, etc. "
+                    + "Respond with a single formal English paragraph under 260 characters (including spaces and symbols). "
+                    + "Do not include assumptions or system comments. "
+                    + "If insufficient data is found, return: insufficient data. "
+                    + "If the document is not a resume, reply: The document is not related to the resume.";
+
 
     }
 
@@ -126,6 +141,8 @@ public class DeepSeekPromptModel {
                 + "If there is no education information in the content, reply exactly with: \"insufficient data\". "
                 + "The reply must be in English.";
     }
+
+
 
 
 

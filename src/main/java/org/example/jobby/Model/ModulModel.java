@@ -3,10 +3,7 @@ package org.example.jobby.Model;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Cursor;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 
@@ -24,32 +21,43 @@ public class ModulModel {
     }
 
 
-    public void ClickDisplayFullcontent(Label label) {
+
+    public void ClickDisplayFullcontent(Label label,String Content) {
 
         // click
         label.setCursor(Cursor.HAND);
+        System.out.println(Content);
 
 
         label.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Jobby");
-            alert.setContentText(label.getText());
-            alert.getButtonTypes().add(ButtonType.OK);
 
-            DialogPane dialogPane = alert.getDialogPane();
-            dialogPane.setPrefSize(800, 400);
-            alert.setResizable(true);
+            Label contentLabel = new Label(Content);
+            contentLabel.setWrapText(true);
+            contentLabel.setStyle("-fx-font-size: 18px; -fx-alignment: center; -fx-text-alignment: left;");
+            contentLabel.setPrefWidth(780);
+
+            ScrollPane scrollPane = new ScrollPane(contentLabel);
+            scrollPane.setFitToWidth(true);
+            scrollPane.setPrefSize(780, 360);
+
+            alert.getDialogPane().setContent(scrollPane);
+            alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            alert.getDialogPane().setPrefSize(800, 400);
             alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-            alert.getDialogPane().setStyle("-fx-font-size: 22px;");
+            alert.setResizable(true);
+
             alert.showAndWait();
         });
     }
 
     public void OffClickDisplayFullcontent(Label label) {
         label.setOnMouseClicked(null);
+        label.setCursor(Cursor.DEFAULT);
     }
 
-    private static final String TEXT = ". . . . . . .";
+    private static final String TEXT = ". . . . . .";
     private static final Map<Label, Timeline> activeTimelines = new HashMap<>();
 
     public static void startAnimatedLoading(Label label) {
@@ -66,7 +74,7 @@ public class ModulModel {
         activeTimelines.put(label, timeline);
     }
 
-    public static void stop() {
+    public static void stopAnimatedLoading() {
         for (Map.Entry<Label, Timeline> entry : activeTimelines.entrySet()) {
             entry.getValue().stop();
         }

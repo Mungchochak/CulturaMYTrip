@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.example.jobby.Model.DeepSeekPromptFollowupModel;
 import org.example.jobby.Model.DeepSeekPromptModel;
 import org.example.jobby.Model.DeepSeekResponseModel;
 import org.example.jobby.Model.ShardResponseData;
@@ -16,9 +17,11 @@ public class PDFScanner {
 
     public DeepSeekPromptModel deepSeekPromptModel = new DeepSeekPromptModel();
     public DeepSeekResponseModel deepSeekResponseModel = new DeepSeekResponseModel();
+
     private static final JFileChooser fileChooser = new JFileChooser();
 
     public void PDFScanner(Runnable onStart, Runnable onFinish) {
+        ShardResponseData.promptFollowupModel = new DeepSeekPromptFollowupModel();
 
 
         SwingUtilities.invokeLater(() -> {
@@ -52,15 +55,34 @@ public class PDFScanner {
                     String content = extractTextFromPDF(selectedFile.getAbsolutePath());
 
                     deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSkillMatchingprompt()));
+                    deepSeekResponseModel.setSecondSkillMatchingResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSkillMatchingprompt()));
+
                     deepSeekResponseModel.setWorkExperienceResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getWorkingExperienceprompt()));
+                    deepSeekResponseModel.setSecondWorkExperienceResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getWorkingExperienceprompt()));
+
                     deepSeekResponseModel.setPersonalityResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPersonalityprompt()));
+                    deepSeekResponseModel.setSecondPersonalityResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getPersonalityprompt()));
+
                     deepSeekResponseModel.setSoftSkillsResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSoftSkillsprompt()));
+                    deepSeekResponseModel.setSecondSoftSkillsResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSoftSkillsprompt()));
+
                     deepSeekResponseModel.setPositionResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPositionprompt()));
+                    deepSeekResponseModel.setSecondPositionResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getPositionprompt()));
+
                     deepSeekResponseModel.setInformationResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getInformationprompt()));
+                    deepSeekResponseModel.setSecondInformationResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getInformationprompt()));
+
                     deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSalaryprompt()));
+                    deepSeekResponseModel.setSecondSalaryResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSalaryprompt()));
+
                     deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getScoreprompt()));
+                    deepSeekResponseModel.setSecondScoreResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getScoreprompt()));
+
                     deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getNameprompt()));
+                    deepSeekResponseModel.setSecondNameResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getNameprompt()));
+
                     deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getGraduatedprompt()));
+                    deepSeekResponseModel.setSecondGraduatedResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getGraduatedprompt()));
 
 
                     ShardResponseData.responseModel = deepSeekResponseModel;
@@ -79,7 +101,7 @@ public class PDFScanner {
     private static String extractTextFromPDF(String filePath) throws IOException {
         try (PDDocument document = Loader.loadPDF(new File(filePath))) {
             PDFTextStripper stripper = new PDFTextStripper();
-            System.out.println(stripper.getText(document));
+            System.out.println("Got PDF Content");
             return stripper.getText(document);
         }
     }

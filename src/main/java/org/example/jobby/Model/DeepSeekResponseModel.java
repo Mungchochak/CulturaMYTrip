@@ -10,6 +10,103 @@ public class DeepSeekResponseModel {
     private String SalaryResponse;
     private String ScoreResponse;
     private String NameResponse;
+    private String GraduatedResponse;
+
+    private String SecondSkillMatchingResponse;
+    private String SecondWorkExperienceResponse;
+    private String SecondPersonalityResponse;
+    private String SecondSoftSkillsResponse;
+    private String SecondPositionResponse;
+    private String SecondInformationResponse;
+    private String SecondSalaryResponse;
+    private String SecondScoreResponse;
+    private String SecondNameResponse;
+    private String SecondGraduatedResponse;
+
+    public String getSecondGraduatedResponse() {
+        return SecondGraduatedResponse;
+    }
+
+    public void setSecondGraduatedResponse(String secondGraduatedResponse) {
+        SecondGraduatedResponse = secondGraduatedResponse;
+    }
+
+
+
+
+    public String getSecondSkillMatchingResponse() {
+        return SecondSkillMatchingResponse;
+    }
+
+    public void setSecondSkillMatchingResponse(String secondSkillMatchingResponse) {
+        SecondSkillMatchingResponse = secondSkillMatchingResponse;
+    }
+
+    public String getSecondWorkExperienceResponse() {
+        return SecondWorkExperienceResponse;
+    }
+
+    public void setSecondWorkExperienceResponse(String secondWorkExperienceResponse) {
+        SecondWorkExperienceResponse = secondWorkExperienceResponse;
+    }
+
+    public String getSecondPersonalityResponse() {
+        return SecondPersonalityResponse;
+    }
+
+    public void setSecondPersonalityResponse(String secondPersonalityResponse) {
+        SecondPersonalityResponse = secondPersonalityResponse;
+    }
+
+    public String getSecondSoftSkillsResponse() {
+        return SecondSoftSkillsResponse;
+    }
+
+    public void setSecondSoftSkillsResponse(String secondSoftSkillsResponse) {
+        SecondSoftSkillsResponse = secondSoftSkillsResponse;
+    }
+
+    public String getSecondPositionResponse() {
+        return SecondPositionResponse;
+    }
+
+    public void setSecondPositionResponse(String secondPositionResponse) {
+        SecondPositionResponse = secondPositionResponse;
+    }
+
+    public String getSecondInformationResponse() {
+        return SecondInformationResponse;
+    }
+
+    public void setSecondInformationResponse(String secondInformationResponse) {
+        SecondInformationResponse = secondInformationResponse;
+    }
+
+    public String getSecondSalaryResponse() {
+        return SecondSalaryResponse;
+    }
+
+    public void setSecondSalaryResponse(String secondSalaryResponse) {
+        SecondSalaryResponse = secondSalaryResponse;
+    }
+
+    public String getSecondScoreResponse() {
+        return SecondScoreResponse;
+    }
+
+    public void setSecondScoreResponse(String secondScoreResponse) {
+        SecondScoreResponse = secondScoreResponse;
+    }
+
+    public String getSecondNameResponse() {
+        return SecondNameResponse;
+    }
+
+    public void setSecondNameResponse(String secondNameResponse) {
+        SecondNameResponse = secondNameResponse;
+    }
+
+
 
     public String getNameResponse() {
         return NameResponse;
@@ -27,7 +124,7 @@ public class DeepSeekResponseModel {
         GraduatedResponse = graduatedResponse;
     }
 
-    private String GraduatedResponse;
+
 
 
     public String getWorkExperienceResponse() {
