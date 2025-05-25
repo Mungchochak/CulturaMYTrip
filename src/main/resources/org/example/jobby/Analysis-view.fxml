@@ -6,10 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -34,7 +36,7 @@
                      </AnchorPane>
 
                      <!-- ✅ New Button to Open Streamlit App -->
-                     <Button fx:id="openStreamlitButton" onAction="#handleOpenStreamlit" prefHeight="100.0" prefWidth="50.0" style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" text="Bobby" wrapText="true" />
+                     <Button fx:id="openStreamlitButton" onAction="#handleOpenStreamlit" prefHeight="31.0" prefWidth="50.0" style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" text="Bobby" wrapText="true" />
                      <Button fx:id="gearButton" mnemonicParsing="false" style="-fx-background-color: #0D005F;" stylesheets="@../../../CSS/ButtonPress.css" text="Gear " textFill="#041636">
                         <graphic>
                            <ImageView fx:id="gearIcon" fitHeight="37.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
@@ -116,284 +118,413 @@
                </VBox>
             </children>
          </HBox>
-         <VBox alignment="CENTER" prefHeight="828.0" prefWidth="1118.0" spacing="10.0" HBox.hgrow="ALWAYS">
+         <VBox alignment="TOP_CENTER" prefHeight="824.0" prefWidth="1118.0">
             <children>
-               <VBox prefHeight="63.0" prefWidth="1118.0" style="-fx-background-color: #0D005F;" VBox.vgrow="ALWAYS">
+               <VBox alignment="CENTER" prefHeight="78.0" prefWidth="1118.0" style="-fx-background-color: #0D005F;" VBox.vgrow="NEVER">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
                   <children>
-                     <Label maxHeight="-Infinity" prefHeight="63.0" prefWidth="1118.0" style="-fx-background-color: #0D005F;" text="Analysis Report" textFill="WHITE" VBox.vgrow="NEVER">
+                     <Label maxHeight="-Infinity" prefHeight="83.0" prefWidth="1144.0" style="-fx-background-color: #0D005F;" text="Analysis Report" textFill="WHITE">
                         <font>
                            <Font name="System Bold" size="29.0" />
                         </font>
                         <VBox.margin>
-                           <Insets left="20.0" />
+                           <Insets left="10.0" />
                         </VBox.margin>
                      </Label>
                   </children>
                </VBox>
-               <HBox alignment="CENTER">
+               <VBox fx:id="contentVBox" alignment="CENTER" prefHeight="801.0" prefWidth="1118.0" spacing="10.0">
                   <children>
-                     <VBox prefHeight="128.0" prefWidth="996.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                     <HBox alignment="CENTER">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="Skill Matching:" wrappingWidth="191.7806625366211" VBox.vgrow="ALWAYS">
-                              <VBox.margin>
-                                 <Insets left="8.0" top="5.0" />
-                              </VBox.margin>
-                              <font>
-                                 <Font name="Helvetica" size="20.0" />
-                              </font>
-                           </Text>
-                           <Label fx:id="SkillMatchingContent" alignment="CENTER" contentDisplay="CENTER" prefHeight="111.0" prefWidth="1078.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Java | Spring Boot | React | Angular | TypeScript | Node.js | GraphQL | Docker | Kubernetes | AWS | GCP | Firebase | MongoDB | MySQL | PostgreSQL | Redis | Git | CI/CD | RESTful APIs" wrapText="true" VBox.vgrow="ALWAYS">
+                           <VBox prefHeight="128.0" prefWidth="996.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                              <children>
+                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="Skill Matching:" wrappingWidth="191.7806625366211" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                       <Insets left="8.0" top="5.0" />
+                                    </VBox.margin>
+                                    <font>
+                                       <Font name="Helvetica" size="20.0" />
+                                    </font>
+                                 </Text>
+                                 <VBox fx:id="mainPane" prefHeight="200.0" prefWidth="100.0" />
+                              </children>
                               <opaqueInsets>
-                                 <Insets right="10.0" />
+                                 <Insets />
                               </opaqueInsets>
-                              <font>
-                                 <Font name="Helvetica" size="20.0" />
-                              </font>
-                              <padding>
-                                 <Insets left="10.0" right="10.0" />
-                              </padding>
-                           </Label>
+                              <HBox.margin>
+                                 <Insets left="20.0" right="20.0" />
+                              </HBox.margin>
+                           </VBox>
                         </children>
-                        <opaqueInsets>
+                        <VBox.margin>
                            <Insets />
-                        </opaqueInsets>
-                        <HBox.margin>
+                        </VBox.margin>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="383.0" prefWidth="1078.0" spacing="8.0" VBox.vgrow="ALWAYS">
+                        <children>
+                           <VBox prefHeight="302.0" prefWidth="531.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets />
+                              </HBox.margin>
+                              <children>
+                                 <VBox prefHeight="199.0" prefWidth="361.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Working Experience:" wrappingWidth="243.7806625366211">
+                                          <font>
+                                             <Font size="20.0" />
+                                          </font>
+                                          <VBox.margin>
+                                             <Insets left="8.0" top="5.0" />
+                                          </VBox.margin>
+                                       </Text>
+                                       <HBox alignment="CENTER" prefHeight="135.0" prefWidth="531.0">
+                                          <children>
+                                             <ScrollPane fx:id="ExperienceScrollPane" prefHeight="135.0" prefWidth="503.0" style="-fx-background-radius: 20; -fx-background-color: #EFEFEF;">
+                                                <content>
+                                                   <VBox prefHeight="133.0" prefWidth="501.0" style="-fx-background-color: EAEAEA;">
+                                                      <children>
+                                                         <VBox fx:id="experienceUI" prefHeight="0.0" prefWidth="485.0" style="-fx-background-color: EAEAEA;" />
+                                                      </children>
+                                                   </VBox>
+                                                </content>
+                                             </ScrollPane>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                                 <VBox prefHeight="234.0" prefWidth="531.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                    <children>
+                                       <HBox VBox.vgrow="ALWAYS">
+                                          <children>
+                                             <VBox prefHeight="226.0" prefWidth="531.0" spacing="5.0">
+                                                <children>
+                                                   <VBox>
+                                                      <children>
+                                                         <Label fx:id="SoftSkillsContent1" prefHeight="0.0" prefWidth="523.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Language:" wrapText="true">
+                                                            <font>
+                                                               <Font name="Helvetica Bold" size="20.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                               <Insets left="8.0" top="5.0" />
+                                                            </VBox.margin>
+                                                         </Label>
+                                                         <VBox fx:id="LanguageVbox" prefHeight="49.0" prefWidth="531.0" />
+                                                      </children>
+                                                   </VBox>
+                                                   <HBox prefHeight="163.0" prefWidth="531.0">
+                                                      <children>
+                                                         <VBox prefHeight="135.0" prefWidth="531.0">
+                                                            <children>
+                                                               <Label fx:id="GraduatedContent111" prefHeight="25.0" prefWidth="699.0" text="Soft Skills:" wrapText="true">
+                                                                  <font>
+                                                                     <Font name="Helvetica Bold" size="20.0" />
+                                                                  </font>
+                                                                  <padding>
+                                                                     <Insets right="5.0" />
+                                                                  </padding>
+                                                                  <VBox.margin>
+                                                                     <Insets left="8.0" top="5.0" />
+                                                                  </VBox.margin>
+                                                               </Label>
+                                                               <VBox fx:id="SoftSkillsVbox" prefHeight="134.0" prefWidth="531.0" />
+                                                            </children>
+                                                         </VBox>
+                                                      </children>
+                                                      <opaqueInsets>
+                                                         <Insets bottom="5.0" />
+                                                      </opaqueInsets>
+                                                   </HBox>
+                                                </children>
+                                                <opaqueInsets>
+                                                   <Insets />
+                                                </opaqueInsets>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </VBox>
+                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets />
+                              </HBox.margin>
+                              <children>
+                                 <VBox prefHeight="200.0" prefWidth="539.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personality:" wrappingWidth="199.7806625366211">
+                                          <font>
+                                             <Font size="20.0" />
+                                          </font>
+                                          <VBox.margin>
+                                             <Insets left="8.0" top="5.0" />
+                                          </VBox.margin>
+                                       </Text>
+                                       <Label fx:id="PersonalityContent" prefHeight="240.0" prefWidth="539.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                                          <padding>
+                                             <Insets left="10.0" right="10.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="Helvetica" size="15.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                                 <VBox prefHeight="231.0" prefWidth="539.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Position Suggested:" wrappingWidth="199.7806625366211">
+                                          <font>
+                                             <Font size="20.0" />
+                                          </font>
+                                          <VBox.margin>
+                                             <Insets left="8.0" top="5.0" />
+                                          </VBox.margin>
+                                       </Text>
+                                       <Label fx:id="PositionContent" prefHeight="248.0" prefWidth="539.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true" VBox.vgrow="ALWAYS">
+                                          <padding>
+                                             <Insets left="10.0" right="10.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="Helvetica" size="15.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </VBox>
+                        </children>
+                        <VBox.margin>
                            <Insets left="20.0" right="20.0" />
-                        </HBox.margin>
-                     </VBox>
-                  </children>
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER" prefHeight="207.0" prefWidth="1078.0" spacing="8.0" VBox.vgrow="ALWAYS">
-                  <children>
-                     <VBox prefHeight="203.0" prefWidth="467.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Working Experience:" wrappingWidth="243.7806625366211">
-                              <font>
-                                 <Font size="20.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets left="8.0" top="5.0" />
-                              </VBox.margin>
-                           </Text>
-                           <Label fx:id="WorkingExperienceContent" prefHeight="169.0" prefWidth="774.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="The candidate has experience in Software Engineer at Google, developed scalable REST APls using Java Spring Boot and GCP services, responsible for leading a team to launch a real-time chat feature. As Full Stack Developer at Shopify, created e-commerce dashboards using React and Node.js, responsible for payment integrations. Developed projects like JobHub using Java Spring Boot and React, and HealthTrack using Flutter and Firebase. Technologies include Java, React, Docker AWS GCP and MonaoDR." wrapText="true" VBox.vgrow="ALWAYS">
-                              <padding>
-                                 <Insets left="10.0" right="10.0" />
-                              </padding>
-                              <font>
-                                 <Font name="Helvetica" size="15.0" />
-                              </font></Label>
-                        </children>
-                        <HBox.margin>
-                           <Insets />
-                        </HBox.margin>
-                     </VBox>
-                     <VBox prefHeight="201.0" prefWidth="300.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Personality:" wrappingWidth="199.7806625366211">
-                              <font>
-                                 <Font size="20.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets left="8.0" top="5.0" />
-                              </VBox.margin>
-                           </Text>
-                           <Label fx:id="PersonalityContent" prefHeight="172.0" prefWidth="664.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Alex demonstrates strong leadership, technical expertise, and problem-solving skills through leading cross-functional teams and delivering scalable solutions. His proactive approach, attention to detail, and ability to collaborate effectively with diverse teams highlight his adaptability and user-centric mindset. The successful launch of features and high-rated projects further showcase his creativity and commitment to quality." wrapText="true" VBox.vgrow="ALWAYS">
-                              <padding>
-                                 <Insets left="10.0" right="10.0" />
-                              </padding>
-                              <font>
-                                 <Font name="Helvetica" size="15.0" />
-                              </font></Label>
-                        </children>
-                        <HBox.margin>
-                           <Insets />
-                        </HBox.margin>
-                     </VBox>
-                  </children>
-                  <VBox.margin>
-                     <Insets left="20.0" right="20.0" />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER" prefHeight="207.0" prefWidth="1078.0" spacing="8.0">
-                  <children>
-                     <VBox prefHeight="203.0" prefWidth="467.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Language and Soft Skills:" wrappingWidth="243.7806625366211">
-                              <font>
-                                 <Font size="20.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets left="8.0" top="5.0" />
-                              </VBox.margin>
-                           </Text>
-                           <Label fx:id="SoftSkillsContent" prefHeight="169.0" prefWidth="774.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="The candidate has experience in Software Engineer at Google, developed scalable REST APls using Java Spring Boot and GCP services, responsible for leading a team to launch a real-time chat feature. As Full Stack Developer at Shopify, created e-commerce dashboards using React and Node.js, responsible for payment integrations. Developed projects like JobHub using Java Spring Boot and React, and HealthTrack using Flutter and Firebase. Technologies include Java, React, Docker AWS GCP and MonaoDR." wrapText="true" VBox.vgrow="ALWAYS">
-                              <padding>
-                                 <Insets left="10.0" right="10.0" />
-                              </padding>
-                              <font>
-                                 <Font name="Helvetica" size="15.0" />
-                              </font>
-                           </Label>
-                        </children>
-                        <HBox.margin>
-                           <Insets />
-                        </HBox.margin>
-                     </VBox>
-                     <VBox prefHeight="201.0" prefWidth="300.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Position Suggested:" wrappingWidth="199.7806625366211">
-                              <font>
-                                 <Font size="20.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets left="8.0" top="5.0" />
-                              </VBox.margin>
-                           </Text>
-                           <Label fx:id="PositionContent" prefHeight="172.0" prefWidth="664.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Alex demonstrates strong leadership, technical expertise, and problem-solving skills through leading cross-functional teams and delivering scalable solutions. His proactive approach, attention to detail, and ability to collaborate effectively with diverse teams highlight his adaptability and user-centric mindset. The successful launch of features and high-rated projects further showcase his creativity and commitment to quality." wrapText="true" VBox.vgrow="ALWAYS">
-                              <padding>
-                                 <Insets left="10.0" right="10.0" />
-                              </padding>
-                              <font>
-                                 <Font name="Helvetica" size="15.0" />
-                              </font>
-                           </Label>
-                        </children>
-                        <HBox.margin>
-                           <Insets />
-                        </HBox.margin>
-                     </VBox>
-                  </children>
-                  <VBox.margin>
-                     <Insets left="20.0" right="20.0" />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER" prefHeight="160.0" prefWidth="1078.0" spacing="8.0" VBox.vgrow="ALWAYS">
-                  <children>
-                     <VBox prefHeight="77.0" prefWidth="728.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Text strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="ra" text="Basic information:" wrappingWidth="254.79999999999995">
-                              <font>
-                                 <Font name="System Bold" size="20.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets left="8.0" top="5.0" />
-                              </VBox.margin>
-                           </Text>
-                           <Label fx:id="InformationContent" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="144.0" prefWidth="812.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Alex Johnson is a highly skilled Full Stack Software Engineer based in San Francisco, CA, with a Bachelor's in Computer Science from the University of Toronto. Proficient in Java, Spring Boot, React, and cloud technologies (AWS, GCP), they excel in agile, user-centric development. Their experience at Google and Shopify highlights expertise in scalable web applications and microservices. Fluent in English and Spanish, they are well-suited for tech-driven roles in cloud-based industries, particularly in North America." wrapText="true" VBox.vgrow="ALWAYS">
-                              <padding>
-                                 <Insets left="10.0" right="10.0" />
-                              </padding>
-                              <font>
-                                 <Font name="Helvetica" size="15.0" />
-                              </font></Label>
-                        </children>
-                     </VBox>
-                     <VBox prefWidth="172.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Recommended Salary:" wrappingWidth="225.3138656616211">
-                              <font>
-                                 <Font size="20.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets left="8.0" top="5.0" />
-                              </VBox.margin>
-                           </Text>
-                           <Label fx:id="SalaryContent" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="123.0" prefWidth="294.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="RM15000-25000" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
-                              <font>
-                                 <Font name="Helvetica" size="30.0" />
-                              </font></Label>
-                        </children>
-                     </VBox>
-                  </children>
-                  <VBox.margin>
-                     <Insets left="20.0" right="20.0" />
-                  </VBox.margin>
-               </HBox>
-               <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="1118.0" spacing="8.0">
-                  <children>
-                     <HBox alignment="CENTER" prefHeight="48.0" prefWidth="413.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
-                        <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Name:" textAlignment="CENTER" wrappingWidth="99.7806625366211" HBox.hgrow="ALWAYS">
-                              <font>
-                                 <Font size="28.0" />
-                              </font>
-                              <HBox.margin>
-                                 <Insets />
-                              </HBox.margin>
-                           </Text>
-                           <Label fx:id="NameContent" alignment="CENTER" prefHeight="38.0" prefWidth="248.0" text="Mengzuze" HBox.hgrow="ALWAYS">
-                              <font>
-                                 <Font name="Helvetica" size="20.0" />
-                              </font>
-                              <HBox.margin>
-                                 <Insets />
-                              </HBox.margin>
-                           </Label>
-                        </children>
-                        <opaqueInsets>
-                           <Insets />
-                        </opaqueInsets>
+                        </VBox.margin>
                      </HBox>
-                     <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="574.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                     <HBox alignment="CENTER" prefHeight="59.0" prefWidth="1078.0" spacing="8.0" VBox.vgrow="ALWAYS">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Graduated:" textAlignment="CENTER" wrappingWidth="158.44722747802734" HBox.hgrow="ALWAYS">
-                              <font>
-                                 <Font size="28.0" />
-                              </font>
+                           <VBox prefHeight="136.0" prefWidth="528.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                              <children>
+                                 <Text strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" styleClass="ra" text="Basic information:" wrappingWidth="209.4666870117187">
+                                    <font>
+                                       <Font name="System Bold" size="20.0" />
+                                    </font>
+                                    <VBox.margin>
+                                       <Insets left="8.0" top="5.0" />
+                                    </VBox.margin>
+                                 </Text>
+                                 <VBox spacing="5.0">
+                                    <children>
+                                       <HBox prefHeight="0.0" prefWidth="467.0" VBox.vgrow="ALWAYS">
+                                          <children>
+                                             <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="19.0" prefWidth="144.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Location:" wrapText="true">
+                                                <padding>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </padding>
+                                                <font>
+                                                   <Font name="Helvetica Bold Oblique" size="15.0" />
+                                                </font>
+                                             </Label>
+                                             <Label fx:id="locationLabel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="19.0" prefWidth="205.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" wrapText="true">
+                                                <padding>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </padding>
+                                                <font>
+                                                   <Font name="Helvetica" size="15.0" />
+                                                </font>
+                                             </Label>
+                                             <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="289.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                                <children>
+                                                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="19.0" prefWidth="125.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Name:" wrapText="true">
+                                                      <padding>
+                                                         <Insets left="10.0" right="10.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="Helvetica Bold Oblique" size="15.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <Label fx:id="NameContent" prefHeight="19.0" prefWidth="206.0" HBox.hgrow="ALWAYS">
+                                                      <font>
+                                                         <Font name="Helvetica" size="15.0" />
+                                                      </font>
+                                                      <HBox.margin>
+                                                         <Insets />
+                                                      </HBox.margin>
+                                                   </Label>
+                                                </children>
+                                                <opaqueInsets>
+                                                   <Insets />
+                                                </opaqueInsets>
+                                             </HBox>
+                                          </children>
+                                          <VBox.margin>
+                                             <Insets top="5.0" />
+                                          </VBox.margin>
+                                       </HBox>
+                                       <VBox prefHeight="160.0" prefWidth="467.0">
+                                          <children>
+                                             <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="19.0" prefWidth="486.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Certificate:" wrapText="true">
+                                                <padding>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </padding>
+                                                <font>
+                                                   <Font name="Helvetica Bold Oblique" size="15.0" />
+                                                </font>
+                                             </Label>
+                                             <FlowPane fx:id="certificateBox" prefHeight="200.0" prefWidth="200.0">
+                                                <padding>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </padding>
+                                             </FlowPane>
+                                          </children>
+                                       </VBox>
+                                    </children>
+                                 </VBox>
+                              </children>
                               <HBox.margin>
-                                 <Insets />
+                                 <Insets bottom="10.0" />
                               </HBox.margin>
-                           </Text>
-                           <Label fx:id="GraduatedContent" alignment="CENTER" prefHeight="38.0" prefWidth="340.0" text="sadasdwf uni" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
-                              <font>
-                                 <Font name="Helvetica" size="20.0" />
-                              </font>
-                              <HBox.margin>
+                           </VBox>
+                           <HBox alignment="CENTER_LEFT" prefHeight="136.0" prefWidth="398.0">
+                              <children>
+                                 <VBox prefHeight="136.0" prefWidth="137.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <HBox.margin>
+                                       <Insets />
+                                    </HBox.margin>
+                                    <children>
+                                       <VBox style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                          <children>
+                                             <HBox prefHeight="70.0" prefWidth="345.0">
+                                                <children>
+                                                   <Label fx:id="GraduatedContent2" prefHeight="69.0" prefWidth="258.0" text="Graduated:">
+                                                      <font>
+                                                         <Font name="Helvetica Bold" size="20.0" />
+                                                      </font>
+                                                      <padding>
+                                                         <Insets left="8.0" />
+                                                      </padding>
+                                                   </Label>
+                                                   <Label fx:id="GraduatedContent" alignment="CENTER" prefHeight="69.0" prefWidth="354.0" textAlignment="JUSTIFY" wrapText="true">
+                                                      <font>
+                                                         <Font name="Helvetica" size="15.0" />
+                                                      </font>
+                                                      <padding>
+                                                         <Insets right="8.0" />
+                                                      </padding>
+                                                   </Label>
+                                                </children>
+                                             </HBox>
+                                             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="467.0" spacing="5.0">
+                                                <children>
+                                                   <Label fx:id="GraduatedContent1" prefHeight="62.0" prefWidth="85.0" text="Major:" textAlignment="JUSTIFY">
+                                                      <font>
+                                                         <Font name="Helvetica Bold" size="20.0" />
+                                                      </font>
+                                                      <padding>
+                                                         <Insets left="8.0" />
+                                                      </padding>
+                                                   </Label>
+                                                   <Label fx:id="majorLabel" alignment="CENTER" prefHeight="62.0" prefWidth="250.0" textAlignment="JUSTIFY" wrapText="true">
+                                                      <font>
+                                                         <Font name="Helvetica" size="15.0" />
+                                                      </font>
+                                                      <padding>
+                                                         <Insets right="8.0" />
+                                                      </padding>
+                                                   </Label>
+                                                </children>
+                                             </HBox>
+                                          </children>
+                                       </VBox>
+                                       <HBox alignment="CENTER" prefHeight="56.0" prefWidth="374.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                          <children>
+                                             <Label fx:id="GraduatedContent11" prefHeight="48.0" prefWidth="151.0" text="CGPA:" textAlignment="JUSTIFY">
+                                                <font>
+                                                   <Font name="Helvetica Bold" size="20.0" />
+                                                </font>
+                                                <padding>
+                                                   <Insets left="8.0" />
+                                                </padding>
+                                             </Label>
+                                             <Label fx:id="NameContent1" alignment="CENTER" prefHeight="38.0" prefWidth="305.0" HBox.hgrow="ALWAYS">
+                                                <font>
+                                                   <Font name="Helvetica" size="20.0" />
+                                                </font>
+                                                <HBox.margin>
+                                                   <Insets />
+                                                </HBox.margin>
+                                             </Label>
+                                          </children>
+                                          <opaqueInsets>
+                                             <Insets />
+                                          </opaqueInsets>
+                                          <VBox.margin>
+                                             <Insets bottom="10.0" />
+                                          </VBox.margin>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <opaqueInsets>
                                  <Insets />
-                              </HBox.margin>
-                           </Label>
+                              </opaqueInsets>
+                           </HBox>
+                           <VBox prefHeight="191.0" prefWidth="182.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                 <VBox prefHeight="125.0" prefWidth="289.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                    <children>
+                                       <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Recommended Salary:" wrappingWidth="225.3138656616211">
+                                          <font>
+                                             <Font size="20.0" />
+                                          </font>
+                                          <VBox.margin>
+                                             <Insets left="8.0" top="5.0" />
+                                          </VBox.margin>
+                                       </Text>
+                                       <Label fx:id="SalaryContent" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="107.0" prefWidth="361.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                                          <font>
+                                             <Font name="Helvetica" size="25.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                                 <HBox alignment="CENTER" prefHeight="56.0" prefWidth="234.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Score:" textAlignment="CENTER" wrappingWidth="98.44734954833984" HBox.hgrow="ALWAYS">
+                                          <font>
+                                             <Font size="28.0" />
+                                          </font>
+                                          <HBox.margin>
+                                             <Insets />
+                                          </HBox.margin>
+                                       </Text>
+                                       <Label fx:id="ScoreContent" alignment="CENTER" prefHeight="38.0" prefWidth="136.0" HBox.hgrow="ALWAYS">
+                                          <font>
+                                             <Font name="Helvetica" size="25.0" />
+                                          </font>
+                                          <HBox.margin>
+                                             <Insets />
+                                          </HBox.margin>
+                                       </Label>
+                                    </children>
+                                    <opaqueInsets>
+                                       <Insets />
+                                    </opaqueInsets>
+                                    <VBox.margin>
+                                       <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                 </HBox>
+                              </children>
+                           </VBox>
                         </children>
-                        <opaqueInsets>
-                           <Insets />
-                        </opaqueInsets>
-                     </HBox>
-                     <HBox alignment="CENTER" prefHeight="48.0" prefWidth="330.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                        <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Score:" textAlignment="CENTER" wrappingWidth="99.7806625366211" HBox.hgrow="ALWAYS">
-                              <font>
-                                 <Font size="28.0" />
-                              </font>
-                              <HBox.margin>
-                                 <Insets />
-                              </HBox.margin>
-                           </Text>
-                           <Label fx:id="ScoreContent" alignment="CENTER" prefHeight="38.0" prefWidth="145.0" text="70/100" HBox.hgrow="ALWAYS">
-                              <font>
-                                 <Font name="Helvetica" size="28.0" />
-                              </font>
-                              <HBox.margin>
-                                 <Insets />
-                              </HBox.margin>
-                           </Label>
-                        </children>
-                        <opaqueInsets>
-                           <Insets />
-                        </opaqueInsets>
+                        <VBox.margin>
+                           <Insets left="20.0" right="20.0" />
+                        </VBox.margin>
                      </HBox>
                   </children>
                   <padding>
-                     <Insets bottom="10.0" left="20.0" right="20.0" />
+                     <Insets top="10.0" />
                   </padding>
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin>
-                  <opaqueInsets>
-                     <Insets />
-                  </opaqueInsets>
-               </HBox>
+               </VBox>
             </children>
          </VBox>
       </children>

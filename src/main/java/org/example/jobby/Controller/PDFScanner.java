@@ -55,34 +55,34 @@ public class PDFScanner {
                     String content = extractTextFromPDF(selectedFile.getAbsolutePath());
 
                     deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSkillMatchingprompt()));
-                    deepSeekResponseModel.setSecondSkillMatchingResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSkillMatchingprompt()));
+//                    deepSeekResponseModel.setSecondSkillMatchingResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSkillMatchingprompt()));
 
                     deepSeekResponseModel.setWorkExperienceResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getWorkingExperienceprompt()));
-                    deepSeekResponseModel.setSecondWorkExperienceResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getWorkingExperienceprompt()));
+//                    deepSeekResponseModel.setSecondWorkExperienceResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getWorkingExperienceprompt()));
 
                     deepSeekResponseModel.setPersonalityResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPersonalityprompt()));
-                    deepSeekResponseModel.setSecondPersonalityResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getPersonalityprompt()));
+//                    deepSeekResponseModel.setSecondPersonalityResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getPersonalityprompt()));
 
                     deepSeekResponseModel.setSoftSkillsResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSoftSkillsprompt()));
-                    deepSeekResponseModel.setSecondSoftSkillsResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSoftSkillsprompt()));
+//                    deepSeekResponseModel.setSecondSoftSkillsResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSoftSkillsprompt()));
 
                     deepSeekResponseModel.setPositionResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPositionprompt()));
-                    deepSeekResponseModel.setSecondPositionResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getPositionprompt()));
+//                    deepSeekResponseModel.setSecondPositionResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getPositionprompt()));
 
                     deepSeekResponseModel.setInformationResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getInformationprompt()));
-                    deepSeekResponseModel.setSecondInformationResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getInformationprompt()));
+//                    deepSeekResponseModel.setSecondInformationResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getInformationprompt()));
 
                     deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSalaryprompt()));
-                    deepSeekResponseModel.setSecondSalaryResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSalaryprompt()));
+//                    deepSeekResponseModel.setSecondSalaryResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getSalaryprompt()));
 
                     deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getScoreprompt()));
-                    deepSeekResponseModel.setSecondScoreResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getScoreprompt()));
+//                    deepSeekResponseModel.setSecondScoreResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getScoreprompt()));
 
                     deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getNameprompt()));
-                    deepSeekResponseModel.setSecondNameResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getNameprompt()));
+//                    deepSeekResponseModel.setSecondNameResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getNameprompt()));
 
                     deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getGraduatedprompt()));
-                    deepSeekResponseModel.setSecondGraduatedResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getGraduatedprompt()));
+//                    deepSeekResponseModel.setSecondGraduatedResponse(DeepSeekChat.CallDeepSeekAPIWithHistory(ShardResponseData.promptFollowupModel.getGraduatedprompt()));
 
 
                     ShardResponseData.responseModel = deepSeekResponseModel;
