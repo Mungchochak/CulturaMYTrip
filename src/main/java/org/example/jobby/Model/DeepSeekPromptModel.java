@@ -30,12 +30,24 @@ public class DeepSeekPromptModel {
 //                + "Strictly limit the output to under 450 characters (including spaces and symbols). Do not use bullet points, explanations, or assumptions. "
 //                + "Only if the content clearly lacks any form of professional or project-based experience, respond with: \"insufficient data\". "
 //                + "Do not mention character count. The reply must be in English.";
-        return "You are a professional resume analysis system. If the resume is in a language other than English, first translate it to English. "
-                + "Treat all forms of work and project-based activities as valid experience — including internships, clinical work, academic research, course projects, thesis, capstones, or competitions. "
-                + "Extract and summarize the candidate’s experience: role(s), institution(s), approximate dates, projects or tasks, and tools used. "
-                + "Respond with a formal English paragraph in this format: 'The candidate has experience as... at... from... to..., where they...'. "
-                + "Strictly limit the output to 450 characters. Do not use bullets or add assumptions. "
-                + "If no relevant experience is found, reply: insufficient data.";
+//        return "Summarize up to 3 key professional or academic experiences from the resume in concise format. "
+//                + "Include formal work, internships, course projects, academic assignments, team competitions, and personal projects. "
+//                + "Each line must follow this format:\n"
+//                + "[Role or Project] – [Company, School, or Event] (Year) – [Main task or result, max 10 words]\n\n"
+//                + "Be minimal and factual. Avoid full sentences, adjectives, and unnecessary phrases. Limit each line to under 100 characters. Most recent first. "
+//                + "If no valid experience is found, reply exactly: insufficient data.";
+
+
+        return "You are a professional resume analysis system. Extract only the candidate’s project-based experiences (exclude internships, work experience, or education). Use the format below:\n\n"
+                + "Category: [Project / Coursework / Personal Project etc.]\n"
+                + "→ Role: [Role in the project]\n"
+                + "→ Organization: [School / Platform / Context if any]\n"
+                + "→ Year: [Time Period]\n"
+                + "→ Description: [Key technologies used, goals, and outcomes]\n\n"
+                + "Only include project-related entries. Each field must be labeled and separated by a line break.\n"
+                + "If no project information is found, return: \"insufficient data\".\n"
+                + "Your response must be in English.";
+
 
     }
 
@@ -64,13 +76,14 @@ public class DeepSeekPromptModel {
     public String getSoftSkillsprompt() {
 
         return "You are a professional resume analysis system. If the resume is not in English, translate it first. " +
-                "Then identify and summarize the candidate’s language proficiencies and soft skills, such as communication, leadership, teamwork, adaptability, etc. " +
-                "Write a single formal English paragraph, no bullet points, strictly under 400 characters(including Spaces and all symbols). " +
-                "Do not include explanations, assumptions, or system messages. " +
-                "If such information is not found, reply with: \"insufficient data\"."
-                +"There is no need to tell me the total number of characters. This is for the users to see, not for the background."
-                +"If the content is not a resume, please reply : The document is not related to the resume"
-                +"The reply must be in English";
+                "Then extract:\n" +
+                "1. All language proficiencies mentioned in the resume.\n" +
+                "2. All soft skills such as communication, leadership, teamwork, adaptability, etc.\n\n" +
+                "Respond in the following format (only this format):\n\n" +
+                "Language: English | Mandarin | Spanish\n" +
+                "Soft Skills: Leadership | Problem-solving | Teamwork\n\n" +
+                "Do NOT include any explanations, levels (e.g. fluent), or commentary. Return 'insufficient data' if nothing is found in each category respectively.\n" +
+                "Use only English in your response.";
     }
 
     public String getPositionprompt() {
@@ -88,13 +101,21 @@ public class DeepSeekPromptModel {
 
     public String getInformationprompt() {
 
-        return "You are a professional resume analysis system. If the resume is in a language other than English, translate it first. " +
-                "Then analyze the candidate’s personal background such as education, location, language proficiency, and cultural indicators. " +
-                "Summarize which work environment, region, or industry would best suit them. Respond with a formal English paragraph under 400 characters(including Spaces and all symbols). " +
-                "Do not include suggestions, assumptions, or commentary. If data is insufficient, respond with: \"insufficient data\"."
-                +"There is no need to tell me the total number of characters. This is for the users to see, not for the background."
-                +"The reply must be in English";
+
+        return "You are a professional resume analysis system. Extract the candidate’s basic personal and academic background in this format:\n\n"
+                + "Name: [Full name in English or Pinyin]\n"
+                + "Location: [City or region]\n"
+                + "Major: [University major, translated if needed]\n"
+                + "Certificates:\n"
+                + "- [Short name of Certificate 1]: [One-line explanation of Certificate 1]\n"
+                + "- [Short name of Certificate 2]: [One-line explanation of Certificate 2]\n\n"
+                + "Each field must start on a new line. Certificate names must be concise (e.g., 'CET4') followed by a colon and a short explanation (max 20 words).\n"
+                + "Omit any field that has no relevant information. Return only clean, formatted English lines as shown above.\n"
+                + "Do not include extra comments, markdown, or headers. Your response must be in English.";
+
     }
+
+
 
     public String getSalaryprompt() {
 

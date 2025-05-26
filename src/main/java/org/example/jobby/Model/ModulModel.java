@@ -2,13 +2,19 @@ package org.example.jobby.Model;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class ModulModel {
 
@@ -35,6 +41,7 @@ public class ModulModel {
 
             Label contentLabel = new Label(Content);
             contentLabel.setWrapText(true);
+            contentLabel.setAlignment(Pos.CENTER_LEFT);
             contentLabel.setStyle("-fx-font-size: 18px; -fx-alignment: center; -fx-text-alignment: left;");
             contentLabel.setPrefWidth(780);
 
@@ -80,6 +87,7 @@ public class ModulModel {
         }
         activeTimelines.clear();
     }
+
 
 
 
