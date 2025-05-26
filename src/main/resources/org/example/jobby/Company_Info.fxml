@@ -1,67 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="TOP_LEFT" layoutX="20" layoutY="20" spacing="10">
-        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Company Information" />
-
-        <GridPane hgap="10" vgap="10">
-            <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-            <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <TextField fx:id="emailField" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-
-            <Label text="Industry:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="industryField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-            <Label text="SSM No:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="ssmField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-
-            <Label text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-            <Label text="Contact:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="contactField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
-
-        <Label text="Additional Information" />
-        <HBox>
+<?import javafx.scene.layout.AnchorPane?>
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jobby.Controller.CompanyInfoController">
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="70.0" spacing="10.0" style="-fx-background-color: #0D214F;">
             <children>
-                <TextArea fx:id="additionalInfoArea" prefHeight="86.0" prefRowCount="4" prefWidth="480.0" />
+                <Button style="-fx-background-color: transparent; -fx-padding: 20 0 0 0;">
+                    <graphic>
+                        <Label style="-fx-font-size:28px; -fx-text-fill:white;" text="≡" />
+                    </graphic>
+                </Button>
+                <Region VBox.vgrow="ALWAYS" />
+                <Button fx:id="gearButton" style="-fx-background-color: transparent; -fx-padding: 0 0 20 0;">
+                    <graphic>
+                        <ImageView fitHeight="40" fitWidth="40">
+                            <image>
+                                <Image url="@icons8-settings-64 (1).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
-        </HBox>
-        <VBox prefHeight="0.0" prefWidth="500.0">
+        </VBox>
+    </left>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: white;">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
             <children>
-                <HBox prefHeight="18.0" prefWidth="500.0">
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
                     <children>
-                        <Button fx:id="saveCompanyButton" text="SAVE" />
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="26.0" prefWidth="32.0" />
-                        <Button fx:id="saveCompanyButton1" text="Edit" />
+                        <ImageView fitHeight="110" fitWidth="110">
+                            <image>
+                                <Image url="@White LOGO.png" />
+                            </image>
+                        </ImageView>
+                        <VBox alignment="CENTER_LEFT" spacing="2.0">
+                            <children>
+                                <Label style="-fx-font-size:48px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="JOBBY" />
+                                <Label style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="HIRE SMARTER" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <Label style="-fx-font-size:36px; -fx-font-family: 'Arial Black', Arial; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="Company Information" />
+
+                <GridPane hgap="30.0" vgap="18.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="110" />
+                        <ColumnConstraints minWidth="180" />
+                        <ColumnConstraints halignment="RIGHT" minWidth="110" />
+                        <ColumnConstraints minWidth="180" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="35" />
+                        <RowConstraints minHeight="35" />
+                        <RowConstraints minHeight="35" />
+                    </rowConstraints>
+                    <children>
+                        <Label style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="nameField" prefHeight="38.0" style="-fx-font-size:16px; -fx-background-radius:20; -fx-background-color:#ededed;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                        <TextField fx:id="emailField" prefHeight="38.0" style="-fx-font-size:16px; -fx-background-radius:20; -fx-background-color:#ededed;" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                        <Label style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="Industry:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="industryField" prefHeight="38.0" style="-fx-font-size:16px; -fx-background-radius:20; -fx-background-color:#ededed;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="SSM No:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="ssmField" prefHeight="38.0" style="-fx-font-size:16px; -fx-background-radius:20; -fx-background-color:#ededed;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                        <Label style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField fx:id="addressField" prefHeight="38.0" style="-fx-font-size:16px; -fx-background-radius:20; -fx-background-color:#ededed;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#0D214F;" text="Contact:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="contactField" prefHeight="38.0" style="-fx-font-size:16px; -fx-background-radius:20; -fx-background-color:#ededed;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                    </children>
+                </GridPane>
+
+                <VBox alignment="TOP_LEFT" prefWidth="850.0" spacing="8.0">
+                    <children>
+                        <Label style="-fx-font-size:18px; -fx-text-fill:#0D214F;" text="Additional Information ....." />
+                        <TextArea fx:id="additionalInfoArea" prefHeight="110.0" style="-fx-font-size:15px; -fx-background-radius:20; -fx-background-color:#ededed;" wrapText="true" />
+                    </children>
+                </VBox>
+
+                <HBox alignment="CENTER" spacing="30.0">
+                    <children>
+                        <Button fx:id="saveCompanyButton" style="-fx-background-radius:20; -fx-font-size:18px; -fx-font-weight:bold; -fx-pref-width:120;" text="Save" onAction="#handleSaveCompanyInfo" />
+                        <Button fx:id="editCompanyButton" style="-fx-background-radius:20; -fx-font-size:18px; -fx-font-weight:bold; -fx-pref-width:120;" text="Edit" onAction="#handleEditCompanyInfo" />
                     </children>
                 </HBox>
             </children>
         </VBox>
-    </VBox>
-</AnchorPane>
+    </center>
+    <bottom>
+        <AnchorPane prefHeight="70.0">
+            <Button fx:id="backButton" style="-fx-background-color: transparent;"
+                    AnchorPane.rightAnchor="25" AnchorPane.bottomAnchor="15"
+                    onAction="#GoBack">
+                <graphic>
+                    <ImageView fitHeight="40" fitWidth="40">
+                        <image>
+                            <Image url="@Back.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

@@ -49,6 +49,11 @@ public class AnalysisPageController {
     private Label GraduatedContent;
     @FXML
     private Button UploadFile;
+    @FXML
+    private Button gearButton;
+    @FXML
+    private Popup optionsPopup; // Store the popup so you can hide/show as needed
+
 
 
 
@@ -239,11 +244,7 @@ public class AnalysisPageController {
             e.printStackTrace();
         }
     }
-    @FXML
-    private Button gearButton;
 
-
-    private Popup optionsPopup; // Store the popup so you can hide/show as needed
 
     @FXML
     public void initialize() {
