@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.jobby.Model.DeepSeekPromptFollowupModel;
 import org.example.jobby.Model.DisplayUIModel;
 import org.example.jobby.Model.ModulModel;
 import org.example.jobby.Model.ShardResponseData;
@@ -75,6 +74,8 @@ public class AnalysisPageController {
     @FXML private Label majorLabel;
     @FXML private FlowPane certificateBox;
     @FXML private VBox contentVBox;
+    @FXML private VBox positionBox;
+    @FXML private Label CGPAContent;
 
 
 
@@ -115,15 +116,13 @@ public class AnalysisPageController {
                     UploadFile.setDisable(true);
                     setupLoadingLabel(contentVBox);
                     showLoadingState(contentVBox);
-//                  ClearText();
-//                  OffEnlargeContent();
-//                  StartLoadingAnimation();
+
 
 
                 },
                 () -> {
                     if (DeepSeekChat.FaildConnection){
-//                        StopLoadingAnimation();
+                      StopLoadingAnimation();
                         ModulModel.WarningPopup();
                         DeepSeekChat.FaildConnection=false;
                         UploadFile.setDisable(false);
@@ -135,20 +134,11 @@ public class AnalysisPageController {
 
 
 
-//                        StopLoadingAnimation();
-
-
-//                        SkillMatchingContent.setText(ShardResponseData.responseModel.getSkillMatchingResponse());
-//                        System.out.println("SkillMatchingContent is " + ShardResponseData.responseModel.getSkillMatchingResponse());
-
                         mainPane.getChildren().clear();
                         String skills=ShardResponseData.responseModel.getSkillMatchingResponse();
                         FlowPane skillBox = DisplayUIModel.buildSkillLabels(skills);
                         mainPane.getChildren().add(skillBox);
 
-
-//                        WorkingExperienceContent.setText(ShardResponseData.responseModel.getWorkExperienceResponse());
-//                        System.out.println("WorkingExperienceContent is " + ShardResponseData.responseModel.getWorkExperienceResponse());
 
                         experienceUI.getChildren().clear();
                         String aiResponse = ShardResponseData.responseModel.getWorkExperienceResponse(); // 得到结构化文本
@@ -160,37 +150,36 @@ public class AnalysisPageController {
                         PersonalityContent.setText(ShardResponseData.responseModel.getPersonalityResponse());
                         System.out.println("PersonalityContent is " + ShardResponseData.responseModel.getPersonalityResponse());
 
-//                        SoftSkillsContent.setText(ShardResponseData.responseModel.getSoftSkillsResponse());
-//                        System.out.println("SoftSkillsContent is " + ShardResponseData.responseModel.getSoftSkillsResponse());
-
-
 
                         String aiReply = ShardResponseData.responseModel.getSoftSkillsResponse();
                         DisplayUIModel.displayLanguageAndSoftSkills(aiReply,LanguageVbox,SoftSkillsVbox);
+
 
                         aiResponse = ShardResponseData.responseModel.getInformationResponse();// AI 回复字符串
                         DisplayUIModel.updateBasicInfoUI(aiResponse,locationLabel,majorLabel,certificateBox);
 
 
-                        PositionContent.setText(ShardResponseData.responseModel.getPositionResponse());
-                        System.out.println("PositionContent is " + ShardResponseData.responseModel.getPositionResponse());
 
-//                        InformationContent.setText(ShardResponseData.responseModel.getInformationResponse());
-//                        System.out.println("InformationContent is " + ShardResponseData.responseModel.getInformationResponse());
+                        positionBox.getChildren().clear();
+                        aiResponse = ShardResponseData.responseModel.getPositionResponse(); // 得到结构化文本
+                        maincontent = DisplayUIModel.CategorizedPositionUI(aiResponse);
+                        positionBox.getChildren().add(maincontent);
+                        System.out.println(DisplayUIModel.CategorizedPositionUI(aiResponse));
 
+                        aiReply=ShardResponseData.responseModel.getSalaryResponse();
+                        DisplayUIModel.CategorizedSalary(aiReply, SalaryContent);
 
-
-                        SalaryContent.setText(ShardResponseData.responseModel.getSalaryResponse());
-                        System.out.println("SalaryContent is " + ShardResponseData.responseModel.getSalaryResponse());
-
-                        ScoreContent.setText(ShardResponseData.responseModel.getScoreResponse());
-                        System.out.println("ScoreContent is " + ShardResponseData.responseModel.getScoreResponse());
+                        aiReply=ShardResponseData.responseModel.getScoreResponse();
+                        DisplayUIModel.CategorizedScore(aiReply,ScoreContent);
 
                         NameContent.setText(ShardResponseData.responseModel.getNameResponse());
                         System.out.println("NameContent is " + ShardResponseData.responseModel.getNameResponse());
 
-                        GraduatedContent.setText(ShardResponseData.responseModel.getGraduatedResponse());
-                        System.out.println("GraduatedContent is " + ShardResponseData.responseModel.getGraduatedResponse());
+
+                        aiReply=ShardResponseData.responseModel.getGraduatedResponse();
+                        DisplayUIModel.CategorizedUni(aiReply,GraduatedContent);
+
+                        CGPAContent.setText(ShardResponseData.responseModel.getCgpaResponse());
 
 
 
@@ -255,66 +244,11 @@ public class AnalysisPageController {
         containerVBox.getChildren().addAll(0, cachedContent); // 插回原位
         containerVBox.setAlignment(Pos.TOP_LEFT); // 或根据你的布局微调
     }
-    @FXML
-    private void EnlargeContent() {
-
-
-        ModulModel modulModel = new ModulModel();
-
-        ShardResponseData.promptFollowupModel = new DeepSeekPromptFollowupModel();
-        System.out.println(ShardResponseData.responseModel.getSecondSkillMatchingResponse());
-
-        modulModel.ClickDisplayFullcontent(SkillMatchingContent, ShardResponseData.responseModel.getSecondSkillMatchingResponse());
-        modulModel.ClickDisplayFullcontent(WorkingExperienceContent,ShardResponseData.responseModel.getSecondWorkExperienceResponse());
-        modulModel.ClickDisplayFullcontent(PersonalityContent,ShardResponseData.responseModel.getSecondPersonalityResponse());
-        modulModel.ClickDisplayFullcontent(SoftSkillsContent,ShardResponseData.responseModel.getSecondSoftSkillsResponse());
-        modulModel.ClickDisplayFullcontent(PositionContent,ShardResponseData.responseModel.getSecondPositionResponse());
-        modulModel.ClickDisplayFullcontent(InformationContent,ShardResponseData.responseModel.getSecondInformationResponse());
-        modulModel.ClickDisplayFullcontent(NameContent,ShardResponseData.responseModel.getSecondNameResponse());
-        modulModel.ClickDisplayFullcontent(GraduatedContent,ShardResponseData.responseModel.getSecondGraduatedResponse());
-        modulModel.ClickDisplayFullcontent(SalaryContent,ShardResponseData.responseModel.getSecondSalaryResponse());
-        modulModel.ClickDisplayFullcontent(ScoreContent,ShardResponseData.responseModel.getSecondScoreResponse());
-
-    }
-
-    @FXML
-    private void OffEnlargeContent(){
-        ModulModel modulModel = new ModulModel();
-        modulModel.OffClickDisplayFullcontent(SkillMatchingContent);
-        modulModel.OffClickDisplayFullcontent(WorkingExperienceContent);
-        modulModel.OffClickDisplayFullcontent(PersonalityContent);
-        modulModel.OffClickDisplayFullcontent(SoftSkillsContent);
-        modulModel.OffClickDisplayFullcontent(PositionContent);
-        modulModel.OffClickDisplayFullcontent(InformationContent);
-        modulModel.OffClickDisplayFullcontent(NameContent);
-        modulModel.OffClickDisplayFullcontent(GraduatedContent);
-        modulModel.OffClickDisplayFullcontent(SalaryContent);
-        modulModel.OffClickDisplayFullcontent(ScoreContent);
-    }
 
 
 
-    @FXML
-    private void StartLoadingAnimation() {
-        Label[] labels = {
-                SkillMatchingContent,
-                WorkingExperienceContent,
-                SoftSkillsContent,
-                PositionContent,
-                InformationContent,
-                NameContent,
-                GraduatedContent,
-                SalaryContent,
-                ScoreContent,
-                PersonalityContent
-        };
 
-        for (Label label : labels) {
-            ModulModel.startAnimatedLoading(label);
-            label.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;");
-            label.setAlignment(Pos.CENTER);
-        }
-    }
+
 
     @FXML
     private void StopLoadingAnimation(){
@@ -336,28 +270,7 @@ public class AnalysisPageController {
         ModulModel.stopAnimatedLoading();
     }
 
-    @FXML
-    private void ClearText(){
-        Label[] labels = {
-                SkillMatchingContent,
-                WorkingExperienceContent,
-                SoftSkillsContent,
-                PositionContent,
-                InformationContent,
-                NameContent,
-                GraduatedContent,
-                SalaryContent,
-                ScoreContent,
-                PersonalityContent
-        };
 
-        for (Label label : labels) {
-
-            label.setText("");
-
-        }
-
-    }
 
 
     @FXML

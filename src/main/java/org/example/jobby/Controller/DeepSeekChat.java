@@ -8,58 +8,19 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import org.json.JSONObject;
-import org.json.JSONArray;  // 需要添加这个import
+import org.json.JSONArray;
 
 public class DeepSeekChat {
 
     public static boolean FaildConnection = false;
-    // DeepSeek API端点
+
     private static final String API_URL = "https://api.deepseek.com/v1/chat/completions";
-    // 替换为你的实际API密钥
+
     private static final String API_KEY = "sk-56bbdb6baa4749f493ac695536710866";
 
     public static JSONArray MessagesHistory = new JSONArray();
 
 
-
-//    public static void DeepSeekSum(){
-//        Scanner scanner = new Scanner(System.in);
-//
-//
-//        // 使用StringBuilder高效存储对话历史
-//        StringBuilder conversationHistory = new StringBuilder();
-//
-//        while (true) {
-//            System.out.print("You: ");
-//            String userInput = scanner.nextLine();
-//
-//            // 检查退出命令
-//            if ("exit".equalsIgnoreCase(userInput)) {
-//                break;
-//            }
-//
-//            try {
-//                // 添加当前用户输入到历史记录
-//                conversationHistory.append("用户: ").append(userInput).append("\n");
-//
-//                // 调用API获取AI回复
-//                String aiResponse = callDeepSeekAPI(conversationHistory.toString());
-//
-//                // 添加AI回复到历史记录
-//                conversationHistory.append("AI: ").append(aiResponse).append("\n");
-//
-//                // 打印AI回复
-//                System.out.println("AI: " + aiResponse);
-//            } catch (IOException e) {
-//                System.out.println("调用API时出错: " + e.getMessage());
-//                e.printStackTrace();  // 打印完整错误堆栈
-//            }
-//        }
-//
-//        // 清理资源
-//        scanner.close();
-//        System.out.println("聊天结束");
-//    }
 
 
     public static String callDeepSeekAPI(String conversation, String systemPrompt) {

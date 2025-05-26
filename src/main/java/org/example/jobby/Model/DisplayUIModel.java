@@ -1,8 +1,8 @@
 package org.example.jobby.Model;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -82,8 +82,10 @@ public class DisplayUIModel {
                 );
 
                 FlowPane.setMargin(certLabel, new Insets(5)); // ✅ 添加标签间距
-                certLabel.setOnMouseClicked(e -> showCertExplanation(certName, certDesc));
+                ClickDisplayFullcontent(certName,  certDesc, "certificate explanation", certLabel);
                 certificatePane.getChildren().add(certLabel);
+
+
             }
         }
 
@@ -144,8 +146,9 @@ public class DisplayUIModel {
 
 
     public static VBox CategorizedExperienceUI(String aiOutput) {
-        VBox root = new VBox(15);
+        VBox root = new VBox(10);
         root.setPadding(new Insets(10));
+
 
         Map<String, VBox> groupedMap = new LinkedHashMap<>();
 
@@ -166,19 +169,22 @@ public class DisplayUIModel {
                 VBox box = new VBox(8);
                 Label title = new Label("📁 " + k);
                 title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
+                box.setPrefWidth(450); // 控制整个 group 的宽度
+                box.setMaxWidth(450);  // 防止它自动撑开
                 box.getChildren().add(title);
                 box.setPadding(new Insets(5));
                 return box;
             });
 
-            String previewText = "(" + role + ") --- " + org + " (" + year + ")";
+            String previewText = "( " + role + " ) - " + org + " ( " + year + " )";
 
             Label item = new Label(previewText);
-            item.setPrefWidth(600);
-            item.setMaxWidth(600);
+            item.setPrefWidth(450);  // 优先使用的宽度
+            item.setMinWidth(450);   // 最小宽度，避免被压缩
+            item.setMaxWidth(450);   // 最大宽度，避免被拉伸
             item.setWrapText(true);
             item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 8px; -fx-font-size: 13px;");
-            item.setOnMouseClicked(e -> showExpandedDialog(previewText, desc,"Working experience details"));
+            ClickDisplayFullcontent(previewText, desc, "Working experience details", item);
 
             groupBox.getChildren().add(item);
 
@@ -188,66 +194,155 @@ public class DisplayUIModel {
         return root;
     }
 
-//    public static VBox CategorizedPositionUI(String aiOutput) {
-//        VBox root = new VBox(15);
-//        root.setPadding(new Insets(10));
-//
-//        Map<String, VBox> groupedMap = new LinkedHashMap<>();
-//
-//        String[] blocks = aiOutput.split("Category:");
-//        for (String block : blocks) {
-//            if (block.trim().isEmpty()) continue;
-//
-//            String[] lines = block.trim().split("\n");
-//            if (lines.length < 5) continue;
-//
-//            String category = lines[0].trim();
-//            String Position = lines[1].replace("→ Position:", "").trim();
-//            String Match = lines[2].replace("→ Match:", "").trim();
-//            String desc = lines[3].replace("→ Description:", "").trim();
-//
-//            VBox groupBox = groupedMap.computeIfAbsent(category, k -> {
-//                VBox box = new VBox(8);
-//                Label title = new Label("📁 " + k);
-//                title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
-//                box.getChildren().add(title);
-//                box.setPadding(new Insets(5));
-//                return box;
-//            });
-//
-//            String previewText = "(" + Position + ") --- " + Match + " (" + year + ")";
-//
-//            Label item = new Label(previewText);
-//            item.setPrefWidth(600);
-//            item.setMaxWidth(600);
-//            item.setWrapText(true);
-//            item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 8px; -fx-font-size: 13px;");
-//            item.setOnMouseClicked(e -> showExpandedDialog(previewText, desc,"Working experience details"));
-//
-//            groupBox.getChildren().add(item);
-//
-//        }
-//
-//        root.getChildren().addAll(groupedMap.values());
-//        return root;
-//    }
+    public static VBox CategorizedPositionUI(String aiOutput) {
+        VBox root = new VBox(0);
+        root.setAlignment(Pos.CENTER);
+
+        Map<String, VBox> groupedMap = new LinkedHashMap<>();
+
+        String[] blocks = aiOutput.split("Category:");
+        for (String block : blocks) {
+            if (block.trim().isEmpty()) continue;
+
+            String[] lines = block.trim().split("\n");
+            if (lines.length < 4) continue;
+
+            String category = lines[0].trim();
+            String Position = lines[1].replace("→ Position:", "").trim();
+            String Match = lines[2].replace("→ Match:", "").trim();
+            String desc = lines[3].replace("→ Description:", "").trim();
+
+            VBox groupBox = groupedMap.computeIfAbsent(category, k -> {
+                VBox box = new VBox(5);
+                VBox.setMargin(box, new Insets(3, 10, 3, 10));
+                return box;
+            });
+
+            String previewText = "(" + Position + ") --- " + "Matching: [ " + Match + " ]";
+
+            Label item = new Label(previewText);
+            item.setPrefWidth(300);
+            item.setMaxWidth(300);
+            item.setWrapText(true);
+            item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 5px; -fx-background-radius: 10px; -fx-font-size: 13px;");
+            ClickDisplayFullcontent(previewText, desc, "Position matching details", item);
+
+            groupBox.getChildren().add(item);
+
+        }
+
+        root.getChildren().addAll(groupedMap.values());
+        return root;
+    }
+
+    public static void CategorizedSalary(String aiOutput,Label SalaryLabel) {
+
+        String salary = "N/A";
+        String explanation = "No explanation provided.";
+
+        String[] lines = aiOutput.split("\n");
+        for (String line : lines) {
+            line = line.trim();
+            if (line.toLowerCase().startsWith("recommended salary:")) {
+                salary = line.substring("Recommended Salary:".length()).trim();
+            } else if (line.toLowerCase().startsWith("explanation:")) {
+                explanation = line.substring("Explanation:".length()).trim();
+            }
+        }
+
+        SalaryLabel.setText(salary);
+        SalaryLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 25px;");
+
+        ClickDisplayFullcontent(salary, explanation,"Salary analysis explanation",SalaryLabel);
+
+
+    }
+
+    public static void CategorizedUni(String aiOutput, Label uniLabel) {
+        String uni = "N/A";
+        StringBuilder explanationBuilder = new StringBuilder();
+
+        String[] lines = aiOutput.split("\n");
+        boolean readingExplanation = false;
+
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i].trim();
+
+            if (i == 0 && !line.toLowerCase().startsWith("explanation")) {
+                uni = line; // 默认第一行为学校名
+            } else if (line.toLowerCase().startsWith("explanation:")) {
+                readingExplanation = true;
+            } else if (readingExplanation && !line.isEmpty()) {
+                explanationBuilder.append(line).append("\n\n"); // 每行解释后多加一行空行
+            }
+        }
+
+        uniLabel.setText(uni);
+        uniLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 15px;");
+
+        String explanation = explanationBuilder.toString().trim();
+        ClickDisplayFullcontent(uni, explanation, "University Details", uniLabel);
+    }
+
+    public static void CategorizedScore(String aiOutput, Label ScoreLabel) {
+        String score = "N/A";
+        StringBuilder explanationBuilder = new StringBuilder();
+
+        String[] lines = aiOutput.split("\n");
+        boolean readingExplanation = false;
+
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i].trim();
+
+            if (i == 0 && line.matches("^\\d{2,3}/100$")) {
+                score = line;
+            } else if (line.toLowerCase().startsWith("explanation:")) {
+                readingExplanation = true;
+            } else if (readingExplanation && !line.isEmpty()) {
+                explanationBuilder.append(line).append("\n\n"); // 每段解释后加空行
+            }
+        }
+
+        ScoreLabel.setText(score);
+        ScoreLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 18px;");
+
+        String explanation = explanationBuilder.toString().trim();
+        ClickDisplayFullcontent(score, explanation, "Resume Score Explanation", ScoreLabel);
+    }
 
 
 
 
 
-    private static void showExpandedDialog(String title, String explanation,String WindowTitle) {
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("WindowTitle");
-        alert.setHeaderText(title);
-        alert.setContentText(explanation);
-        alert.getButtonTypes().add(ButtonType.OK);
+    public static void ClickDisplayFullcontent(String title, String explanation, String WindowTitle, Label label) {
 
-        // 移除默认窗口图标
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().clear();
+        label.setCursor(Cursor.HAND);
 
-        alert.showAndWait();
+        label.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle(WindowTitle);
+            alert.setHeaderText(title);
+
+            // ✅ 设置内容为 TextArea
+            TextArea content = new TextArea(explanation);
+            content.setWrapText(true);
+            content.setEditable(false);
+            content.setStyle("-fx-font-size: 20px; -fx-font-family: 'Arial';");
+            content.setPrefWidth(600);
+            content.setPrefHeight(300);
+            alert.getDialogPane().setContent(content);
+
+            // ✅ 添加 OK 按钮前先清空，防止重复添加
+            alert.getButtonTypes().clear();
+            alert.getButtonTypes().add(ButtonType.OK);
+
+            // ✅ 清除窗口图标（可选）
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().clear();
+
+            alert.showAndWait();
+        });
+
     }
 
 

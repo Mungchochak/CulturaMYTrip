@@ -93,15 +93,16 @@ public class DeepSeekPromptModel {
 
     public String getPositionprompt() {
 
-        return "You are a professional resume analysis system. If the resume is not in English, translate it first. "
-                + "Then analyze the candidate’s work experience, skills, and projects. "
-                + "Based on that, recommend exactly 5 suitable job positions. "
-                + "Each line must strictly follow this format: * Job Title-Matching(87%)  "
-                + "The percentage should reflect how well the candidate’s background matches the role. "
-                + "You must provide job suggestions if the document has any professional or project-based information, even if partial. "
-                + "Do not include explanations, comments, or suggestions. No markdown or bullets. Only relevant job roles. "
-                + "If the content is clearly not a resume or does not contain any professional information at all, reply exactly with: The document is not related to the resume. "
-                + "The reply must be in English.";
+        return "You are a professional resume analysis system. Translate the resume to English if necessary, and recommend job positions based on the candidate’s experience, skills, or project background.\n\n"
+                + "Group your suggestions using a clear category label in this format:\n"
+                + "Category: [e.g., Software Engineering, UX Design, Data Analysis, etc.]\n"
+                + "→ Position: [Job Title, e.g., Front-End Developer]\n"
+                + "→ Match: [Matching percentage, e.g., 87%]\n"
+                + "→ Description: [One or two lines summarizing why the candidate is suitable]\n\n"
+                + "Each recommended role must be backed by relevant resume content (experience, skills, or projects).\n"
+                + "Return exactly 5 positions across 1–3 categories. Use professional judgment to group roles.\n"
+                + "Use English only. Do not use markdown or bullets. Keep the output clean and structured.\n"
+                + "If no work-related or project-based content is found, respond with: The document is not related to the resume.";
     }
 
     public String getInformationprompt() {
@@ -125,23 +126,32 @@ public class DeepSeekPromptModel {
 
     public String getSalaryprompt() {
 
-        return "You are a professional resume analysis system. Based on the candidate’s resume, estimate a suitable monthly salary range in Malaysian Ringgit (RM), considering typical working hours in Malaysia. "
-                + "You must provide a salary range if the candidate demonstrates any skills, experience, qualifications, self-learning, internships, personal projects, academic background, or self-introduction. "
-                + "Even if there is no formal job experience, a salary must be estimated based on skill potential or demonstrated ability. "
-                + "The output must be in this exact format: RMxxxx-xxxx (e.g., RM3000-5000). "
-                + "Do not include any additional text, currency symbols, words, units, or explanations — only the salary range in the exact format. "
-                + "Only if the document clearly contains no information at all related to any skills, education, experience, or potential, reply exactly with: \"insufficient data\". "
-                + "The response must be in English.";
+        return "You are a professional resume analysis system. Based on the candidate’s resume, estimate a suitable monthly salary range in Malaysian Ringgit (RM). "
+                + "You must always provide both:\n"
+                + "1. Recommended Salary: RMxxxx–xxxx (e.g., RM3000–5000)\n"
+                + "2. Explanation: A short sentence justifying the estimate (e.g., based on skills, tools, or project experience)\n\n"
+                + "Example output:\n"
+                + "Recommended Salary: RM3000–5000\n"
+                + "Explanation: Based on UI/UX design experience, software proficiency, and strong project outcomes.\n\n"
+                + "If there is absolutely no relevant data (skills, education, projects, internships), reply exactly with: \"insufficient data\".\n"
+                + "The response must be in English, clean, and without any extra comments.";
     }
 
     public String getScoreprompt() {
 
-        return "You are a professional resume evaluation system. Based on the content, assign an overall resume score out of 100. "
-                + "The score must reflect the candidate's work experience, project quality, academic background, technical or research skills, and overall relevance to professional or academic goals. "
-                + "This includes resumes intended for job applications, internships, scholarships, or graduate programs such as university admissions. "
-                + "Respond strictly in the format: xxx/100 (e.g., 85/100). "
-                + "Do not include any explanations, comments, or extra content. "
-                + "Only if the content is clearly unrelated to any resume, CV, or application material, reply exactly: \"NO-DATA\".";
+        return "You are a professional resume evaluation system. Based on the provided resume content, assign an overall resume score out of 100. "
+                + "The score must reflect the candidate's work experience, project quality, academic background, technical or research skills, and relevance to job or academic goals. "
+                + "Strictly respond in this format:\n\n"
+                + "90/100\n\n"
+                + "Explanation:\n"
+                + "1. [Evaluation of work experience, e.g., role diversity, seniority, relevance]\n\n"
+                + "2. [Assessment of project quality, scope, technologies used, and outcomes]\n\n"
+                + "3. [Academic background strength, institution ranking, GPA, relevance]\n\n"
+                + "4. [Technical or research skills: tools, languages, publications, etc.]\n\n"
+                + "5. [Overall structure, clarity, formatting, and impact of the resume]\n\n"
+                + "Each explanation point must be concise, labeled with a number, and separated by a blank line.\n"
+                + "If the content is unrelated to resumes or applications, reply exactly with: NO-DATA.\n"
+                + "Your response must be in English.";
     }
 
     public String getNameprompt() {
@@ -159,14 +169,29 @@ public class DeepSeekPromptModel {
 
     public String getGraduatedprompt() {
 
-        return "You are a professional resume parser. From the resume, extract the name of the highest education institution the candidate graduated from, including universities, colleges, and high schools. "
-                + "If the institution is a well-known university (e.g., Stanford University, Tunku Abdul Rahman University), return its commonly known abbreviation (e.g., Stanford Uni, TARU). "
-                + "If the name ends with 'University' and is not a known abbreviation, remove 'University' and append 'Uni'. "
-                + "If the name ends with 'College', keep it unchanged or return its known abbreviation. "
-                + "If the school name does not contain 'University' or 'College', return it as-is. "
-                + "Only return the final school name in one line. Do not include degrees, person names, punctuation, or any explanation. "
-                + "If there is no education information in the content, reply exactly with: \"insufficient data\". "
-                + "The reply must be in English.";
+        return "You are a professional resume analysis system. From the resume, extract the name of the highest-level educational institution attended (e.g., university, college, or high school).\n"
+                + "Return only the institution name in this format:\n"
+                + "- If the name ends with 'University', remove it and add 'Uni'. (e.g., Stanford University → Stanford Uni)\n"
+                + "- If it ends with 'College', leave it unchanged or use its abbreviation.\n"
+                + "- If it's neither, return the name directly.\n\n"
+                + "Then provide detailed explanation in this format, one line per item:\n"
+                + "Explanation:\n"
+                + "1. School background and academic strengths\n"
+                + "2. World ranking (QS, THE, etc.)\n"
+                + "3. Ranking for the candidate's field of study\n"
+                + "4. Notable alumni or public figures\n\n"
+                + "If no education-related information is found, return exactly: \"insufficient data\".\n"
+                + "Respond in English. Do not use markdown or additional formatting.";
+    }
+
+    public String getCgpaprompt() {
+        return "You are a professional resume parser. From the resume, extract the candidate’s CGPA (Cumulative Grade Point Average) or GPA if available.\n\n"
+                + "Return the GPA strictly in the format:\n"
+                + "x.x/4.0 or xx/4.0 (e.g., 3.4/4.0 or 3.75/4.0)\n\n"
+                + "If multiple GPAs are listed, return the highest.\n"
+                + "Do not include any explanation, prefix, label, or extra text — only return the GPA value.\n"
+                + "If there is no GPA or CGPA mentioned at all, reply exactly with: \"insufficient data\".\n"
+                + "Respond only in English.";
     }
 
 

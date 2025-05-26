@@ -22,6 +22,17 @@ public class DeepSeekResponseModel {
     private String SecondScoreResponse;
     private String SecondNameResponse;
     private String SecondGraduatedResponse;
+    private String CgpaResponse;
+
+    public String getCgpaResponse() {
+        return CgpaResponse;
+    }
+
+    public void setCgpaResponse(String cgpaResponse) {
+        CgpaResponse = cgpaResponse;
+    }
+
+
 
     public String getSecondGraduatedResponse() {
         return SecondGraduatedResponse;
