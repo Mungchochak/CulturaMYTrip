@@ -3,7 +3,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,6 +19,8 @@ public class DisplayUIModel {
     public static void displayLanguageAndSoftSkills(String aiResponse, VBox languageBox, VBox softSkillsBox) {
         String languageLine = null;
         String softSkillsLine = null;
+        languageBox.getChildren().clear();
+        softSkillsBox.getChildren().clear();
 
         for (String line : aiResponse.split("\n")) {
             if (line.toLowerCase().startsWith("language:")) {
@@ -140,6 +141,8 @@ public class DisplayUIModel {
         return flowPane;
     }
 
+
+
     public static VBox buildCategorizedExperienceUI(String aiOutput) {
         VBox root = new VBox(15);
         root.setPadding(new Insets(10));
@@ -168,25 +171,74 @@ public class DisplayUIModel {
                 return box;
             });
 
-            String previewText = "[" + role + "] @ " + org + " (" + year + ")";
+            String previewText = "(" + role + ") --- " + org + " (" + year + ")";
 
             Label item = new Label(previewText);
             item.setPrefWidth(600);
             item.setMaxWidth(600);
             item.setWrapText(true);
             item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 8px; -fx-font-size: 13px;");
-            item.setOnMouseClicked(e -> showExpandedDialog(previewText, desc));
+            item.setOnMouseClicked(e -> showExpandedDialog(previewText, desc,"Working experience details"));
 
             groupBox.getChildren().add(item);
+
         }
 
         root.getChildren().addAll(groupedMap.values());
         return root;
     }
 
-    private static void showExpandedDialog(String title, String explanation) {
+//    public static VBox CategorizedPositionUI(String aiOutput) {
+//        VBox root = new VBox(15);
+//        root.setPadding(new Insets(10));
+//
+//        Map<String, VBox> groupedMap = new LinkedHashMap<>();
+//
+//        String[] blocks = aiOutput.split("Category:");
+//        for (String block : blocks) {
+//            if (block.trim().isEmpty()) continue;
+//
+//            String[] lines = block.trim().split("\n");
+//            if (lines.length < 5) continue;
+//
+//            String category = lines[0].trim();
+//            String Position = lines[1].replace("→ Position:", "").trim();
+//            String Match = lines[2].replace("→ Match:", "").trim();
+//            String desc = lines[3].replace("→ Description:", "").trim();
+//
+//            VBox groupBox = groupedMap.computeIfAbsent(category, k -> {
+//                VBox box = new VBox(8);
+//                Label title = new Label("📁 " + k);
+//                title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
+//                box.getChildren().add(title);
+//                box.setPadding(new Insets(5));
+//                return box;
+//            });
+//
+//            String previewText = "(" + Position + ") --- " + Match + " (" + year + ")";
+//
+//            Label item = new Label(previewText);
+//            item.setPrefWidth(600);
+//            item.setMaxWidth(600);
+//            item.setWrapText(true);
+//            item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 8px; -fx-font-size: 13px;");
+//            item.setOnMouseClicked(e -> showExpandedDialog(previewText, desc,"Working experience details"));
+//
+//            groupBox.getChildren().add(item);
+//
+//        }
+//
+//        root.getChildren().addAll(groupedMap.values());
+//        return root;
+//    }
+
+
+
+
+
+    private static void showExpandedDialog(String title, String explanation,String WindowTitle) {
         Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Certificate Info");
+        alert.setTitle("WindowTitle");
         alert.setHeaderText(title);
         alert.setContentText(explanation);
         alert.getButtonTypes().add(ButtonType.OK);

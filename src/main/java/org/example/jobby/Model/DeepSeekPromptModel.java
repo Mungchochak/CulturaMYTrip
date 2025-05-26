@@ -38,16 +38,21 @@ public class DeepSeekPromptModel {
 //                + "If no valid experience is found, reply exactly: insufficient data.";
 
 
-        return "You are a professional resume analysis system. Extract only the candidate’s project-based experiences (exclude internships, work experience, or education). Use the format below:\n\n"
-                + "Category: [Project / Coursework / Personal Project etc.]\n"
-                + "→ Role: [Role in the project]\n"
-                + "→ Organization: [School / Platform / Context if any]\n"
-                + "→ Year: [Time Period]\n"
-                + "→ Description: [Key technologies used, goals, and outcomes]\n\n"
-                + "Only include project-related entries. Each field must be labeled and separated by a line break.\n"
-                + "If no project information is found, return: \"insufficient data\".\n"
-                + "Your response must be in English.";
-
+        return "You are a professional resume analysis system. Extract only the candidate’s **project-based experiences**. This includes:\n"
+                + "- Personal projects\n"
+                + "- Group projects or capstone projects\n"
+                + "- Coursework or university assignments\n"
+                + "- Internship-based projects (with specific goals or technologies)\n\n"
+                + "Exclude general job duties, academic degrees, or unrelated work.\n\n"
+                + "Use this structured format exactly for each project:\n"
+                + "Category: [e.g., Coursework Project, Internship Project, Personal Project]\n"
+                + "→ Role: [Project role such as Developer, Researcher, Leader, etc.]\n"
+                + "→ Organization: [School, Platform, or Company involved]\n"
+                + "→ Year: [e.g., 2023 or 2021.06 - 2021.09]\n"
+                + "→ Description: [Technologies used, main objectives, contributions, and outcomes]\n\n"
+                + "Each project must follow this format exactly, and be separated by a blank line.\n"
+                + "Return clean English text only. Do not include markdown or extra commentary.\n"
+                + "If no project data is found, return: \"insufficient data\".";
 
     }
 
@@ -102,16 +107,17 @@ public class DeepSeekPromptModel {
     public String getInformationprompt() {
 
 
-        return "You are a professional resume analysis system. Extract the candidate’s basic personal and academic background in this format:\n\n"
+        return "You are a professional resume analysis system. Extract the candidate’s basic personal and academic background using the format below:\n\n"
                 + "Name: [Full name in English or Pinyin]\n"
                 + "Location: [City or region]\n"
                 + "Major: [University major, translated if needed]\n"
                 + "Certificates:\n"
-                + "- [Short name of Certificate 1]: [One-line explanation of Certificate 1]\n"
-                + "- [Short name of Certificate 2]: [One-line explanation of Certificate 2]\n\n"
-                + "Each field must start on a new line. Certificate names must be concise (e.g., 'CET4') followed by a colon and a short explanation (max 20 words).\n"
-                + "Omit any field that has no relevant information. Return only clean, formatted English lines as shown above.\n"
-                + "Do not include extra comments, markdown, or headers. Your response must be in English.";
+                + "- [Concise Certificate Name 1]: [A clear and specific explanation of what the certificate represents, including the issuing body, proficiency level, and purpose]\n"
+                + "- [Concise Certificate Name 2]: [Detailed explanation as above]\n\n"
+                + "Each field must start on a new line. Certificate names must be short and human-readable (e.g., 'CET4', 'HSK 5'), followed by a colon and a complete English explanation.\n"
+                + "Do not include generic phrases like 'a certificate' or 'proves proficiency' without specifying in what and how.\n"
+                + "If any section is not available, omit it. Do not include any markdown, bullet formatting, or commentary.\n"
+                + "Your response must be in clean, well-formatted English only.";
 
     }
 

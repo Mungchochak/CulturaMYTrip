@@ -116,9 +116,11 @@ public class DeepSeekChat {
                 // 保存对话历史：用户+AI
                 MessagesHistory.put(new JSONObject().put("role", "user").put("content", conversation));
                 MessagesHistory.put(new JSONObject().put("role", "assistant").put("content", content));
+                messages.put(new JSONObject().put("role", "assistant").put("content", content));
 
 
-                System.out.println(MessagesHistory);
+//                System.out.println(MessagesHistory);
+                System.out.println(messages);
 
 
                 return content;
