@@ -251,7 +251,7 @@ public class DisplayUIModel {
         }
 
         SalaryLabel.setText(salary);
-        SalaryLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 25px;");
+        SalaryLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 0px; -fx-background-radius: 15px; -fx-font-size: 25px;");
 
         ClickDisplayFullcontent(salary, explanation,"Salary analysis explanation",SalaryLabel);
 

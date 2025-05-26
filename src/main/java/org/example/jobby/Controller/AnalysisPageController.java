@@ -36,17 +36,8 @@ public class AnalysisPageController {
 
 
     @FXML
-    private Label SkillMatchingContent;
-    @FXML
-    private Label WorkingExperienceContent;
-    @FXML
     private Label PersonalityContent;
-    @FXML
-    private Label SoftSkillsContent;
-    @FXML
-    private Label PositionContent;
-    @FXML
-    private Label InformationContent;
+
     @FXML
     private Label SalaryContent;
     @FXML
@@ -122,7 +113,7 @@ public class AnalysisPageController {
                 },
                 () -> {
                     if (DeepSeekChat.FaildConnection){
-                      StopLoadingAnimation();
+
                         ModulModel.WarningPopup();
                         DeepSeekChat.FaildConnection=false;
                         UploadFile.setDisable(false);
@@ -243,31 +234,6 @@ public class AnalysisPageController {
         containerVBox.getChildren().remove(loadingLabel);
         containerVBox.getChildren().addAll(0, cachedContent); // 插回原位
         containerVBox.setAlignment(Pos.TOP_LEFT); // 或根据你的布局微调
-    }
-
-
-
-
-
-
-    @FXML
-    private void StopLoadingAnimation(){
-        WorkingExperienceContent.setAlignment(Pos.CENTER_LEFT);
-        SoftSkillsContent.setAlignment(Pos.CENTER_LEFT);
-        PositionContent.setAlignment(Pos.CENTER_LEFT);
-        InformationContent.setAlignment(Pos.CENTER_LEFT);
-        PersonalityContent.setAlignment(Pos.CENTER_LEFT);
-        SkillMatchingContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: normal;");
-        WorkingExperienceContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
-        SoftSkillsContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
-        PositionContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
-        InformationContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: norma;");
-        NameContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: normal;");
-        GraduatedContent.setStyle("-fx-font-size: 20px;" + "-fx-font-weight: normal;");
-        SalaryContent.setStyle("-fx-font-size: 30px;" + "-fx-font-weight: normal;");
-        ScoreContent.setStyle("-fx-font-size: 28px;" + "-fx-font-weight: normal;");
-        PersonalityContent.setStyle("-fx-font-size: 15px;" + "-fx-font-weight: normal;");
-        ModulModel.stopAnimatedLoading();
     }
 
 

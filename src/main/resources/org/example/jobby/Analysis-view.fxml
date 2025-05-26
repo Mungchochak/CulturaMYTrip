@@ -201,7 +201,7 @@
                                                                </Label>
                                                                <VBox fx:id="LanguageVbox" prefHeight="49.0" prefWidth="531.0" VBox.vgrow="ALWAYS">
                                                                   <VBox.margin>
-                                                                     <Insets left="8.0" top="5.0" />
+                                                                     <Insets />
                                                                   </VBox.margin></VBox>
                                                             </children>
                                                          </VBox>
@@ -365,16 +365,19 @@
                                                          <Insets left="8.0" top="5.0" />
                                                       </VBox.margin>
                                                    </Label>
-                                                   <VBox fx:id="positionBox" alignment="CENTER" prefHeight="192.0" prefWidth="563.0" spacing="5.0" VBox.vgrow="ALWAYS" />
+                                                   <VBox fx:id="positionBox" alignment="CENTER" prefHeight="192.0" prefWidth="563.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                                      <VBox.margin>
+                                                         <Insets bottom="5.0" />
+                                                      </VBox.margin></VBox>
                                                 </children>
                                              </VBox>
                                           </children>
                                        </VBox>
-                                       <HBox alignment="TOP_CENTER" prefHeight="187.0" prefWidth="563.0" VBox.vgrow="ALWAYS">
+                                       <HBox alignment="TOP_CENTER" prefHeight="139.0" prefWidth="563.0" VBox.vgrow="ALWAYS">
                                           <children>
-                                             <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="322.0" spacing="5.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                                             <VBox alignment="CENTER" prefHeight="245.0" prefWidth="321.0" spacing="5.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                                                 <children>
-                                                   <VBox prefHeight="72.0" prefWidth="347.0" VBox.vgrow="ALWAYS">
+                                                   <VBox alignment="BOTTOM_CENTER" prefHeight="72.0" prefWidth="347.0" VBox.vgrow="ALWAYS">
                                                       <children>
                                                          <Label fx:id="GraduatedContent2" prefHeight="0.0" prefWidth="344.0" text="Graduated:" VBox.vgrow="ALWAYS">
                                                             <font>
@@ -384,7 +387,7 @@
                                                                <Insets left="8.0" top="5.0" />
                                                             </VBox.margin>
                                                          </Label>
-                                                         <Label fx:id="GraduatedContent" alignment="CENTER" prefHeight="53.0" prefWidth="347.0" style="-fx-background-radius: 20;" textAlignment="JUSTIFY" wrapText="true" VBox.vgrow="ALWAYS">
+                                                         <Label fx:id="GraduatedContent" alignment="CENTER" prefHeight="80.0" prefWidth="311.0" style="-fx-background-radius: 20;" textAlignment="JUSTIFY" wrapText="true" VBox.vgrow="ALWAYS">
                                                             <font>
                                                                <Font name="Helvetica" size="15.0" />
                                                             </font>
@@ -397,7 +400,7 @@
                                                          </Label>
                                                       </children>
                                                    </VBox>
-                                                   <VBox prefHeight="64.0" prefWidth="347.0" VBox.vgrow="ALWAYS">
+                                                   <VBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="347.0" VBox.vgrow="ALWAYS">
                                                       <children>
                                                          <Label fx:id="GraduatedContent1" prefHeight="0.0" prefWidth="344.0" text="Major:" textAlignment="JUSTIFY" VBox.vgrow="ALWAYS">
                                                             <font>
@@ -407,7 +410,7 @@
                                                                <Insets left="8.0" />
                                                             </VBox.margin>
                                                          </Label>
-                                                         <Label fx:id="majorLabel" alignment="CENTER" prefHeight="52.0" prefWidth="322.0" textAlignment="JUSTIFY" wrapText="true" VBox.vgrow="ALWAYS">
+                                                         <Label fx:id="majorLabel" alignment="CENTER" prefHeight="96.0" prefWidth="311.0" textAlignment="JUSTIFY" wrapText="true" VBox.vgrow="ALWAYS">
                                                             <font>
                                                                <Font name="Helvetica" size="15.0" />
                                                             </font>
@@ -420,7 +423,7 @@
                                                          </Label>
                                                       </children>
                                                    </VBox>
-                                                   <VBox prefHeight="0.0" prefWidth="305.0" VBox.vgrow="ALWAYS">
+                                                   <VBox alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="321.0" VBox.vgrow="ALWAYS">
                                                       <children>
                                                          <Label fx:id="GraduatedContent11" prefHeight="19.0" prefWidth="375.0" text="CGPA" textAlignment="JUSTIFY" VBox.vgrow="ALWAYS">
                                                             <font>
@@ -430,7 +433,7 @@
                                                                <Insets left="8.0" />
                                                             </VBox.margin>
                                                          </Label>
-                                                         <Label fx:id="CGPAContent" alignment="CENTER" prefHeight="44.0" prefWidth="320.0" VBox.vgrow="ALWAYS">
+                                                         <Label fx:id="CGPAContent" alignment="CENTER" prefHeight="112.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
                                                             <font>
                                                                <Font name="Helvetica" size="15.0" />
                                                             </font>
@@ -442,7 +445,7 @@
                                                    </VBox>
                                                 </children>
                                              </VBox>
-                                             <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="236.0" prefWidth="242.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="236.0" prefWidth="242.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                 <children>
                                                    <VBox alignment="BOTTOM_CENTER" prefHeight="125.0" prefWidth="289.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                       <children>
@@ -454,7 +457,7 @@
                                                                <Insets left="8.0" top="5.0" />
                                                             </VBox.margin>
                                                          </Label>
-                                                         <Label fx:id="SalaryContent" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="89.0" prefWidth="234.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                                                         <Label fx:id="SalaryContent" alignment="CENTER" contentDisplay="CENTER" prefHeight="89.0" prefWidth="234.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
                                                             <font>
                                                                <Font name="Helvetica" size="25.0" />
                                                             </font>
@@ -464,9 +467,9 @@
                                                          </Label>
                                                       </children>
                                                    </VBox>
-                                                   <HBox alignment="BOTTOM_CENTER" prefHeight="56.0" prefWidth="234.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+                                                   <HBox alignment="CENTER" prefHeight="56.0" prefWidth="234.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                       <children>
-                                                         <Label fx:id="SoftSkillsContent12221" prefHeight="45.0" prefWidth="106.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Score:" wrapText="true" HBox.hgrow="ALWAYS">
+                                                         <Label fx:id="SoftSkillsContent12221" alignment="CENTER" prefHeight="45.0" prefWidth="106.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Score:" wrapText="true" HBox.hgrow="ALWAYS">
                                                             <font>
                                                                <Font name="Helvetica Bold" size="25.0" />
                                                             </font>
@@ -474,12 +477,12 @@
                                                                <Insets left="5.0" />
                                                             </HBox.margin>
                                                          </Label>
-                                                         <Label fx:id="ScoreContent" alignment="CENTER" prefHeight="45.0" prefWidth="132.0" style="-fx-background-radius: 20;" text="90/100" HBox.hgrow="ALWAYS">
+                                                         <Label fx:id="ScoreContent" alignment="CENTER" prefHeight="45.0" prefWidth="132.0" style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                                                             <font>
                                                                <Font name="Helvetica" size="25.0" />
                                                             </font>
                                                             <HBox.margin>
-                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               <Insets right="5.0" />
                                                             </HBox.margin>
                                                          </Label>
                                                       </children>
