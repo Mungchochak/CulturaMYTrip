@@ -143,7 +143,7 @@ public class DisplayUIModel {
 
 
 
-    public static VBox buildCategorizedExperienceUI(String aiOutput) {
+    public static VBox CategorizedExperienceUI(String aiOutput) {
         VBox root = new VBox(15);
         root.setPadding(new Insets(10));
 

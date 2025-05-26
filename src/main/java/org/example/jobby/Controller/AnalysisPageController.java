@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 import javafx.scene.Cursor;
-import javafx.scene.control.ScrollPane;
+
 import java.util.List;
 
 public class AnalysisPageController {
@@ -152,7 +152,7 @@ public class AnalysisPageController {
 
                         experienceUI.getChildren().clear();
                         String aiResponse = ShardResponseData.responseModel.getWorkExperienceResponse(); // 得到结构化文本
-                        VBox maincontent = DisplayUIModel.buildCategorizedExperienceUI(aiResponse);
+                        VBox maincontent = DisplayUIModel.CategorizedExperienceUI(aiResponse);
                         experienceUI.getChildren().add(maincontent);
 
 
