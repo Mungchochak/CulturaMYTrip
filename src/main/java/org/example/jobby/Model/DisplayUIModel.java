@@ -35,14 +35,16 @@ public class DisplayUIModel {
         } else {
             Label noLang = new Label("No language data found.");
             noLang.setStyle("-fx-text-fill: #999; -fx-font-style: italic;");
+            noLang.setPadding(new Insets(5, 10, 5, 10));
             languageBox.getChildren().add(noLang);
         }
 
-        if (softSkillsLine != null && !softSkillsLine.equalsIgnoreCase("insufficient data")) {
+        if (softSkillsLine != null && !softSkillsLine.equalsIgnoreCase("Insufficient data")) {
             softSkillsBox.getChildren().add(buildSkillLabels(softSkillsLine));
         } else {
             Label noSkill = new Label("No soft skills data found.");
             noSkill.setStyle("-fx-text-fill: #999; -fx-font-style: italic;");
+            noSkill.setPadding(new Insets(5, 10, 5, 10));
             softSkillsBox.getChildren().add(noSkill);
         }
     }
@@ -94,19 +96,6 @@ public class DisplayUIModel {
         certificatePane.setPrefWrapLength(300);
     }
 
-    private static void showCertExplanation(String certName, String explanation) {
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Certificate Info");
-        alert.setHeaderText(certName);
-        alert.setContentText(explanation);
-        alert.getButtonTypes().add(ButtonType.OK);
-
-        // 移除默认窗口图标
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().clear();
-
-        alert.showAndWait();
-    }
 
     public static FlowPane buildSkillLabels(String skills) {
         FlowPane flowPane = new FlowPane();
@@ -148,9 +137,9 @@ public class DisplayUIModel {
     public static VBox CategorizedExperienceUI(String aiOutput) {
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
-
-
         Map<String, VBox> groupedMap = new LinkedHashMap<>();
+
+        boolean hasValidEntry = false;
 
         String[] blocks = aiOutput.split("Category:");
         for (String block : blocks) {
@@ -158,6 +147,11 @@ public class DisplayUIModel {
 
             String[] lines = block.trim().split("\n");
             if (lines.length < 5) continue;
+
+            if (!lines[1].contains("→ Role:") || !lines[2].contains("→ Organization:") ||
+                    !lines[3].contains("→ Year:") || !lines[4].contains("→ Description:")) {
+                continue;
+            }
 
             String category = lines[0].trim();
             String role = lines[1].replace("→ Role:", "").trim();
@@ -169,8 +163,8 @@ public class DisplayUIModel {
                 VBox box = new VBox(8);
                 Label title = new Label("📁 " + k);
                 title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
-                box.setPrefWidth(450); // 控制整个 group 的宽度
-                box.setMaxWidth(450);  // 防止它自动撑开
+                box.setPrefWidth(450);
+                box.setMaxWidth(450);
                 box.getChildren().add(title);
                 box.setPadding(new Insets(5));
                 return box;
@@ -179,18 +173,25 @@ public class DisplayUIModel {
             String previewText = "( " + role + " ) - " + org + " ( " + year + " )";
 
             Label item = new Label(previewText);
-            item.setPrefWidth(450);  // 优先使用的宽度
-            item.setMinWidth(450);   // 最小宽度，避免被压缩
-            item.setMaxWidth(450);   // 最大宽度，避免被拉伸
+            item.setPrefWidth(450);
+            item.setMinWidth(450);
+            item.setMaxWidth(450);
             item.setWrapText(true);
             item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 8px; -fx-font-size: 13px;");
             ClickDisplayFullcontent(previewText, desc, "Working experience details", item);
 
             groupBox.getChildren().add(item);
-
+            hasValidEntry = true;
         }
 
-        root.getChildren().addAll(groupedMap.values());
+        if (hasValidEntry) {
+            root.getChildren().addAll(groupedMap.values());
+        } else {
+            Label noData = new Label("Insufficient data");
+            noData.setStyle("-fx-text-fill: #999; -fx-font-style: italic; -fx-font-size: 13px;");
+            root.getChildren().add(noData);
+        }
+
         return root;
     }
 
@@ -221,8 +222,8 @@ public class DisplayUIModel {
             String previewText = "(" + Position + ") --- " + "Matching: [ " + Match + " ]";
 
             Label item = new Label(previewText);
-            item.setPrefWidth(300);
-            item.setMaxWidth(300);
+            item.setPrefWidth(600);
+            item.setMaxWidth(600);
             item.setWrapText(true);
             item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 5px; -fx-background-radius: 10px; -fx-font-size: 13px;");
             ClickDisplayFullcontent(previewText, desc, "Position matching details", item);

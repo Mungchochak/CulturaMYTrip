@@ -38,21 +38,20 @@ public class DeepSeekPromptModel {
 //                + "If no valid experience is found, reply exactly: insufficient data.";
 
 
-        return "You are a professional resume analysis system. Extract only the candidate’s **project-based experiences**. This includes:\n"
+        return "You are a professional resume analysis system. Extract the candidate’s major **project or responsibility-based experiences**, including:\n"
                 + "- Personal projects\n"
+                + "- Group or coursework projects\n"
                 + "- Group projects or capstone projects\n"
-                + "- Coursework or university assignments\n"
-                + "- Internship-based projects (with specific goals or technologies)\n\n"
-                + "Exclude general job duties, academic degrees, or unrelated work.\n\n"
-                + "Use this structured format exactly for each project:\n"
-                + "Category: [e.g., Coursework Project, Internship Project, Personal Project]\n"
-                + "→ Role: [Project role such as Developer, Researcher, Leader, etc.]\n"
-                + "→ Organization: [School, Platform, or Company involved]\n"
-                + "→ Year: [e.g., 2023 or 2021.06 - 2021.09]\n"
-                + "→ Description: [Technologies used, main objectives, contributions, and outcomes]\n\n"
-                + "Each project must follow this format exactly, and be separated by a blank line.\n"
-                + "Return clean English text only. Do not include markdown or extra commentary.\n"
-                + "If no project data is found, return: \"insufficient data\".";
+                + "- Internship-based or job-based projects\n"
+                + "- Significant responsibilities or initiatives in formal employment\n\n"
+                + "Use this structured format exactly for each experience:\n"
+                + "Category: [e.g., Work Project, Internship Project, Coursework Project]\n"
+                + "→ Role: [e.g., Developer, Lead, Researcher, Coordinator]\n"
+                + "→ Organization: [Company, School, or Platform involved]\n"
+                + "→ Year: [e.g., 2023 or 2020.06 - 2021.09]\n"
+                + "→ Description: [Key tasks, technologies, objectives, and impact]\n\n"
+                + "Each entry must follow this format and be separated by a blank line.\n"
+                + "If no relevant content is found, return: \"insufficient data\".";
 
     }
 
