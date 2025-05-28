@@ -31,16 +31,18 @@ public class DisplayUIModel {
         }
 
         if (languageLine != null && !languageLine.equalsIgnoreCase("insufficient data")) {
-            languageBox.getChildren().add(buildSkillLabels(languageLine));
+            languageBox.getChildren().add(buildMutipleLabels(languageLine));
         } else {
             Label noLang = new Label("No language data found.");
             noLang.setStyle("-fx-text-fill: #999; -fx-font-style: italic;");
             noLang.setPadding(new Insets(5, 10, 5, 10));
             languageBox.getChildren().add(noLang);
+
+
         }
 
         if (softSkillsLine != null && !softSkillsLine.equalsIgnoreCase("Insufficient data")) {
-            softSkillsBox.getChildren().add(buildSkillLabels(softSkillsLine));
+            softSkillsBox.getChildren().add(buildMutipleLabels(softSkillsLine));
         } else {
             Label noSkill = new Label("No soft skills data found.");
             noSkill.setStyle("-fx-text-fill: #999; -fx-font-style: italic;");
@@ -83,7 +85,6 @@ public class DisplayUIModel {
                                 "-fx-font-size: 13px;"
                 );
 
-                FlowPane.setMargin(certLabel, new Insets(5)); // ✅ 添加标签间距
                 ClickDisplayFullcontent(certName,  certDesc, "certificate explanation", certLabel);
                 certificatePane.getChildren().add(certLabel);
 
@@ -91,11 +92,46 @@ public class DisplayUIModel {
             }
         }
 
-        certificatePane.setHgap(10);
-        certificatePane.setVgap(10);
+        certificatePane.setHgap(8);
+        certificatePane.setVgap(8);
         certificatePane.setPrefWrapLength(300);
     }
 
+
+    public static FlowPane buildMutipleLabels(String content) {
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(8); // 横向间距
+        flowPane.setVgap(8); // 纵向间距
+        flowPane.setPadding(new javafx.geometry.Insets(10));
+        flowPane.setPrefWrapLength(500); // 自动换行
+
+
+        String[] skillList = content.split("\\|");
+
+        // 定义一组颜色
+        String[] colors = {
+                "#E3F2FD", "#FCE4EC", "#FFF3E0", "#E8F5E9", "#EDE7F6",
+                "#FFF8E1", "#E0F7FA", "#F3E5F5", "#FFEBEE", "#F1F8E9"
+        };
+
+        Random rand = new Random();
+
+        for (String skill : skillList) {
+            String trimmed = skill.trim();
+            Label label = new Label(trimmed);
+            label.setPadding(new Insets(5, 10, 5, 10));
+            label.setStyle("-fx-background-color: " + colors[rand.nextInt(colors.length)] + ";"
+                    + "-fx-background-radius: 10;"
+                    + "-fx-font-size: 13px;"
+                    + "-fx-border-color: #ccc;"
+                    + "-fx-border-radius: 10;"
+                    + "-fx-text-fill: #333;");
+
+            flowPane.getChildren().add(label);
+        }
+
+        return flowPane;
+    }
 
     public static FlowPane buildSkillLabels(String skills) {
         FlowPane flowPane = new FlowPane();
@@ -103,6 +139,7 @@ public class DisplayUIModel {
         flowPane.setVgap(8); // 纵向间距
         flowPane.setPadding(new javafx.geometry.Insets(10));
         flowPane.setPrefWrapLength(500); // 自动换行
+        flowPane.setAlignment(Pos.CENTER);
 
 
         String[] skillList = skills.split("\\|");
@@ -131,6 +168,8 @@ public class DisplayUIModel {
 
         return flowPane;
     }
+
+
 
 
 

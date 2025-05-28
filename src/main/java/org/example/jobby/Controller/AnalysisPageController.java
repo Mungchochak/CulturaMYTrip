@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -35,8 +37,6 @@ import java.util.List;
 public class AnalysisPageController {
 
 
-    @FXML
-    private Label PersonalityContent;
 
     @FXML
     private Label SalaryContent;
@@ -67,6 +67,7 @@ public class AnalysisPageController {
     @FXML private VBox contentVBox;
     @FXML private VBox positionBox;
     @FXML private Label CGPAContent;
+    @FXML private Label PersonalityContent;
 
 
 
@@ -139,6 +140,7 @@ public class AnalysisPageController {
 
 
                         PersonalityContent.setText(ShardResponseData.responseModel.getPersonalityResponse());
+
                         System.out.println("PersonalityContent is " + ShardResponseData.responseModel.getPersonalityResponse());
 
 
