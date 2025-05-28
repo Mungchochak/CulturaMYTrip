@@ -82,15 +82,16 @@ public class CompanyInfoController {
                 showAlert("Address is required.", "Please input your address");
                 return false;
             }
-            if (email.isEmpty() || !email.matches(emailPattern)) {
+//            if (email.isEmpty() || !email.matches(emailPattern))
+            if (email.isEmpty()) {
                 showAlert("Invalid Email", "Please enter a valid email address.");
                 return false;
             }
-            if (ssm.isEmpty() || !ssm.matches(ssmPattern)) {
+            if (ssm.isEmpty()) {
                 showAlert("Invalid SSM No", "Please enter a valid 12-digit SSM Number.");
                 return false;
             }
-            if (contact.isEmpty() || !contact.matches(contactPattern)) {
+            if (contact.isEmpty()) {
                 showAlert("Invalid Contact", "Please enter a valid Malaysian contact number (e.g., 012-3456789).");
                 return false;
             }
