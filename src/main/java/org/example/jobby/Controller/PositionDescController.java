@@ -111,11 +111,21 @@ private void handlesave(){
     try {
         dao.save(data, filePath);
         analysisPageController.RefreshpositionComboBox();
+        showSuccessAlert("Position Description saved!");
+        clearFields();
         System.out.println("Position Description saved!");
     } catch (Exception e) {
         e.printStackTrace();
     }
 }
+
+    private void clearFields() {
+        positionField.clear();
+        workingModeCombo.getSelectionModel().clearSelection();
+        minSalaryField.clear();
+        maxSalaryField.clear();
+        descriptionArea.clear();
+    }
 
     // Simple error dialog (replace with fancier one if you want)
     private void showErrorAlert(String msg) {
@@ -125,6 +135,14 @@ private void handlesave(){
         alert.setContentText(msg);
         alert.showAndWait();
 }
+
+    private void showSuccessAlert(String msg) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
 
 //    @FXML
 //    public void handleDelete(ActionEvent event) {
@@ -159,16 +177,21 @@ private void handlesave(){
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+
+        // 关闭当前窗口（假设触发这个方法的按钮来自当前窗口）
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
     }
 
 
 
-    @FXML
-    private void GoBack(ActionEvent event) {
-        // Close the current stage/window
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
+//    @FXML
+//    private void GoBack(ActionEvent event) {
+//        // Close the current stage/window
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.close();
+//    }
 
 }
 

@@ -60,13 +60,21 @@ public class DeletePositionController {
     @FXML
     private void GoBack(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+            Parent root = loader.load();
+
+            // 获取控制器并传入你需要的值（比如 analysisPageController）
+            PositionDescController controller = loader.getController();
+            controller.setAnalysisPageController(this.analysisPageController); // 如果你要回传
+
+            // 切换场景
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleDelete() {
         List<String> toDelete = new ArrayList<>();
@@ -83,6 +91,7 @@ public class DeletePositionController {
             for (String fullLine : toDelete) {
                 dao.deleteByFullLine(filePath, fullLine); // Deletes only the exact match!
                 analysisPageController.RefreshpositionComboBox();
+                showSuccessAlert("Successfully deleted position");
             }
             loadPositionCheckboxes();
         } catch (Exception e) {
@@ -97,6 +106,14 @@ public class DeletePositionController {
     private void showErrorAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
+    private void showSuccessAlert(String msg) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
