@@ -22,6 +22,12 @@ public class DeletePositionController {
     private final String filePath = "src/main/resources/Text/PositionDesc.txt";
     private final PositionDescFileDao dao = new PositionDescFileDao(); // Not DataDao<...> for custom methods
 
+    private AnalysisPageController analysisPageController;
+
+    public void setAnalysisPageController(AnalysisPageController controller) {
+        this.analysisPageController = controller;
+    }
+
     @FXML
     public void initialize() {
         loadPositionCheckboxes();
@@ -76,6 +82,7 @@ public class DeletePositionController {
         try {
             for (String fullLine : toDelete) {
                 dao.deleteByFullLine(filePath, fullLine); // Deletes only the exact match!
+                analysisPageController.RefreshpositionComboBox();
             }
             loadPositionCheckboxes();
         } catch (Exception e) {

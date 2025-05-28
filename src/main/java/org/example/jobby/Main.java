@@ -1,6 +1,7 @@
 package org.example.jobby;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
@@ -25,6 +26,8 @@ public class Main extends Application {
         stage.setFullScreenExitHint("");                                // 不提示信息
         stage.setResizable(false);
 
+
+        stage.setOnCloseRequest(e -> Platform.exit());
 
         stage.show();
 

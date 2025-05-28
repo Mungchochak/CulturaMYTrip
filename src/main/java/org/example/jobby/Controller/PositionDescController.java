@@ -33,6 +33,14 @@ public class PositionDescController {
     @FXML
     private TextArea descriptionArea;
 
+    private AnalysisPageController analysisPageController;
+
+    public void setAnalysisPageController(AnalysisPageController controller) {
+        this.analysisPageController = controller;
+    }
+
+
+
     @FXML
     public void initialize() {
 
@@ -102,6 +110,7 @@ private void handlesave(){
     PositionDesc data = new PositionDesc(position, workingMode, minSalary, maxSalary, description);
     try {
         dao.save(data, filePath);
+        analysisPageController.RefreshpositionComboBox();
         System.out.println("Position Description saved!");
     } catch (Exception e) {
         e.printStackTrace();
@@ -116,18 +125,43 @@ private void handlesave(){
         alert.setContentText(msg);
         alert.showAndWait();
 }
+
+//    @FXML
+//    public void handleDelete(ActionEvent event) {
+//        try {
+//            Parent newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/DeletePosition.fxml"));
+//            // Get current stage
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            // Set the new scene
+//            stage.setScene(new Scene(newRoot));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
     @FXML
     public void handleDelete(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jobby/DeletePosition.fxml"));
+        Parent root = null;
         try {
-            Parent newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/DeletePosition.fxml"));
-            // Get current stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            // Set the new scene
-            stage.setScene(new Scene(newRoot));
+            root = loader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+
+        // 注入 AnalysisPageController
+        DeletePositionController controller = loader.getController();
+
+        // 这里传入 analysisPageController 的实例！你得先有它
+        controller.setAnalysisPageController(analysisPageController);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
+
+
 
     @FXML
     private void GoBack(ActionEvent event) {

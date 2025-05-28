@@ -83,8 +83,14 @@ public class AnalysisPageController {
 
 
 
+
+
+
+
     @FXML
     public void initialize() {
+
+
         gearButton.setOnAction(event -> showOptionsPopup());
         try {
             List<String> posLines = dao.loadPositionLines(filePath);
@@ -94,6 +100,7 @@ public class AnalysisPageController {
             }
 
     }
+
 
     private Label loadingLabel;
     private Timeline loadingAnimation;
@@ -206,6 +213,15 @@ public class AnalysisPageController {
 
     }
 
+    public void RefreshpositionComboBox() {
+        try {
+            List<String> posLines = dao.loadPositionLines(filePath);
+            positionComboBox.getItems().setAll(posLines);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // 初始化 Loading Label 并加到 VBox 最底部，但默认隐藏
     public void setupLoadingLabel(VBox containerVBox) {
         loadingLabel = new Label("Loading");
@@ -269,24 +285,59 @@ public class AnalysisPageController {
     private Popup optionsPopup; // Store the popup so you can hide/show as needed
 
 
+//    private void switchScene(String sceneName) {
+//        try {
+//            Parent newRoot = null;
+//            switch (sceneName) {
+//                case "Company_Info":
+//                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/Company_Info.fxml"));
+//                    break;
+//                case "PositionDesc":
+//                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+//                    break;
+//                default:
+//                    System.err.println("Unknown scene: " + sceneName);
+//                    return;
+//            }
+//            Stage newStage = new Stage();
+//            newStage.setTitle(sceneName); // 可选：设置窗口标题
+//            newStage.setScene(new Scene(newRoot));
+//            newStage.show(); // 显示新窗口
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     private void switchScene(String sceneName) {
         try {
-            Parent newRoot = null;
+            Parent newRoot;
+            FXMLLoader loader;
+
             switch (sceneName) {
                 case "Company_Info":
-                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/Company_Info.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/org/example/jobby/Company_Info.fxml"));
+                    newRoot = loader.load();
                     break;
+
                 case "PositionDesc":
-                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+                    newRoot = loader.load();
+
+                    // 获取控制器并传入 this
+                    PositionDescController controller = loader.getController();
+                    controller.setAnalysisPageController(this);
                     break;
+
                 default:
                     System.err.println("Unknown scene: " + sceneName);
                     return;
             }
+
             Stage newStage = new Stage();
-            newStage.setTitle(sceneName); // 可选：设置窗口标题
+            newStage.setTitle(sceneName);
             newStage.setScene(new Scene(newRoot));
-            newStage.show(); // 显示新窗口
+            newStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
