@@ -6,6 +6,7 @@ module org.example.jobby {
     requires org.json;
     requires org.apache.pdfbox;
     requires java.desktop;
+    requires java.net.http;
 
     opens org.example.jobby to javafx.fxml;
     exports org.example.jobby;

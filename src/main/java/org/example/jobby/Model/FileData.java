@@ -1,7 +1,8 @@
 package org.example.jobby.Model;
 import java.io.*;
+//CompanyInfoDao
 
-public class FileData implements DataDao{
+public class FileData implements DataDao<Data>{
     @Override
     public void save(Data data, String filePath) throws Exception {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {

@@ -95,12 +95,9 @@
                                  <Font name="Helvetica" size="17.0" />
                               </font>
                            </Button>
-                           <MenuButton mnemonicParsing="false" prefHeight="38.0" prefWidth="262.0" style="-fx-background-radius: 20;" text="Select Position" textOverrun="LEADING_ELLIPSIS" VBox.vgrow="ALWAYS">
-                              <items>
-                                 <MenuItem mnemonicParsing="false" text="Action 1" />
-                                 <MenuItem mnemonicParsing="false" text="Action 2" />
-                              </items>
-                           </MenuButton>
+                           <ComboBox fx:id="positionComboBox" prefHeight="38.0" prefWidth="262.0"
+                                     style="-fx-background-radius: 20;" promptText="Select Position" VBox.vgrow="ALWAYS"/>
+
                         </children>
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="279.0" prefWidth="331.0" spacing="30.0" VBox.vgrow="ALWAYS">

@@ -1,5 +1,5 @@
 package org.example.jobby.Model;
-
+//POJO class
 public class Data {
 
         private String name;

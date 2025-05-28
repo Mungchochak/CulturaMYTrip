@@ -1,7 +1,7 @@
 package org.example.jobby.Model;
 
-    public interface DataDao {
-        void save(Data data, String filePath) throws Exception;
-        Data load(String filePath) throws Exception;
+    public interface DataDao<T>{
+        void save(T data, String filePath) throws Exception;
+        T load(String filePath) throws Exception;
     }
 

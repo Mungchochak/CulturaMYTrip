@@ -9,8 +9,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -20,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.jobby.Model.DisplayUIModel;
 import org.example.jobby.Model.ModulModel;
+import org.example.jobby.Model.PositionDescFileDao;
 import org.example.jobby.Model.ShardResponseData;
 import java.awt.*;
 import java.io.IOException;
@@ -67,6 +70,12 @@ public class AnalysisPageController {
     @FXML private VBox contentVBox;
     @FXML private VBox positionBox;
     @FXML private Label CGPAContent;
+    @FXML
+    private ComboBox<String> positionComboBox;
+
+    private final String filePath = "src/main/resources/Text/PositionDesc.txt";
+    private final PositionDescFileDao dao = new PositionDescFileDao();
+
 
 
 
@@ -77,6 +86,12 @@ public class AnalysisPageController {
     @FXML
     public void initialize() {
         gearButton.setOnAction(event -> showOptionsPopup());
+        try {
+            List<String> posLines = dao.loadPositionLines(filePath);
+            positionComboBox.getItems().setAll(posLines);
+        } catch (Exception e) {
+            e.printStackTrace();
+            }
 
     }
 
