@@ -90,9 +90,10 @@ public class DeletePositionController {
         try {
             for (String fullLine : toDelete) {
                 dao.deleteByFullLine(filePath, fullLine); // Deletes only the exact match!
-                analysisPageController.RefreshpositionComboBox();
-                showSuccessAlert("Successfully deleted position");
+
             }
+            analysisPageController.RefreshpositionComboBox();
+            showSuccessAlert("Successfully deleted position");
             loadPositionCheckboxes();
         } catch (Exception e) {
             e.printStackTrace();

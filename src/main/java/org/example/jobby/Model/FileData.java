@@ -1,5 +1,7 @@
 package org.example.jobby.Model;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 //CompanyInfoDao
 
 public class FileData implements DataDao<Data>{
@@ -32,6 +34,24 @@ public class FileData implements DataDao<Data>{
             }
         }
         return data;
+    }
+
+
+    public static List<String> extractCompanyValues() throws IOException {
+        List<String> values = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/Text/Company_Info.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                int colonIndex = line.indexOf(':');
+                if (colonIndex != -1 && colonIndex < line.length() - 1) {
+                    String value = line.substring(colonIndex + 1).trim();
+                    values.add(value);
+                }
+            }
+        }
+
+        return values;
     }
 }
 

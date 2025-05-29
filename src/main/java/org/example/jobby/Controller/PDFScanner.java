@@ -16,12 +16,15 @@ import java.io.IOException;
 public class PDFScanner {
 
     public DeepSeekPromptModel deepSeekPromptModel = new DeepSeekPromptModel();
+    public DeepSeekPromptFollowupModel DeepSeekPromptFollowupModel = new DeepSeekPromptFollowupModel();
     public DeepSeekResponseModel deepSeekResponseModel = new DeepSeekResponseModel();
 
     private static final JFileChooser fileChooser = new JFileChooser();
 
     public void PDFScanner(Runnable onStart, Runnable onFinish) {
-        ShardResponseData.promptFollowupModel = new DeepSeekPromptFollowupModel();
+
+
+
 
 
         SwingUtilities.invokeLater(() -> {
@@ -54,34 +57,42 @@ public class PDFScanner {
                     System.out.println("Running");
                     String content = extractTextFromPDF(selectedFile.getAbsolutePath());
 
-                    deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSkillMatchingprompt()));
+                    String AditionalInfo = AnalysisPageController.PrintPersonalInformation();
+                    System.out.println(AditionalInfo);
+
+                    boolean SpecialAnalysis=AnalysisPageController.BoolSpecialAnalysis();
+                    System.out.println(SpecialAnalysis);
 
 
-                    deepSeekResponseModel.setWorkExperienceResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getWorkingExperienceprompt()));
+
+                    if(SpecialAnalysis == true){
+                        deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getSkillMatchingprompt(AditionalInfo)));
+                        deepSeekResponseModel.setWorkExperienceResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getWorkingExperienceprompt()));
+                        deepSeekResponseModel.setPersonalityResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getPersonalityprompt(AditionalInfo)));
+                        deepSeekResponseModel.setSoftSkillsResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getSoftSkillsprompt()));
+                        deepSeekResponseModel.setPositionResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getPositionprompt(AditionalInfo)));
+                        deepSeekResponseModel.setInformationResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getInformationprompt()));
+                        deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getSalaryprompt(AditionalInfo)));
+                        deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getScoreprompt(AditionalInfo)));
+                        deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getNameprompt()));
+                        deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getGraduatedprompt()));
+                        deepSeekResponseModel.setCgpaResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getCgpaprompt()));
 
 
-                    deepSeekResponseModel.setPersonalityResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPersonalityprompt()));
+                    }else {
 
-
-                    deepSeekResponseModel.setSoftSkillsResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSoftSkillsprompt()));
-
-
-                    deepSeekResponseModel.setPositionResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPositionprompt()));
-
-
-                    deepSeekResponseModel.setInformationResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getInformationprompt()));
-
-                    deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSalaryprompt()));
-
-
-                    deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getScoreprompt()));
-
-                    deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getNameprompt()));
-
-
-                    deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getGraduatedprompt()));
-
-                    deepSeekResponseModel.setCgpaResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getCgpaprompt()));
+                        deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSkillMatchingprompt()));
+                        deepSeekResponseModel.setWorkExperienceResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getWorkingExperienceprompt()));
+                        deepSeekResponseModel.setPersonalityResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPersonalityprompt()));
+                        deepSeekResponseModel.setSoftSkillsResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSoftSkillsprompt()));
+                        deepSeekResponseModel.setPositionResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getPositionprompt()));
+                        deepSeekResponseModel.setInformationResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getInformationprompt()));
+                        deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSalaryprompt()));
+                        deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getScoreprompt()));
+                        deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getNameprompt()));
+                        deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getGraduatedprompt()));
+                        deepSeekResponseModel.setCgpaResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getCgpaprompt()));
+                    }
 
                     ShardResponseData.responseModel = deepSeekResponseModel;
 

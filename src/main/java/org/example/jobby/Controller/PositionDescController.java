@@ -32,6 +32,12 @@ public class PositionDescController {
     private ComboBox<String> workingModeCombo;
     @FXML
     private TextArea descriptionArea;
+    @FXML
+    private TextField SkillMatch;
+    @FXML
+    private TextField Educationalbackground;
+    @FXML
+    private TextField Workexperience;
 
     private AnalysisPageController analysisPageController;
 
@@ -70,6 +76,8 @@ public class PositionDescController {
                         .toExternalForm());
             }
         });
+
+
     }
 
 @FXML
@@ -80,10 +88,33 @@ private void handlesave(){
     String minSalary = minSalaryField.getText();
     String maxSalary = maxSalaryField.getText();
     String description = descriptionArea.getText();
+    String skillMatch = SkillMatch.getText();
+    String educationalbackground = Educationalbackground.getText();
+    String workexperience = Workexperience.getText();
 
+    // 验证格式正确且总和不超过 100
+    int skill = 0, edu = 0, work = 0;
+    boolean validNumbers = true;
 
     //Validation
     StringBuilder errorMsg = new StringBuilder();
+
+    try {
+        skill = Integer.parseInt(skillMatch.trim());
+        edu = Integer.parseInt(educationalbackground.trim());
+        work = Integer.parseInt(workexperience.trim());
+    } catch (NumberFormatException e) {
+        errorMsg.append("Scoring Weights Configuration must be valid numbers.\n");
+        validNumbers = false;
+    }
+
+    if (validNumbers) {
+        int total = skill + edu + work;
+        if (total != 100) {
+            errorMsg.append("Total percentage must be exactly 100%\n");
+        }
+    }
+
     if (position == null || position.isEmpty()) errorMsg.append("Position is required.\n");
     if (workingMode == null || workingMode.isEmpty()) errorMsg.append("Select a working mode.\n");
     if (minSalary == null || minSalary.isEmpty() || maxSalary == null || maxSalary.isEmpty())
@@ -106,8 +137,9 @@ private void handlesave(){
         showErrorAlert(errorMsg.toString());
         return;
     }
+
     String displayString = position + " (" + workingMode + ") - Min Salary: " + minSalary + " Max Salary: " + maxSalary;
-    PositionDesc data = new PositionDesc(position, workingMode, minSalary, maxSalary, description);
+    PositionDesc data = new PositionDesc(position, workingMode, minSalary, maxSalary, description, skillMatch, educationalbackground, workexperience);
     try {
         dao.save(data, filePath);
         analysisPageController.RefreshpositionComboBox();
@@ -125,6 +157,9 @@ private void handlesave(){
         minSalaryField.clear();
         maxSalaryField.clear();
         descriptionArea.clear();
+        SkillMatch.clear();
+        Educationalbackground.clear();
+        Workexperience.clear();
     }
 
     // Simple error dialog (replace with fancier one if you want)
@@ -176,6 +211,9 @@ private void handlesave(){
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
+
+
         stage.show();
 
         // 关闭当前窗口（假设触发这个方法的按钮来自当前窗口）

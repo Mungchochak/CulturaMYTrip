@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -20,11 +19,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.jobby.Model.DisplayUIModel;
-import org.example.jobby.Model.ModulModel;
-import org.example.jobby.Model.PositionDescFileDao;
-import org.example.jobby.Model.ShardResponseData;
+import org.example.jobby.Model.*;
+
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -71,10 +70,15 @@ public class AnalysisPageController {
     @FXML private VBox positionBox;
     @FXML private Label CGPAContent;
     @FXML
-    private ComboBox<String> positionComboBox;
+    private  ComboBox<String> positionComboBox;
 
     private final String filePath = "src/main/resources/Text/PositionDesc.txt";
     private final PositionDescFileDao dao = new PositionDescFileDao();
+    private Label loadingLabel;
+    private Timeline loadingAnimation;
+    private final List<Node> cachedContent = new ArrayList<>();
+
+
 
 
 
@@ -94,17 +98,25 @@ public class AnalysisPageController {
         gearButton.setOnAction(event -> showOptionsPopup());
         try {
             List<String> posLines = dao.loadPositionLines(filePath);
+            // 插入默认项到列表的第一个位置
+            posLines.add(0, "No specified analysis");
+
+            // 设置列表内容
             positionComboBox.getItems().setAll(posLines);
+
+            // 设置默认值
+            positionComboBox.setValue("No specified analysis");
         } catch (Exception e) {
             e.printStackTrace();
             }
 
+
     }
 
 
-    private Label loadingLabel;
-    private Timeline loadingAnimation;
-    private final List<Node> cachedContent = new ArrayList<>();
+
+
+
 
 
 
@@ -122,6 +134,10 @@ public class AnalysisPageController {
 
 
         PDFScanner scanner = new PDFScanner();
+        LoadPersonalInformation();
+
+
+
 
 
         scanner.PDFScanner(
@@ -216,6 +232,7 @@ public class AnalysisPageController {
     public void RefreshpositionComboBox() {
         try {
             List<String> posLines = dao.loadPositionLines(filePath);
+            posLines.add(0, "No specified analysis");
             positionComboBox.getItems().setAll(posLines);
         } catch (Exception e) {
             e.printStackTrace();
@@ -336,6 +353,7 @@ public class AnalysisPageController {
             Stage newStage = new Stage();
             newStage.setTitle(sceneName);
             newStage.setScene(new Scene(newRoot));
+            newStage.setResizable(false);
             newStage.show();
 
         } catch (IOException e) {
@@ -408,6 +426,56 @@ public class AnalysisPageController {
         return box;
     }
 
+    public String loadComAsString() throws Exception {
+        StringBuilder sb = new StringBuilder();
+        String filePath = "src/main/resources/Text/Company_Info.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    public static String selectedPosition;
+    public static String CompanyInfo;
+    public static boolean SpecialAnalysis;
+
+    public void LoadPersonalInformation(){
+
+        selectedPosition = positionComboBox.getSelectionModel().getSelectedItem();
+
+        try {
+            CompanyInfo = loadComAsString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
+    public static String PrintPersonalInformation(){
+
+
+        String prompt =
+                "Company Information:\n" + CompanyInfo + "\n\n" +
+                        "Seeking Position Information:\n" +
+                        "Selected Position: " + selectedPosition;
+
+        return prompt;
+
+    }
+
+    public static boolean BoolSpecialAnalysis() {
+        if (selectedPosition =="No specified analysis"){
+            return false;
+        }else {
+            return true;
+        }
+
+    }
 
 
 

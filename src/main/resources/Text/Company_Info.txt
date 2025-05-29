@@ -1,7 +1,7 @@
-Name:123123
-Email:123123
-Industry:12312312
-SSM No:123123
-Address:123123123
-Contact:123123
-AdditionalInfo:123123123123123312
+Name:VisionTech Solutions Sdn. Bhd.
+Email:hr@visiontech.my
+Industry:Information Technology & Software Development
+SSM No:1234567-A
+Address:12-3A, Jalan Teknologi, Cyberjaya, Selangor, Malaysia
+Contact:+60 12-345 6789
+AdditionalInfo:VisionTech Solutions specializes in custom software engineering, enterprise digital transformation, and cloud integration services. Our company serves clients in various industries including fintech, healthcare, and education. We’re looking for energetic, tech-savvy individuals who are eager to work in agile teams and passionate about building scalable, user-friendly applications.

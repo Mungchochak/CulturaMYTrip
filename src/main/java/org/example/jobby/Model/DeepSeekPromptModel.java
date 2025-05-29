@@ -17,25 +17,11 @@ public class DeepSeekPromptModel {
                 + "Your reply must be in English.";
 
 
+
     }
 
     public String getWorkingExperienceprompt() {
 
-//        return "You are a professional resume analysis system. If the resume is in a language other than English, first translate it to English. "
-//                + "You must treat all forms of work and project-based activities as valid professional experience. This includes clinical practice, medical roles, internships, academic research, thesis work, course-based projects, student competitions, capstone projects, and classroom implementations. "
-//                + "Even if the experience is from university or college, such as a course project or group assignment, it must be included. "
-//                + "Do not limit interpretation to technical or software roles. All professions, including healthcare, engineering, education, and research are valid. "
-//                + "Extract and summarize the candidate’s experience: job titles or roles (if any), organizations or institutions, total years of experience (estimated if needed), significant projects (including academic ones), responsibilities, and technologies or methods used. "
-//                + "Write a single formal English paragraph in this format: 'The candidate has experience as... at... from... to..., where they...'. "
-//                + "Strictly limit the output to under 450 characters (including spaces and symbols). Do not use bullet points, explanations, or assumptions. "
-//                + "Only if the content clearly lacks any form of professional or project-based experience, respond with: \"insufficient data\". "
-//                + "Do not mention character count. The reply must be in English.";
-//        return "Summarize up to 3 key professional or academic experiences from the resume in concise format. "
-//                + "Include formal work, internships, course projects, academic assignments, team competitions, and personal projects. "
-//                + "Each line must follow this format:\n"
-//                + "[Role or Project] – [Company, School, or Event] (Year) – [Main task or result, max 10 words]\n\n"
-//                + "Be minimal and factual. Avoid full sentences, adjectives, and unnecessary phrases. Limit each line to under 100 characters. Most recent first. "
-//                + "If no valid experience is found, reply exactly: insufficient data.";
 
 
         return "You are a professional resume analysis system. Extract the candidate’s major **project or responsibility-based experiences**, including:\n"
@@ -57,13 +43,6 @@ public class DeepSeekPromptModel {
 
     public String getPersonalityprompt() {
 
-//        return "You are a professional resume analysis system. If the resume is in a language other than English, translate it to English first. " +
-//                "Then analyze and summarize the candidate’s personality traits based on their descriptions of projects, roles, and experience. " +
-//                "Focus on traits like leadership, creativity, problem-solving, collaboration, attention to detail, etc. " +
-//                "Write a single formal English paragraph, no bullet points, strictly under 260 characters(including Spaces and all symbols),There is no need to tell me the total number of characters. This is for the users to see, not for the background. " +
-//                "Do not include any assumptions, suggestions, or system messages. If insufficient data is found, return: \"insufficient data\"."
-//                +"If the content is not a resume, please reply : The document is not related to the resume"
-//                +"The reply must be in English";
 
 
             return "You are a professional resume analysis system. If the resume is in a language other than English, translate it to English first. "

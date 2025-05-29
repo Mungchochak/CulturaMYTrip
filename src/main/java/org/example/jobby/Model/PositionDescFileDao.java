@@ -11,7 +11,9 @@ public class PositionDescFileDao implements DataDao<PositionDesc> {
     @Override
     public void save(PositionDesc data, String filePath) throws Exception {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write("Position:" + data.getPosition() + " (" + data.getWorkingMode() + ") - Min Salary: " + data.getMinSalary() + " Max Salary: " + data.getMaxSalary() + "\n");
+//            writer.write("Position:" + data.getPosition() + " (" + data.getWorkingMode() + ") - Min Salary: " + data.getMinSalary() + " Max Salary: " + data.getMaxSalary() + "\n");
+            writer.write("Position:" + data.getPosition() + " (" + data.getWorkingMode() + ") - Min Salary: " + data.getMinSalary() + " Max Salary: " + data.getMaxSalary()
+                    + " | Scoring Weights Configuration: Skill Match: " + data.getSkillMatch() + "%, Educational background: " + data.getEducationalbackground() + "%, Work experience: " + data.getWorkexperience() + "%\n");
             writer.write("Description:" + data.getDescription() + "\n");
             writer.write("====\n"); // delimiter
         }

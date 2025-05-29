@@ -12,6 +12,9 @@ import org.example.jobby.Model.Data;
 import org.example.jobby.Model.DataDao;
 import org.example.jobby.Model.FileData;
 
+import java.io.IOException;
+import java.util.List;
+
 
 public class CompanyInfoController {
 
@@ -22,18 +25,101 @@ public class CompanyInfoController {
     private final DataDao dao = new FileData();
     private final String filePath = "src/main/resources/Text/Company_Info.txt";
 
+    private String name;
+    private String email;
+    private String industry;
+    private String ssmNo;
+    private String address;
+    private String contact;
+    private String additionalInfo;
+
+
+
     @FXML
     public void initialize() {
-        // Start in "edit" mode if new, or "locked" mode if loaded
-        setEditable(true);
-        saveCompanyButton.setDisable(false);
-        editCompanyButton.setDisable(true);}
-    @FXML
-    private void GoBack(ActionEvent event) {
-        // Close the current stage/window
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+
+
+        getStringComInfo();
+        DisplayField();
+        System.out.println(isHasInfoData());
+
+        if (isHasInfoData()==true){
+            setEditable(false);
+            saveCompanyButton.setDisable(true);
+            editCompanyButton.setDisable(false);
+        }else {
+            setEditable(true);
+            saveCompanyButton.setDisable(false);
+            editCompanyButton.setDisable(true);
+        }
+
+// Start in "edit" mode if new, or "locked" mode if loaded
     }
+
+    public void DisplayField(){
+        nameField.setText(name == null ? "" : name);
+        emailField.setText(email == null ? "" : email);
+        industryField.setText(industry == null ? "" : industry);
+        ssmField.setText(ssmNo == null ? "" : ssmNo);
+        addressField.setText(address == null ? "" : address);
+        contactField.setText(contact == null ? "" : contact);
+        additionalInfoArea.setText(additionalInfo == null ? "" : additionalInfo);
+    }
+
+
+    public void getStringComInfo(){
+        List<String> values = null;
+        try {
+            values = FileData.extractCompanyValues();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (String val : values) {
+            System.out.println(val); // 打印每个字段值
+        }
+
+        name = values.get(0);
+        email = values.get(1);
+        industry = values.get(2);
+        ssmNo = values.get(3);
+        address = values.get(4);
+        contact = values.get(5);
+        additionalInfo = values.get(6);
+    }
+
+
+    public boolean isHasInfoData() {
+        List<String> values;
+        try {
+            values = FileData.extractCompanyValues();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (String value : values) {
+            if (value != null && !value.trim().isEmpty()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+//    @FXML
+//    private void GoBack(ActionEvent event) {
+//        // Close the current stage/window
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.close();
+//    }
+
     @FXML
     private void handleSaveCompanyInfo() {
         try {
@@ -51,6 +137,7 @@ public class CompanyInfoController {
                 );
                 dao.save(data, filePath);
                 System.out.println("Saved successfully!");
+                showSuccessAlert("Saved successfully!");
                 //Locking feilds after saving company Info
                 setEditable(false);
                 saveCompanyButton.setDisable(true);
@@ -59,6 +146,7 @@ public class CompanyInfoController {
                 e.printStackTrace();
             }
         }
+
         private boolean validateFields() {
             String email = emailField.getText();
             String ssm = ssmField.getText();
@@ -111,6 +199,7 @@ public class CompanyInfoController {
         setEditable(true);
         saveCompanyButton.setDisable(false);
         editCompanyButton.setDisable(true);
+        showSuccessAlert("You can start editing your information now!");
     }
         private void showAlert(String title, String message) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -119,4 +208,12 @@ public class CompanyInfoController {
             alert.setContentText(message);
             alert.showAndWait();
         }
+
+    private void showSuccessAlert(String msg) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
 }

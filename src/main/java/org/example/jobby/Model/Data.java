@@ -44,7 +44,22 @@ public class Data {
 
     public String getAdditionalInfo() { return additionalInfo; }
     public void setAdditionalInfo(String additionalInfo) { this.additionalInfo = additionalInfo; }
+
+    public String getAllInfo() {
+        return "Name: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Industry: " + industry + "\n" +
+                "SSM No: " + ssmNo + "\n" +
+                "Address: " + address + "\n" +
+                "Contact: " + contact + "\n" +
+                "Additional Info: " + additionalInfo;
+    }
+
+
+
 }
+
+
 
 
 
