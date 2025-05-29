@@ -51,7 +51,7 @@
                </VBox>
                <VBox alignment="CENTER" prefHeight="668.0" prefWidth="335.0" spacing="50.0" style="-fx-background-color: #9cbefb;">
                   <children>
-                     <VBox alignment="CENTER" spacing="100.0" VBox.vgrow="ALWAYS">
+                     <VBox alignment="CENTER" prefHeight="791.0" prefWidth="335.0" spacing="100.0" VBox.vgrow="ALWAYS">
                         <children>
                            <HBox prefHeight="104.0" prefWidth="312.0" VBox.vgrow="ALWAYS">
                               <children>
@@ -93,22 +93,11 @@
                                  <Font name="Helvetica" size="17.0" />
                               </font>
                            </Button>
-                           <ComboBox fx:id="positionComboBox" prefHeight="38.0" prefWidth="262.0" promptText="Select Position" style="-fx-background-radius: 20;" VBox.vgrow="ALWAYS" />
+                           <ComboBox fx:id="positionComboBox" prefHeight="41.0" prefWidth="265.0" promptText="Select Position" style="-fx-background-radius: 20;" VBox.vgrow="ALWAYS" />
 
                         </children>
                      </VBox>
-                     <VBox alignment="CENTER" prefHeight="279.0" prefWidth="331.0" spacing="30.0" VBox.vgrow="ALWAYS">
-                        <children>
-                           <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-radius: 20; -fx-background-color: #5977AE;" text="Reset">
-                              <font>
-                                 <Font name="Helvetica" size="13.0" />
-                              </font></Button>
-                           <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-radius: 20; -fx-background-color: #5977AE;" text="Stop">
-                              <font>
-                                 <Font name="Helvetica" size="13.0" />
-                              </font></Button>
-                        </children>
-                     </VBox>
+                     <VBox alignment="CENTER" prefHeight="408.0" prefWidth="335.0" spacing="30.0" VBox.vgrow="ALWAYS" />
                   </children>
                </VBox>
             </children>
