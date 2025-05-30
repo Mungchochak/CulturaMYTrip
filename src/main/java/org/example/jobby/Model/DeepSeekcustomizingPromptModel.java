@@ -1,6 +1,6 @@
 package org.example.jobby.Model;
 
-public class DeepSeekPromptFollowupModel {
+public class DeepSeekcustomizingPromptModel {
 
     public String getSkillMatchingprompt(String additionalInfo) {
 

@@ -22,6 +22,7 @@ public class CompanyInfoController {
     @FXML private Button editCompanyButton;
     @FXML private TextField nameField, emailField, industryField, ssmField, addressField, contactField;
     @FXML private TextArea additionalInfoArea;
+    @FXML private TextArea addressArea;
     private final DataDao dao = new FileData();
     private final String filePath = "src/main/resources/Text/Company_Info.txt";
 
@@ -61,7 +62,7 @@ public class CompanyInfoController {
         emailField.setText(email == null ? "" : email);
         industryField.setText(industry == null ? "" : industry);
         ssmField.setText(ssmNo == null ? "" : ssmNo);
-        addressField.setText(address == null ? "" : address);
+        addressArea.setText(address == null ? "" : address);
         contactField.setText(contact == null ? "" : contact);
         additionalInfoArea.setText(additionalInfo == null ? "" : additionalInfo);
     }
@@ -69,13 +70,18 @@ public class CompanyInfoController {
 
     public void getStringComInfo(){
         List<String> values = null;
+
         try {
             values = FileData.extractCompanyValues();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        if (values == null || values.isEmpty()) {
+            System.out.println("⚠️ 公司信息文件为空，跳过处理");
+            return;
+        }
         for (String val : values) {
-            System.out.println(val); // 打印每个字段值
+            System.out.println(val);
         }
 
         name = values.get(0);
@@ -131,7 +137,7 @@ public class CompanyInfoController {
                         emailField.getText(),
                         industryField.getText(),
                         ssmField.getText(),
-                        addressField.getText(),
+                        addressArea.getText(),
                         contactField.getText(),
                         additionalInfoArea.getText()
                 );
@@ -153,7 +159,7 @@ public class CompanyInfoController {
             String contact = contactField.getText();
             String name = nameField.getText();
             String industry = industryField.getText();
-            String address = addressField.getText();
+            String address = addressArea.getText();
             String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
             String ssmPattern = "^\\d{12}$";
             String contactPattern = "^01[0-46-9]-?\\d{7,8}$";
@@ -190,7 +196,7 @@ public class CompanyInfoController {
         emailField.setEditable(editable);
         industryField.setEditable(editable);
         ssmField.setEditable(editable);
-        addressField.setEditable(editable);
+        addressArea.setEditable(editable);
         contactField.setEditable(editable);
         additionalInfoArea.setEditable(editable);
     }

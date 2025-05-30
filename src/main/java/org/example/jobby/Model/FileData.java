@@ -56,7 +56,8 @@ public class FileData implements DataDao<Data>{
 
     public static void initializeFiles(String[] fileNames) {
         for (String fileName : fileNames) {
-            File file = new File(fileName);
+            String folderPath = "src/main/resources/Text";
+            File file = new File(folderPath+ File.separator+fileName);
             try {
                 if (file.exists()) {
                     System.out.println(fileName + " File already exists");

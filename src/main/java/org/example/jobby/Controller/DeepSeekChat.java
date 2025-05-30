@@ -39,7 +39,7 @@ public class DeepSeekChat {
 
 
             requestBody.put("messages", messages);
-            requestBody.put("temperature", 0.7);
+            requestBody.put("temperature", 0.3);
             requestBody.put("max_tokens", 8000);
 
             // 建立连接

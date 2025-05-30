@@ -33,19 +33,9 @@
                               <Label style="-fx-text-fill: #0D214F;" styleClass="card-title" text="Choose a Position to Delete:" />
                         <VBox alignment="CENTER" prefHeight="426.0" prefWidth="600.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="438.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #F5F5F5;">
+                              <VBox alignment="CENTER" prefHeight="420.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #F5F5F5;">
                                  <children>
-                                          <ScrollPane fitToWidth="true" maxHeight="240" prefHeight="240.0" prefWidth="472.0" style="-fx-background-radius: 0;">
-                                              <content>
-                                                  <VBox fx:id="positionsVBox" prefHeight="353.0" prefWidth="544.0" spacing="10" style="-fx-background-radius: 20; -fx-border-radius: 20;">
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                              </content>
+                                          <ScrollPane fitToWidth="true" maxHeight="400.0" prefHeight="277.0" prefWidth="578.0" style="-fx-background-radius: 0;">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>

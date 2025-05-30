@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
-import org.example.jobby.Model.DeepSeekPromptFollowupModel;
+import org.example.jobby.Model.DeepSeekcustomizingPromptModel;
 import org.example.jobby.Model.DeepSeekPromptModel;
 import org.example.jobby.Model.DeepSeekResponseModel;
 import org.example.jobby.Model.ShardResponseData;
@@ -16,7 +16,7 @@ import java.io.IOException;
 public class PDFScanner {
 
     public DeepSeekPromptModel deepSeekPromptModel = new DeepSeekPromptModel();
-    public DeepSeekPromptFollowupModel DeepSeekPromptFollowupModel = new DeepSeekPromptFollowupModel();
+    public DeepSeekcustomizingPromptModel DeepSeekcustomizingPromptModel = new DeepSeekcustomizingPromptModel();
     public DeepSeekResponseModel deepSeekResponseModel = new DeepSeekResponseModel();
 
     private static final JFileChooser fileChooser = new JFileChooser();
@@ -66,17 +66,17 @@ public class PDFScanner {
 
 
                     if(SpecialAnalysis == true){
-                        deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getSkillMatchingprompt(AditionalInfo)));
+                        deepSeekResponseModel.setSkillMatchingResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getSkillMatchingprompt(AditionalInfo)));
                         deepSeekResponseModel.setWorkExperienceResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getWorkingExperienceprompt()));
-                        deepSeekResponseModel.setPersonalityResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getPersonalityprompt(AditionalInfo)));
-                        deepSeekResponseModel.setSoftSkillsResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getSoftSkillsprompt()));
-                        deepSeekResponseModel.setPositionResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getPositionprompt(AditionalInfo)));
+                        deepSeekResponseModel.setPersonalityResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getPersonalityprompt(AditionalInfo)));
+                        deepSeekResponseModel.setSoftSkillsResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getSoftSkillsprompt()));
+                        deepSeekResponseModel.setPositionResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getPositionprompt(AditionalInfo)));
                         deepSeekResponseModel.setInformationResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getInformationprompt()));
-                        deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getSalaryprompt(AditionalInfo)));
-                        deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getScoreprompt(AditionalInfo)));
-                        deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getNameprompt()));
-                        deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getGraduatedprompt()));
-                        deepSeekResponseModel.setCgpaResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekPromptFollowupModel.getCgpaprompt()));
+                        deepSeekResponseModel.setSalaryResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getSalaryprompt(AditionalInfo)));
+                        deepSeekResponseModel.setScoreResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getScoreprompt(AditionalInfo)));
+                        deepSeekResponseModel.setNameResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getNameprompt()));
+                        deepSeekResponseModel.setGraduatedResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getGraduatedprompt()));
+                        deepSeekResponseModel.setCgpaResponse(DeepSeekChat.callDeepSeekAPI(content, DeepSeekcustomizingPromptModel.getCgpaprompt()));
 
 
                     }else {
