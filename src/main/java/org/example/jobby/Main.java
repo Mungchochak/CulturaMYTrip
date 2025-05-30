@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.example.jobby.Model.FileData;
 
 import java.io.IOException;
 
@@ -34,6 +35,15 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
+        String[] fileNames = {
+                "PositionDesc",
+                "Company_Info.txt",
+                "PositionDesc.txt"
+        };
+        FileData.initializeFiles(fileNames);
+
+
         launch();
     }
 }
