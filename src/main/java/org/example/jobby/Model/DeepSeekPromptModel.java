@@ -104,7 +104,9 @@ public class DeepSeekPromptModel {
 
     public String getSalaryprompt() {
 
+
         return "You are a professional resume analysis system. Based on the candidate’s resume, estimate a suitable monthly salary range in Malaysian Ringgit (RM). "
+                + "The salary must be predicted according to Malaysian industry standards and market rates.\n\n"
                 + "You must always provide both:\n"
                 + "1. Recommended Salary: RMxxxx–xxxx (e.g., RM3000–5000)\n"
                 + "2. Explanation: A short sentence justifying the estimate (e.g., based on skills, tools, or project experience)\n\n"

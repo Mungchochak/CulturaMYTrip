@@ -115,6 +115,7 @@ public class DeepSeekcustomizingPromptModel {
     public String getSalaryprompt(String additionalInfo) {
         return "You are a professional resume analysis system. Based on the candidate’s resume and the company & position information provided below, estimate a suitable monthly salary range in Malaysian Ringgit (RM).\n\n"
                 + "Company & Position Context:\n" + additionalInfo + "\n\n"
+                + "The salary must be predicted according to the local talent market conditions of the company's address. If the company address is missing or unclear, use Malaysian national averages and industry standards as the basis.\n\n"
                 + "If the company data (e.g., salary or title) is missing or marked as 'N/A', provide your best estimate based solely on the resume and state that company data was incomplete.\n\n"
                 + "Strict format:\n"
                 + "Recommended Salary: RMxxxx–xxxx[* if above or below company range]\n"
