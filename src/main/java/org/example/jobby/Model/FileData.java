@@ -56,11 +56,11 @@ public class FileData implements DataDao<Data>{
     }
 
     public static void initializeFiles(String[] fileNames) {
-        String folderPath = "src/main/resources/Text"; // 指定文件夹路径
+        String folderPath = "src/main/resources/Text";
 
         File folder = new File(folderPath);
         if (!folder.exists()) {
-            boolean created = folder.mkdirs();  // 创建多层文件夹
+            boolean created = folder.mkdirs();
             if (created) {
                 System.out.println("✅ Folder created: " + folderPath);
             } else {
