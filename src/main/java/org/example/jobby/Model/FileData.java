@@ -38,6 +38,7 @@ public class FileData implements DataDao<Data>{
 
 
     public static List<String> extractCompanyValues() throws IOException {
+
         List<String> values = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/Text/Company_Info.txt"))) {
@@ -55,8 +56,21 @@ public class FileData implements DataDao<Data>{
     }
 
     public static void initializeFiles(String[] fileNames) {
+        String folderPath = "src/main/resources/Text"; // 指定文件夹路径
+
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            boolean created = folder.mkdirs();  // 创建多层文件夹
+            if (created) {
+                System.out.println("✅ Folder created: " + folderPath);
+            } else {
+                System.err.println("❌ Failed to create folder.");
+            }
+        } else {
+            System.out.println("📁 Folder already exists: " + folderPath);
+        }
+
         for (String fileName : fileNames) {
-            String folderPath = "src/main/resources/Text";
             File file = new File(folderPath+ File.separator+fileName);
             try {
                 if (file.exists()) {
