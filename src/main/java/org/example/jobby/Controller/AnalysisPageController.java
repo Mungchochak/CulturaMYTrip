@@ -98,13 +98,13 @@ public class AnalysisPageController {
         gearButton.setOnAction(event -> showOptionsPopup());
         try {
             List<String> posLines = dao.loadPositionLines(filePath);
-            // 插入默认项到列表的第一个位置
+
             posLines.add(0, "No specified analysis");
 
-            // 设置列表内容
+
             positionComboBox.getItems().setAll(posLines);
 
-            // 设置默认值
+
             positionComboBox.setValue("No specified analysis");
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,7 +177,7 @@ public class AnalysisPageController {
 
 
                         PersonalityContent.setText(ShardResponseData.responseModel.getPersonalityResponse());
-                        System.out.println("PersonalityContent is " + ShardResponseData.responseModel.getPersonalityResponse());
+
 
 
                         String aiReply = ShardResponseData.responseModel.getSoftSkillsResponse();
@@ -190,10 +190,10 @@ public class AnalysisPageController {
 
 
                         positionBox.getChildren().clear();
-                        aiResponse = ShardResponseData.responseModel.getPositionResponse(); // 得到结构化文本
+                        aiResponse = ShardResponseData.responseModel.getPositionResponse();
                         maincontent = DisplayUIModel.CategorizedPositionUI(aiResponse);
                         positionBox.getChildren().add(maincontent);
-                        System.out.println(DisplayUIModel.CategorizedPositionUI(aiResponse));
+
 
                         aiReply=ShardResponseData.responseModel.getSalaryResponse();
                         DisplayUIModel.CategorizedSalary(aiReply, SalaryContent);
@@ -202,7 +202,7 @@ public class AnalysisPageController {
                         DisplayUIModel.CategorizedScore(aiReply,ScoreContent);
 
                         NameContent.setText(ShardResponseData.responseModel.getNameResponse());
-                        System.out.println("NameContent is " + ShardResponseData.responseModel.getNameResponse());
+
 
 
                         aiReply=ShardResponseData.responseModel.getGraduatedResponse();
@@ -210,13 +210,9 @@ public class AnalysisPageController {
 
                         CGPAContent.setText(ShardResponseData.responseModel.getCgpaResponse());
 
+                        System.out.println("Finished Analysis");
 
 
-
-
-
-
-//                        EnlargeContent();
 
                     }
 
@@ -224,6 +220,7 @@ public class AnalysisPageController {
 
 
                 }
+
         );
 
 
@@ -239,7 +236,7 @@ public class AnalysisPageController {
         }
     }
 
-    // 初始化 Loading Label 并加到 VBox 最底部，但默认隐藏
+
     public void setupLoadingLabel(VBox containerVBox) {
         loadingLabel = new Label("Loading");
         loadingLabel.setStyle("-fx-font-size: 80px; -fx-text-fill: #000000;");
@@ -261,7 +258,7 @@ public class AnalysisPageController {
         loadingAnimation.setCycleCount(Animation.INDEFINITE);
     }
 
-    // 调用此方法显示 Loading Label，隐藏其他 HBox
+
     public void showLoadingState(VBox containerVBox) {
         cachedContent.clear();
         for (Node node : containerVBox.getChildren()) {
@@ -275,13 +272,13 @@ public class AnalysisPageController {
         containerVBox.setAlignment(Pos.CENTER);
     }
 
-    // 调用此方法恢复原来的内容并隐藏 Loading Label
+
     public void hideLoadingState(VBox containerVBox) {
         loadingAnimation.stop();
         loadingLabel.setVisible(false);
         containerVBox.getChildren().remove(loadingLabel);
-        containerVBox.getChildren().addAll(0, cachedContent); // 插回原位
-        containerVBox.setAlignment(Pos.TOP_LEFT); // 或根据你的布局微调
+        containerVBox.getChildren().addAll(0, cachedContent);
+        containerVBox.setAlignment(Pos.TOP_LEFT);
     }
 
 
@@ -302,28 +299,6 @@ public class AnalysisPageController {
     private Popup optionsPopup; // Store the popup so you can hide/show as needed
 
 
-//    private void switchScene(String sceneName) {
-//        try {
-//            Parent newRoot = null;
-//            switch (sceneName) {
-//                case "Company_Info":
-//                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/Company_Info.fxml"));
-//                    break;
-//                case "PositionDesc":
-//                    newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
-//                    break;
-//                default:
-//                    System.err.println("Unknown scene: " + sceneName);
-//                    return;
-//            }
-//            Stage newStage = new Stage();
-//            newStage.setTitle(sceneName); // 可选：设置窗口标题
-//            newStage.setScene(new Scene(newRoot));
-//            newStage.show(); // 显示新窗口
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void switchScene(String sceneName) {
         try {
@@ -340,7 +315,7 @@ public class AnalysisPageController {
                     loader = new FXMLLoader(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
                     newRoot = loader.load();
 
-                    // 获取控制器并传入 this
+
                     PositionDescController controller = loader.getController();
                     controller.setAnalysisPageController(this);
                     break;

@@ -179,18 +179,7 @@ private void handlesave(){
         alert.showAndWait();
     }
 
-//    @FXML
-//    public void handleDelete(ActionEvent event) {
-//        try {
-//            Parent newRoot = FXMLLoader.load(getClass().getResource("/org/example/jobby/DeletePosition.fxml"));
-//            // Get current stage
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            // Set the new scene
-//            stage.setScene(new Scene(newRoot));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
 
     @FXML
@@ -203,10 +192,10 @@ private void handlesave(){
             throw new RuntimeException(e);
         }
 
-        // 注入 AnalysisPageController
+
         DeletePositionController controller = loader.getController();
 
-        // 这里传入 analysisPageController 的实例！你得先有它
+
         controller.setAnalysisPageController(analysisPageController);
 
         Stage stage = new Stage();
@@ -216,20 +205,13 @@ private void handlesave(){
 
         stage.show();
 
-        // 关闭当前窗口（假设触发这个方法的按钮来自当前窗口）
+
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
 
     }
 
 
-
-//    @FXML
-//    private void GoBack(ActionEvent event) {
-//        // Close the current stage/window
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.close();
-//    }
 
 }
 

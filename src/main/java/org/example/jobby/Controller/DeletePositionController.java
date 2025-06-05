@@ -63,11 +63,11 @@ public class DeletePositionController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
             Parent root = loader.load();
 
-            // 获取控制器并传入你需要的值（比如 analysisPageController）
-            PositionDescController controller = loader.getController();
-            controller.setAnalysisPageController(this.analysisPageController); // 如果你要回传
 
-            // 切换场景
+            PositionDescController controller = loader.getController();
+            controller.setAnalysisPageController(this.analysisPageController);
+
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) {

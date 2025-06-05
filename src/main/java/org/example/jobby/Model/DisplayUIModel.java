@@ -100,15 +100,15 @@ public class DisplayUIModel {
 
     public static FlowPane buildMutipleLabels(String content) {
         FlowPane flowPane = new FlowPane();
-        flowPane.setHgap(8); // 横向间距
-        flowPane.setVgap(8); // 纵向间距
+        flowPane.setHgap(8);
+        flowPane.setVgap(8);
         flowPane.setPadding(new javafx.geometry.Insets(10));
-        flowPane.setPrefWrapLength(500); // 自动换行
+        flowPane.setPrefWrapLength(500);
 
 
         String[] skillList = content.split("\\|");
 
-        // 定义一组颜色
+
         String[] colors = {
                 "#E3F2FD", "#FCE4EC", "#FFF3E0", "#E8F5E9", "#EDE7F6",
                 "#FFF8E1", "#E0F7FA", "#F3E5F5", "#FFEBEE", "#F1F8E9"
@@ -135,10 +135,10 @@ public class DisplayUIModel {
 
     public static FlowPane buildSkillLabels(String skills) {
         FlowPane flowPane = new FlowPane();
-        flowPane.setHgap(8); // 横向间距
-        flowPane.setVgap(8); // 纵向间距
+        flowPane.setHgap(8);
+        flowPane.setVgap(8);
         flowPane.setPadding(new javafx.geometry.Insets(10));
-        flowPane.setPrefWrapLength(500); // 自动换行
+        flowPane.setPrefWrapLength(500);
         flowPane.setAlignment(Pos.CENTER);
 
 
@@ -309,11 +309,11 @@ public class DisplayUIModel {
             String line = lines[i].trim();
 
             if (i == 0 && !line.toLowerCase().startsWith("explanation")) {
-                uni = line; // 默认第一行为学校名
+                uni = line;
             } else if (line.toLowerCase().startsWith("explanation:")) {
                 readingExplanation = true;
             } else if (readingExplanation && !line.isEmpty()) {
-                explanationBuilder.append(line).append("\n\n"); // 每行解释后多加一行空行
+                explanationBuilder.append(line).append("\n\n");
             }
         }
 
@@ -339,7 +339,7 @@ public class DisplayUIModel {
             } else if (line.toLowerCase().startsWith("explanation:")) {
                 readingExplanation = true;
             } else if (readingExplanation && !line.isEmpty()) {
-                explanationBuilder.append(line).append("\n\n"); // 每段解释后加空行
+                explanationBuilder.append(line).append("\n\n");
             }
         }
 
@@ -363,7 +363,7 @@ public class DisplayUIModel {
             alert.setTitle(WindowTitle);
             alert.setHeaderText(title);
 
-            // ✅ 设置内容为 TextArea
+
             TextArea content = new TextArea(explanation);
             content.setWrapText(true);
             content.setEditable(false);
@@ -372,11 +372,11 @@ public class DisplayUIModel {
             content.setPrefHeight(300);
             alert.getDialogPane().setContent(content);
 
-            // ✅ 添加 OK 按钮前先清空，防止重复添加
+
             alert.getButtonTypes().clear();
             alert.getButtonTypes().add(ButtonType.OK);
 
-            // ✅ 清除窗口图标（可选）
+
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.getIcons().clear();
 

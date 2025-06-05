@@ -31,8 +31,8 @@ public class PDFScanner {
 
             fileChooser.setDialogTitle("Select a PDF file");
             JDialog dialog = new JDialog();
-            dialog.setAlwaysOnTop(true);  // ✅ 设置始终在前
-            dialog.setModal(true);        // 模态，阻止其他窗口操作
+            dialog.setAlwaysOnTop(true);
+            dialog.setModal(true);
 
 
             fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
@@ -48,8 +48,8 @@ public class PDFScanner {
             int result = fileChooser.showOpenDialog(dialog);
 
             if (result == JFileChooser.APPROVE_OPTION) {
-                // ✅ 用户确认后才显示“Loading...”
-                Platform.runLater(onStart);  // JavaFX UI线程执行
+
+                Platform.runLater(onStart);
 
                 File selectedFile = fileChooser.getSelectedFile();
                 try {
@@ -58,10 +58,10 @@ public class PDFScanner {
                     String content = extractTextFromPDF(selectedFile.getAbsolutePath());
 
                     String AditionalInfo = AnalysisPageController.PrintPersonalInformation();
-                    System.out.println(AditionalInfo);
+
 
                     boolean SpecialAnalysis=AnalysisPageController.BoolSpecialAnalysis();
-                    System.out.println(SpecialAnalysis);
+
 
 
 
@@ -97,7 +97,7 @@ public class PDFScanner {
                     ShardResponseData.responseModel = deepSeekResponseModel;
 
 
-                    // ✅ 处理完再执行更新 UI 的回调
+
                     Platform.runLater(onFinish);
                 } catch (IOException e) {
                     e.printStackTrace();

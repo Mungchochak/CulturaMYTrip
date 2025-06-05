@@ -1,11 +1,8 @@
 package org.example.jobby.Controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.example.jobby.Model.Data;
@@ -20,7 +17,7 @@ public class CompanyInfoController {
 
     @FXML private Button saveCompanyButton;
     @FXML private Button editCompanyButton;
-    @FXML private TextField nameField, emailField, industryField, ssmField, addressField, contactField;
+    @FXML private TextField nameField, emailField, industryField, ssmField, contactField;
     @FXML private TextArea additionalInfoArea;
     @FXML private TextArea addressArea;
     private final DataDao dao = new FileData();
@@ -115,17 +112,6 @@ public class CompanyInfoController {
 
 
 
-
-
-
-
-//    @FXML
-//    private void GoBack(ActionEvent event) {
-//        // Close the current stage/window
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.close();
-//    }
-
     @FXML
     private void handleSaveCompanyInfo() {
         try {
@@ -160,9 +146,7 @@ public class CompanyInfoController {
             String name = nameField.getText();
             String industry = industryField.getText();
             String address = addressArea.getText();
-            String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-            String ssmPattern = "^\\d{12}$";
-            String contactPattern = "^01[0-46-9]-?\\d{7,8}$";
+
 
             if (name == null || name.trim().isEmpty()) {
                 showAlert("Name is required", "Name cannot be empty");
@@ -176,7 +160,7 @@ public class CompanyInfoController {
                 showAlert("Address is required.", "Please input your address");
                 return false;
             }
-//            if (email.isEmpty() || !email.matches(emailPattern))
+
             if (email.isEmpty()) {
                 showAlert("Invalid Email", "Please enter a valid email address.");
                 return false;

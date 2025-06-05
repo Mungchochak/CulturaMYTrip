@@ -21,10 +21,10 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("/CSS/ButtonPress.css").toExternalForm());
 
 
-        // 禁用全屏快捷键（如 F11、Ctrl+Cmd+F、Esc）
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // 不允许退出
-        stage.setFullScreen(false);                                     // 不启用全屏
-        stage.setFullScreenExitHint("");                                // 不提示信息
+
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        stage.setFullScreen(false);
+        stage.setFullScreenExitHint("");
         stage.setResizable(false);
 
 
