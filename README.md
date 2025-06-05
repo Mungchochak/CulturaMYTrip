@@ -27,6 +27,25 @@ Features:
   - Skill breakdown
   - Estimated salary range
   - Job match score (0–100)
+    
+- 🔹 Default Analysis Mode
+	•	Upload resume (PDF format)
+	•	Automatically extract:
+	•	Key skills
+	•	Educational background
+	•	Work experience
+	•	Output includes:
+	•	Candidate score (out of 100)
+	•	Suggested position
+	•	Recommended salary range
+	•	Summary of overall capabilities (languages, soft skills, personality traits)
+
+ 🔸 Targeted Position Analysis Mode
+	•	Users can optionally provide company information and job requirements (e.g., job title, industry, role expectations)
+	•	The system customizes the analysis based on the specified position and generates:
+	•	Job match assessment
+	•	Comprehensive evaluation tailored to the position
+	•	Salary prediction (based on both company data and resume content)
 
 Bobby (Streamlit Web App)
 
@@ -42,7 +61,8 @@ Built With:
 - JamAIBase API
 - PyPDF2, Pillow, python-docx, base64, tempfile
 
-  code for Bobby is under the file name bobby-python in this repository
+code for Bobby is under the file name bobby-python in this repository
+this is a google drive link for Bobby JamAiBase Action Table  (https://drive.google.com/drive/folders/1GrvX-4wQ2Ebt4d5KLVueB_QM-LQDedpO?usp=sharing)  
 
 How to Run
 
