@@ -28,7 +28,7 @@ Features:
   - Estimated salary range
   - Job match score (0–100)
     
-- 🔹 Default Analysis Mode
+Default Analysis Mode:
 	•	Upload resume (PDF format)
 	•	Automatically extract:
 	•	Key skills
@@ -40,7 +40,7 @@ Features:
 	•	Recommended salary range
 	•	Summary of overall capabilities (languages, soft skills, personality traits)
 
- 🔸 Targeted Position Analysis Mode
+Targeted Position Analysis Mode:
 	•	Users can optionally provide company information and job requirements (e.g., job title, industry, role expectations)
 	•	The system customizes the analysis based on the specified position and generates:
 	•	Job match assessment
