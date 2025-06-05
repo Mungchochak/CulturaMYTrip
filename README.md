@@ -42,6 +42,8 @@ Built With:
 - JamAIBase API
 - PyPDF2, Pillow, python-docx, base64, tempfile
 
+  code for Bobby is under the file name bobby-python in this repository
+
 How to Run
 
 ▶️ Bobby (Streamlit Web App)
