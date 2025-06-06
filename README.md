@@ -10,7 +10,7 @@ Together, they help HR professionals hire smarter, faster, and more fairly.
 Jobby (Java Desktop App)
 
 Built With:
-- Java 17+
+- Java 22
 - JavaFX / FXML / SceneBuilder
 - DeepSeek API (LLM)
 - Apache PDFBox
