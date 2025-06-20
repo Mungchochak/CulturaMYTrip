@@ -1,4 +1,4 @@
-package org.example.jobby.Controller;
+package org.example.CulturaMYTrip.Controller;
 
 
 import java.io.BufferedReader;

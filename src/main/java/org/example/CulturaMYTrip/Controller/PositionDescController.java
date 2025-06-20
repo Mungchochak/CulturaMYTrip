@@ -1,4 +1,4 @@
-package org.example.jobby.Controller;
+package org.example.CulturaMYTrip.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,9 +11,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.jobby.Model.PositionDesc;
-import org.example.jobby.Model.PositionDescFileDao;
-import org.example.jobby.Model.DataDao;
+import org.example.CulturaMYTrip.Model.PositionDesc;
+import org.example.CulturaMYTrip.Model.PositionDescFileDao;
+import org.example.CulturaMYTrip.Model.DataDao;
 import java.io.IOException;
 
 
@@ -184,7 +184,7 @@ private void handlesave(){
 
     @FXML
     public void handleDelete(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jobby/DeletePosition.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/CulturaMYTrip/DeletePosition.fxml"));
         Parent root = null;
         try {
             root = loader.load();

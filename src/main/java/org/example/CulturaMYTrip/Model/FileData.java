@@ -1,4 +1,4 @@
-package org.example.jobby.Model;
+package org.example.CulturaMYTrip.Model;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

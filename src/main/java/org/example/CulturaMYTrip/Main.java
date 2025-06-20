@@ -1,4 +1,4 @@
-package org.example.jobby;
+package org.example.CulturaMYTrip;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -6,8 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.example.jobby.Model.FileData;
+import org.example.CulturaMYTrip.Model.FileData;
 
 import java.io.IOException;
 

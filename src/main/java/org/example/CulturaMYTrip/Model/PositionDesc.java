@@ -1,4 +1,4 @@
-package org.example.jobby.Model;
+package org.example.CulturaMYTrip.Model;
 
 public class PositionDesc {
 

@@ -1,13 +1,13 @@
-package org.example.jobby.Controller;
+package org.example.CulturaMYTrip.Controller;
 
 import javafx.application.Platform;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
-import org.example.jobby.Model.DeepSeekcustomizingPromptModel;
-import org.example.jobby.Model.DeepSeekPromptModel;
-import org.example.jobby.Model.DeepSeekResponseModel;
-import org.example.jobby.Model.ShardResponseData;
+import org.example.CulturaMYTrip.Model.DeepSeekcustomizingPromptModel;
+import org.example.CulturaMYTrip.Model.DeepSeekPromptModel;
+import org.example.CulturaMYTrip.Model.DeepSeekResponseModel;
+import org.example.CulturaMYTrip.Model.ShardResponseData;
 
 import javax.swing.*;
 import java.io.File;

@@ -1,4 +1,4 @@
-package org.example.jobby.Controller;
+package org.example.CulturaMYTrip.Controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.jobby.Model.*;
+import org.example.CulturaMYTrip.Model.*;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -307,12 +307,12 @@ public class AnalysisPageController {
 
             switch (sceneName) {
                 case "Company_Info":
-                    loader = new FXMLLoader(getClass().getResource("/org/example/jobby/Company_Info.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/org/example/CulturaMYTrip/Company_Info.fxml"));
                     newRoot = loader.load();
                     break;
 
                 case "PositionDesc":
-                    loader = new FXMLLoader(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/org/example/CulturaMYTrip/PositionDesc.fxml"));
                     newRoot = loader.load();
 
 
@@ -350,7 +350,7 @@ public class AnalysisPageController {
 
         // Option 1: Company_Info
         HBox companyInfoOption = makePopupOption(
-                "/org/example/jobby/Company_Info.png",
+                "/org/example/CulturaMYTrip/Company_Info.png",
                 "Company Information",
                 () -> {
                     switchScene("Company_Info");
@@ -360,7 +360,7 @@ public class AnalysisPageController {
 
         // Option 2: PositionDesc
         HBox positionDescOption = makePopupOption(
-                "/org/example/jobby/PositionDesc.png",
+                "/org/example/CulturaMYTrip/PositionDesc.png",
                 "Position Description",
                 () -> {
                     switchScene("PositionDesc");

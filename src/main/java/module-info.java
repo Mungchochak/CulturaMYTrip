@@ -1,4 +1,4 @@
-module org.example.jobby {
+module org.example.CulturaMYTrip {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -8,8 +8,8 @@ module org.example.jobby {
     requires java.desktop;
     requires java.net.http;
 
-    opens org.example.jobby to javafx.fxml;
-    exports org.example.jobby;
-    exports org.example.jobby.Controller;
-    opens org.example.jobby.Controller to javafx.fxml;
+    opens org.example.CulturaMYTrip to javafx.fxml;
+    exports org.example.CulturaMYTrip;
+    exports org.example.CulturaMYTrip.Controller;
+    opens org.example.CulturaMYTrip.Controller to javafx.fxml;
 }

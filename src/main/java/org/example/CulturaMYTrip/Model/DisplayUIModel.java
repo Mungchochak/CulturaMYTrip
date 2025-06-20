@@ -1,4 +1,4 @@
-package org.example.jobby.Model;
+package org.example.CulturaMYTrip.Model;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;

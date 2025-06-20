@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="650.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jobby.Controller.CompanyInfoController">
+<BorderPane prefHeight="650.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.CulturaMYTrip.Controller.CompanyInfoController">
 
     <center>
         <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">

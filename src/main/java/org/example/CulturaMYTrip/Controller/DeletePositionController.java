@@ -1,4 +1,4 @@
-package org.example.jobby.Controller;
+package org.example.CulturaMYTrip.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.jobby.Model.PositionDescFileDao;
+import org.example.CulturaMYTrip.Model.PositionDescFileDao;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -60,7 +60,7 @@ public class DeletePositionController {
     @FXML
     private void GoBack(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jobby/PositionDesc.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/CulturaMYTrip/PositionDesc.fxml"));
             Parent root = loader.load();
 
 

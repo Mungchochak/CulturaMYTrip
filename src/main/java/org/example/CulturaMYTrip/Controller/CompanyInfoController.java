@@ -1,13 +1,13 @@
-package org.example.jobby.Controller;
+package org.example.CulturaMYTrip.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.example.jobby.Model.Data;
-import org.example.jobby.Model.DataDao;
-import org.example.jobby.Model.FileData;
+import org.example.CulturaMYTrip.Model.Data;
+import org.example.CulturaMYTrip.Model.DataDao;
+import org.example.CulturaMYTrip.Model.FileData;
 
 import java.io.IOException;
 import java.util.List;

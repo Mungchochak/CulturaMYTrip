@@ -1,4 +1,4 @@
-package org.example.jobby.Model;
+package org.example.CulturaMYTrip.Model;
 
 import javafx.animation.Timeline;
 import javafx.scene.control.*;

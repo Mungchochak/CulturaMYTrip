@@ -1,4 +1,4 @@
-package org.example.jobby.Model;
+package org.example.CulturaMYTrip.Model;
 //POJO class
 public class Data {
 

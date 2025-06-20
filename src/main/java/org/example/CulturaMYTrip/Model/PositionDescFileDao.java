@@ -1,4 +1,4 @@
-package org.example.jobby.Model;
+package org.example.CulturaMYTrip.Model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
