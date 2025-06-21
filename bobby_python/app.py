@@ -12,7 +12,10 @@ import streamlit.components.v1 as components
 import os
 
 # Initialize JamAI
-jamai = JamAI(api_key="jamai_pat_c4e44c670523685e19b2dee52f30119f795e26b6e0c2e65b", project_id="proj_1de330b27bce3d618b21379f")
+jamai = JamAI(
+    api_key="jamai_sk_5165f07d5b5af13d393057db34944dfea901b8b088a7e3fc",
+    project_id="proj_9262d3bb8414d5ccde38a36e"
+)
 
 def extract_text_from_pdf(pdf_file):
     pdf = PdfReader(pdf_file)
@@ -27,10 +30,11 @@ def generate_random_filename(extension=".docx"):
     random_str = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
     return f"final_report_{random_str}{extension}"
 
-st.set_page_config(page_title="Bobby.ai", page_icon="📝")
-st.title("🌟 Bobby the Great - Your AI Assistant for Job Matching")
+# Streamlit App Config
+st.set_page_config(page_title="CulturaMyLens.ai", page_icon="📝")
+st.title("🌟 Malaysia's Tiger Eye - Understand Malaysia Like A Native")
 
-# Custom CSS
+# Custom CSS Styling
 st.markdown(
     """
     <style>
@@ -65,204 +69,63 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- Upload multiple CVs ---
+# StoryTeller UI
 with st.container():
-    st.header("📄 TalentRank")
-    st.write("Upload CV(s) for BOBBY to analyze and compare")
+    st.header("📖 Malaysian Cultural Storyteller")
+    st.write("Enter the name of a Malaysian building or place to hear its cultural story.")
 
-    uploaded_cvs = st.file_uploader("Upload CV Analysis Report (PDF format)", type="pdf", accept_multiple_files=True)
+    place_input = st.text_input("🏛️ Name of the building or place (e.g., A Famosa, Kek Lok Si, Kampung Baru)")
 
-    if st.button("🔍 Analyze & Choose Best Candidate"):
-        if uploaded_cvs and 2 <= len(uploaded_cvs) <= 5:
+    if st.button("📚 Generate Story", use_container_width=True):
+        if place_input.strip():
             try:
-                cv_texts = [extract_text_from_pdf(pdf) for pdf in uploaded_cvs]
-                data_dict = {f"cv{i + 1}": text for i, text in enumerate(cv_texts)}
-
-                result = jamai.add_table_rows(
+                story_completion = jamai.add_table_rows(
                     "action",
                     p.RowAddRequest(
-                        table_id="TalentRank",
-                        data=[data_dict],
+                        table_id="StoryTeller",  # Case-sensitive; make sure it's exactly the table name
+                        data=[{"object": place_input}],
                         stream=False
                     )
                 )
 
-                if result.rows:
-                    best_candidate = result.rows[0].columns.get("Best_Candidate").text
-                    st.success("✅ Best Candidate Identified")
-                    st.markdown(f"**🏆 Best Candidate Summary:**\n\n{best_candidate}")
+                if story_completion.rows:
+                    row = story_completion.rows[0].columns
+                    story_output = row.get("story")  # 🔧 FIXED: Correct column name in your table
 
-                    # Downloadable Report
-                    doc = Document()
-                    doc.add_heading("TalentRank - Best Candidate Report", level=1)
-                    doc.add_paragraph(best_candidate)
+                    if story_output and story_output.text.strip():
+                        formatted_text = story_output.text.replace('\n', '<br>')
 
-                    buffer = BytesIO()
-                    doc.save(buffer)
-                    buffer.seek(0)
-                    st.download_button(
-                        label="📥 Download Report",
-                        data=buffer,
-                        file_name=generate_random_filename(),
-                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                    )
-                else:
-                    st.error("❌ No response from TalentRank.")
-            except Exception as e:
-                st.error(f"⚠️ Error during analysis: {e}")
-        else:
-            st.warning("⚠️ Please upload between 2 to 5 CVs.")
-
-# CV Upload and Job Description Section
-with st.container():
-    st.header("📄 Interview Expert")
-    st.write("Upload CV and Provide Job Description")
-    cv_pdf = st.file_uploader("Upload CV (PDF format)", type="pdf", key="cv_upload_interview")
-    job_description = st.text_area("✍️ Enter Job Description", key="job_desc_interview")
-
-    # Button right here, right after inputs
-    if st.button("🚀 Generate Interview Questions", use_container_width=True):
-        if cv_pdf and job_description:
-            try:
-                cv_text = extract_text_from_pdf(cv_pdf)
-                resume_completion = jamai.add_table_rows(
-                    "action",
-                    p.RowAddRequest(
-                        table_id="Interview_Question",
-                        data=[{"cv": cv_text, "job_description": job_description}],
-                        stream=False
-                    )
-                )
-
-                if resume_completion.rows:
-                    row = resume_completion.rows[0].columns
-                    summary = row.get("summary")
-                    generate_questions = row.get("generate_questions")
-
-                    st.subheader("✨ Generated Output")
-                    st.markdown(
-                        f"""
-                        <div class="generated-output">
-                            <h4>📝 Summary:</h4> <p>{summary.text if summary else 'N/A'}</p>
-                            <h4>💼 Interview Questions:</h4> <p>{generate_questions.text if generate_questions else 'N/A'}</p>
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-
-                    # Download report
-                    with st.container():
-                        st.subheader("📥 Download Final Report")
-                        doc = Document()
-                        doc.add_heading("📘 Interview Expert Report", level=1)                        
-                        # Section 1: Summary
-                        #doc.add_heading("📝 Candidate Summary", level=2)
-                        #doc.add_paragraph(summary.text if summary else 'N/A', style='Normal')
-                        # Section 2: Interview Questions (as bullet points if possible)
-                        doc.add_heading("💼 Interview Questions", level=2)
-                        if generate_questions and generate_questions.text:
-                            questions = generate_questions.text.strip().split("\n")
-                            for q in questions:
-                                doc.add_paragraph(q.strip(), style='List Bullet')
-                            else:
-                                doc.add_paragraph("N/A")    
-                            
-                            # Optional: Add footer
-                            doc.add_paragraph("\n\n---\nGenerated by Bobby.ai Interview Assistant", style='Normal')
-
-                            buffer = BytesIO()
-                            doc.save(buffer)
-                            buffer.seek(0)
-
-                            st.download_button(
-                                label="📄 Download Final Report as .docx",
-                                data=buffer,
-                                file_name=generate_random_filename(),
-                                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                            )
-                else:
-                    st.error("⚠️ Failed to process CV and job description.")
-            except Exception as e:
-                st.error(f"❌ Error during resume analysis: {e}")
-        else:
-            st.warning("⚠️ Please upload a CV and enter a job description.")
-
-
-# MBTI Personality Analyzer Section
-with st.container():
-    st.header("🧠 MBTI Personality Analyzer")
-    st.write("Answer the essay question below to generate your MBTI personality insights.")
-    essay_input = st.text_area(
-        "📝 Describe a time when you had to choose between following a logical solution and honoring your personal or team values. What did you choose and why? What was the outcome?"
-    )
-
-    # MBTI button right here, right after essay input
-    if st.button("🧠 Analyze MBTI Essay", use_container_width=True):
-        if essay_input.strip():
-            try:
-                mbti_completion = jamai.add_table_rows(
-                    "action",
-                    p.RowAddRequest(
-                        table_id="mbti",
-                        data=[{"essay": essay_input}],
-                        stream=False
-                    )
-                )
-
-                if mbti_completion.rows:
-                    row = mbti_completion.rows[0].columns
-                    MBTI_Report = row.get("MBTI_Report")
-
-                    if MBTI_Report and MBTI_Report.text.strip():
-                        formatted_text = MBTI_Report.text.replace('\n', '<br>')
-
-                        st.subheader("✨ Generated Output")
+                        st.subheader("🏛️ Cultural Story")
                         st.markdown(
                             f"""
                             <div class="generated-output">
-                                <h4>🧬 MBTI Personality Report:</h4>
                                 <p>{formatted_text}</p>
                             </div>
                             """,
                             unsafe_allow_html=True
                         )
-
-                        # Download MBTI report
-                        with st.container():
-                            st.subheader("📥 Download MBTI Report")
-                            doc = Document()
-                            doc.add_heading("MBTI Personality Report", level=1)
-                            doc.add_paragraph(MBTI_Report.text)
-
-                            buffer = BytesIO()
-                            doc.save(buffer)
-                            buffer.seek(0)
-                            st.download_button(
-                                label="📄 Download MBTI Report as .docx",
-                                data=buffer,
-                                file_name=generate_random_filename(),
-                                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                            )
                     else:
-                        st.warning("⚠️ MBTI report is missing or empty.")
+                        st.warning("⚠️ No story was generated.")
                 else:
-                    st.warning("⚠️ MBTI analysis returned no rows.")
+                    st.warning("⚠️ The system returned no rows.")
             except Exception as e:
-                st.error(f"❌ Error during MBTI analysis: {e}")
+                st.error(f"❌ Error generating story: {e}")
         else:
-            st.warning("⚠️ Please enter an essay to analyze.")
+            st.warning("⚠️ Please enter a building or place name.")
 
-    # Fortune Face Analyzer
-    st.header("🧞‍♀️ Fortune Face Reader ")
-    st.markdown('<div class="title">The mystery of a face is its hidden tales ✦˖ ࣪𖤐₊˚ೄ</div>', unsafe_allow_html=True)
 
-    uploaded_file = st.file_uploader("Upload your beautiful face ✧˖° for fortune analysis", type=["jpg", "jpeg", "png"])
-    analyze_button = st.button("🔍 Analyze Beautiful Face", use_container_width=True)
+# 🍲 Super Ultimate Secret Recipe UI
+with st.container():
+    st.header("🍽️ Super Ultimate Secret Recipe")
+    st.write("Upload a photo of any Malaysian food to uncover its name and secret recipe!")
+
+    uploaded_file = st.file_uploader("📸 Upload your Malaysian food photo", type=["jpg", "jpeg", "png"])
+    analyze_button = st.button("🍛 Reveal Recipe", use_container_width=True)
 
     if uploaded_file and analyze_button:
         st.write("Filename:", uploaded_file.name)
 
-        # Convert uploaded file to JPEG
+        # Convert uploaded image to JPEG and save temporarily
         with NamedTemporaryFile(delete=False, suffix=".jpeg") as temp_file:
             try:
                 image = Image.open(uploaded_file).convert("RGB")
@@ -272,76 +135,52 @@ with st.container():
                 st.error(f"❌ Image processing error: {e}")
                 st.stop()
 
-        # Upload image to JamAI
+        # Upload image to JamAIBase
         try:
             upload_response = jamai.file.upload_file(temp_file_path)
         except Exception as e:
             st.error(f"❌ Failed to upload image: {e}")
             st.stop()
 
-        # Analyze the face
+        # Clean up temp file
+        os.remove(temp_file_path)
+
+        # Send image URI to FoodRecipe table
         try:
             completion = jamai.table.add_table_rows(
                 "action",
                 p.RowAddRequest(
-                    table_id="Fortune_Face",
-                    data=[dict(Beautiful_Face=upload_response.uri)],
+                    table_id="FoodRecipe",
+                    data=[{"Food": upload_response.uri}],
                     stream=False,
                 ),
             )
         except Exception as e:
-            st.error(f"❌ Analysis request failed: {e}")
+            st.error(f"❌ Recipe generation failed: {e}")
             st.stop()
 
-        # Display image preview
+        # Preview uploaded image
         image_bytes = uploaded_file.getvalue()
         encoded_image = base64.b64encode(image_bytes).decode()
-        st.image(f"data:image/jpeg;base64,{encoded_image}", width=300, caption="Uploaded Image")
+        st.image(f"data:image/jpeg;base64,{encoded_image}", width=300, caption="Uploaded Food Image")
 
+        # Display recipe if available
         if completion.rows:
-            st.success("Image successfully analyzed!")
-        else:
-            st.error("Analysis failed. Please try again.")
+            row = completion.rows[0].columns
+            recipe_output = row.get("Recipe")
 
-        # Fetch result from the table
-        rows = jamai.table.list_table_rows("action", "Fortune_Face")
-        if rows.items:
-            row = rows.items[0]
-
-            face_attributes = {
-                "Face Shape": row.get("Faceshape", {}).get("value", "N/A"),
-                "Forehead": row.get("Forehead", {}).get("value", "N/A"),
-                "Eyebrows": row.get("Eyebrows", {}).get("value", "N/A"),
-                "Eyes": row.get("Eyes", {}).get("value", "N/A"),
-                "Nose": row.get("Nose", {}).get("value", "N/A"),
-                "Mouth & Lips": row.get("Mouth_and_Lips", {}).get("value", "N/A"),
-                "Chin & Jawline": row.get("Chin_and_Jawline", {}).get("value", "N/A"),
-                "Face Fortune Report": row.get("Face_Fortune_Report", {}).get("value", "N/A")
-            }
-
-            st.subheader("🔮 Fortune Face Analysis")
-            for key, value in face_attributes.items():
-                st.markdown(f"**{key}**: {value}")
-
-            # Downloadable .docx report
-            with st.container():
-                st.subheader("📥 Download Fortune Face Report")
-                doc = Document()
-                doc.add_heading("Fortune Face Report", level=1)
-
-                for key, value in face_attributes.items():
-                    doc.add_heading(key, level=2)
-                    doc.add_paragraph(value)
-
-                buffer = BytesIO()
-                doc.save(buffer)
-                buffer.seek(0)
-
-                st.download_button(
-                    label="📄 Download Face Report as .docx",
-                    data=buffer,
-                    file_name=generate_random_filename(),
-                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            if recipe_output and recipe_output.text.strip():
+                formatted_text = recipe_output.text.replace('\n', '<br>')
+                st.subheader("👨‍🍳 Your Secret Recipe")
+                st.markdown(
+                    f"""
+                    <div class="generated-output">
+                        <p>{formatted_text}</p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
                 )
+            else:
+                st.warning("⚠️ No recipe was returned. Try another image.")
         else:
-            st.warning("⚠️ No results yet. Please try again after a moment.")
+            st.warning("⚠️ The system returned no rows. Try again later.")
