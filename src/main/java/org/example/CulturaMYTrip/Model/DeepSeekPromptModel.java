@@ -111,19 +111,19 @@ public class DeepSeekPromptModel {
     }
 
 
-    public String getCityExtractionPrompt(String travelPlanText) {
-        return "You are a Malaysian travel itinerary analyzer AI.\n\n"
-                + "Based on the following cultural travel plan, identify and list only the **distinct cities or regions** mentioned in the plan.\n"
-                + "Do not include duplicate entries.\n\n"
-                + "Cultural Travel Plan:\n"
-                + travelPlanText + "\n\n"
-                + "Extracted Cities or Regions:\n"
-                + "- [City or Region 1]\n"
-                + "- [City or Region 2]\n"
-                + "- [... add more if applicable]\n\n"
-                + "Only return the list. If no valid cities or regions are found, return exactly: \"insufficient data\".";
-    }
 
+    public String getCityExtractionPrompt(String travelPlanText) {
+        return "You are a Malaysian cultural tourism AI expert.\n\n"
+                    + "Based on the following travel itinerary, extract all **distinct cities or regions** mentioned, and for each, give a **concise cultural or historical explanation**.\n\n"
+                    + "Cultural Travel Plan:\n"
+                    + travelPlanText + "\n\n"
+                    + "Return the result in this format (strictly):\n"
+                    + "Category: [City or Region]\n"
+                    + "→ Description: [Explain the cultural or historical significance of this city or region. Include things like famous traditions, historical facts, or reasons why tourists should care. Keep it under 80 words.]\n"
+                    + "[repeat for more cities]\n\n"
+                    + "If no valid city or region is found, return exactly: \"insufficient data\".";
+
+    }
 
 
 

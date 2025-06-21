@@ -7,9 +7,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 
 
 public class DisplayUIModel {
@@ -195,7 +193,7 @@ public class DisplayUIModel {
             item.setPrefWidth(600);
             item.setMaxWidth(600);
             item.setWrapText(true);
-            item.setStyle("-fx-background-color: #FFF8E1; -fx-padding: 6px; -fx-background-radius: 10px; -fx-font-size: 13px;");
+            item.setStyle("-fx-background-color: #FFF8E1; -fx-padding: 6px; -fx-background-radius: 20px; -fx-font-size: 13px;");
             ClickDisplayFullcontent(previewText, desc, "Food Details", item);
 
             groupBox.getChildren().add(item);
@@ -239,7 +237,7 @@ public class DisplayUIModel {
             item.setPrefWidth(600);
             item.setMaxWidth(600);
             item.setWrapText(true);
-            item.setStyle("-fx-background-color: #E3F2FD; -fx-padding: 6px; -fx-background-radius: 10px; -fx-font-size: 13px;");
+            item.setStyle("-fx-background-color: #E3F2FD; -fx-padding: 6px; -fx-background-radius: 20px; -fx-font-size: 13px;");
             ClickDisplayFullcontent(previewText, desc, "Hotel Info", item);
 
             groupBox.getChildren().add(item);
@@ -251,30 +249,40 @@ public class DisplayUIModel {
 
 
     public static VBox CategorizedCityLabels(String aiOutput) {
-        VBox root = new VBox(6);
-        root.setPadding(new Insets(10));
-        root.setAlignment(Pos.TOP_LEFT);
+        VBox root = new VBox(5);
+        root.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(5));
 
-        Set<String> citySet = new LinkedHashSet<>();
+        String[] blocks = aiOutput.split("Category:");
 
-        String[] lines = aiOutput.split("\n");
-        for (String line : lines) {
-            line = line.trim();
-            if (line.startsWith("-")) {
-                String city = line.substring(1).trim();
-                if (!city.isEmpty()) {
-                    citySet.add(city);
-                }
-            }
-        }
+        for (String block : blocks) {
+            if (block.trim().isEmpty()) continue;
 
-        for (String city : citySet) {
+            String[] lines = block.trim().split("\n");
+            if (lines.length < 2) continue;
+
+            String city = lines[0].replace("→ category:", "").trim();
+            if (city.isEmpty()) continue;
+
+            String descLine = lines[1].trim();
+            if (!descLine.startsWith("→ Description:")) continue;
+
+            String desc = descLine.replace("→ Description:", "").trim();
+
+
             Label cityLabel = new Label(city);
-            cityLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333333; -fx-padding: 5 0 5 0;");
+            cityLabel.setWrapText(true);
+            cityLabel.setPrefWidth(260);
+            cityLabel.setAlignment(Pos.CENTER);
+            cityLabel.setStyle("-fx-background-color: #E0F7FA; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 14px;");
+
+
+            ClickDisplayFullcontent(city, desc, "City Info", cityLabel);
+
             root.getChildren().add(cityLabel);
         }
 
-        if (citySet.isEmpty()) {
+        if (root.getChildren().isEmpty()) {
             Label noData = new Label("No valid cities found.");
             noData.setStyle("-fx-text-fill: #999999; -fx-font-style: italic;");
             root.getChildren().add(noData);
@@ -282,8 +290,6 @@ public class DisplayUIModel {
 
         return root;
     }
-
-
 
 
 

@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import org.example.CulturaMYTrip.Model.FileData;
+
 
 import java.io.IOException;
 

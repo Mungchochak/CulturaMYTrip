@@ -57,17 +57,14 @@ public class AnalysisPageController {
 
 
 
-    @FXML private Label locationLabel;
-    @FXML private Label majorLabel;
-    @FXML private FlowPane certificateBox;
+
     @FXML private VBox contentVBox;
-    @FXML private VBox positionBox;
-    @FXML private Label CGPAContent;
+
     @FXML
     private  ComboBox<String> positionComboBox;
 
-    private final String filePath = "src/main/resources/Text/PositionDesc.txt";
-    private final PositionDescFileDao dao = new PositionDescFileDao();
+
+
     private Label loadingLabel;
     private Timeline loadingAnimation;
     private final List<Node> cachedContent = new ArrayList<>();
@@ -78,20 +75,6 @@ public class AnalysisPageController {
     public void initialize() {
 
 
-        gearButton.setOnAction(event -> showOptionsPopup());
-        try {
-            List<String> posLines = dao.loadPositionLines(filePath);
-
-            posLines.add(0, "No specified analysis");
-
-
-            positionComboBox.getItems().setAll(posLines);
-
-
-            positionComboBox.setValue("No specified analysis");
-        } catch (Exception e) {
-            e.printStackTrace();
-            }
 
 
     }
@@ -108,7 +91,7 @@ public class AnalysisPageController {
         UploadFile.setDisable(true);
         setupLoadingLabel(contentVBox);
         showLoadingState(contentVBox);
-        LoadPersonalInformation();
+
 
         Task<Void> task = new Task<>() {
             @Override
@@ -205,15 +188,15 @@ public class AnalysisPageController {
 
 
 
-    public void RefreshpositionComboBox() {
-        try {
-            List<String> posLines = dao.loadPositionLines(filePath);
-            posLines.add(0, "No specified analysis");
-            positionComboBox.getItems().setAll(posLines);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void RefreshpositionComboBox() {
+//        try {
+//            List<String> posLines = dao.loadPositionLines(filePath);
+//            posLines.add(0, "No specified analysis");
+//            positionComboBox.getItems().setAll(posLines);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     public void setupLoadingLabel(VBox containerVBox) {
@@ -271,156 +254,8 @@ public class AnalysisPageController {
             e.printStackTrace();
         }
     }
-    @FXML
-    private Button gearButton;
 
 
-    private Popup optionsPopup; // Store the popup so you can hide/show as needed
-
-
-
-    private void switchScene(String sceneName) {
-        try {
-            Parent newRoot;
-            FXMLLoader loader;
-
-            switch (sceneName) {
-                case "Company_Info":
-                    loader = new FXMLLoader(getClass().getResource("/org/example/CulturaMYTrip/Company_Info.fxml"));
-                    newRoot = loader.load();
-                    break;
-
-                case "PositionDesc":
-                    loader = new FXMLLoader(getClass().getResource("/org/example/CulturaMYTrip/PositionDesc.fxml"));
-                    newRoot = loader.load();
-
-
-                    PositionDescController controller = loader.getController();
-                    controller.setAnalysisPageController(this);
-                    break;
-
-                default:
-                    System.err.println("Unknown scene: " + sceneName);
-                    return;
-            }
-
-            Stage newStage = new Stage();
-            newStage.setTitle(sceneName);
-            newStage.setScene(new Scene(newRoot));
-            newStage.setResizable(false);
-            newStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private void showOptionsPopup() {
-        if (optionsPopup != null && optionsPopup.isShowing()) {
-            optionsPopup.hide();
-            return;
-        }
-
-        // VBox for popup content
-        VBox popupContent = new VBox(8);
-        popupContent.setStyle("-fx-background-color: white; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10; -fx-effect: dropshadow(gaussian, #33333355, 10,0,2,4);");
-        popupContent.setPrefWidth(250);
-
-        // Option 1: Company_Info
-        HBox companyInfoOption = makePopupOption(
-                "/org/example/CulturaMYTrip/Company_Info.png",
-                "Company Information",
-                () -> {
-                    switchScene("Company_Info");
-                    optionsPopup.hide();
-                }
-        );
-
-        // Option 2: PositionDesc
-        HBox positionDescOption = makePopupOption(
-                "/org/example/CulturaMYTrip/PositionDesc.png",
-                "Position Description",
-                () -> {
-                    switchScene("PositionDesc");
-                    optionsPopup.hide();
-                }
-        );
-
-        popupContent.getChildren().addAll(companyInfoOption, positionDescOption);
-
-        // Create or reuse the Popup
-        optionsPopup = new Popup();
-        optionsPopup.getContent().add(popupContent);
-        optionsPopup.setAutoHide(true);
-
-        // Show near gearIcon
-        // Convert gearIcon to screen coordinates
-        double x = gearButton.localToScreen(gearButton.getBoundsInLocal()).getMinX();
-        double y = gearButton.localToScreen(gearButton.getBoundsInLocal()).getMaxY() + 4;
-        optionsPopup.show(gearButton.getScene().getWindow(), x, y);
-    }
-
-    // Utility method to create an option with image + label + click event
-    private HBox makePopupOption(String imagePath, String label, Runnable onClick) {
-        ImageView optionIcon = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
-        optionIcon.setFitWidth(28);
-        optionIcon.setFitHeight(28);
-        Label optionLabel = new Label(label);
-        optionLabel.setStyle("-fx-font-size: 15px; -fx-padding: 0 0 0 10px;");
-
-        HBox box = new HBox(optionIcon, optionLabel);
-        box.setSpacing(10);
-        box.setAlignment(Pos.CENTER_LEFT);
-        box.setStyle("-fx-padding: 8 12 8 8; -fx-background-radius: 8;");
-        box.setOnMouseEntered(e -> box.setStyle("-fx-background-color: #E7F0FB; -fx-padding: 8 12 8 8; -fx-background-radius: 8;"));
-        box.setOnMouseExited(e -> box.setStyle("-fx-background-color: white; -fx-padding: 8 12 8 8; -fx-background-radius: 8;"));
-        box.setOnMouseClicked(e -> onClick.run());
-        box.setCursor(Cursor.HAND);
-        return box;
-    }
-
-    public String loadComAsString() throws Exception {
-        StringBuilder sb = new StringBuilder();
-        String filePath = "src/main/resources/Text/Company_Info.txt";
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-        }
-        return sb.toString();
-    }
-
-    public static String selectedPosition;
-    public static String CompanyInfo;
-    public static boolean SpecialAnalysis;
-
-    public void LoadPersonalInformation(){
-
-        selectedPosition = positionComboBox.getSelectionModel().getSelectedItem();
-
-        try {
-            CompanyInfo = loadComAsString();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-    }
-
-    public static String PrintPersonalInformation(){
-
-
-        String prompt =
-                "Company Information:\n" + CompanyInfo + "\n\n" +
-                        "Seeking Position Information:\n" +
-                        "Selected Position: " + selectedPosition;
-
-        return prompt;
-
-    }
 
 
 
