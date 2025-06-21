@@ -30,6 +30,9 @@ import java.util.ArrayList;
 
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.example.CulturaMYTrip.Model.DisplayUIModel.bindBudgetLabelWithExplanation;
 
@@ -112,51 +115,62 @@ public class AnalysisPageController {
                     });
                     return null;
                 }
-
-
-
-                deepSeekResponseModel.setTravelPlanResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getTravelPlanprompt(requirement,budget,days,departure,CultureContent))
-                );
-
                 String fullUserInput =
-                                "User Requirements: " + requirement + "\n" +
+                        "User Requirements: " + requirement + "\n" +
                                 "Budget: " + budget + "\n" +
                                 "Travel Days: " + days + "\n" +
                                 "Departure Point: " + departure + "\n" +
                                 "Cultural Interests: " + CultureContent;
-
                 System.out.println(fullUserInput);
 
-                String TravelPlan = ShardResponseData.responseModel.getTravelPlanResponse();
+                ExecutorService executor = Executors.newFixedThreadPool(8); // 控制线程池大小
 
-                deepSeekResponseModel.setAttractionResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getAttractionprompt(TravelPlan,requirement,budget,days,departure,CultureContent))
+                String travelPlanResult = DeepSeekChat.callDeepSeekAPI(
+                        deepSeekPromptModel.getTravelPlanprompt(requirement, budget, days, departure, CultureContent)
                 );
-                deepSeekResponseModel.setSouvenirResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getSouvenirprompt(TravelPlan,requirement,budget,days,departure,CultureContent))
-                );
-                deepSeekResponseModel.setFoodResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getFoodprompt(TravelPlan,requirement,budget,days,departure,CultureContent))
-                );
-                deepSeekResponseModel.setHotelResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getHotelprompt(TravelPlan,requirement,budget,days,departure))
-                );
-                deepSeekResponseModel.setBudgetResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getBudgetprompt(TravelPlan,requirement,budget,days,departure))
-                );
+                deepSeekResponseModel.setTravelPlanResponse(travelPlanResult);
+                String TravelPlan = travelPlanResult;
 
-                deepSeekResponseModel.setCultureResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getCultureprompt(CultureContent))
-                );
+                CompletableFuture<String> attractionFuture = CompletableFuture.supplyAsync(() ->
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getAttractionprompt(TravelPlan, requirement, budget, days, departure, CultureContent)), executor);
+
+                CompletableFuture<String> souvenirFuture = CompletableFuture.supplyAsync(() ->
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getSouvenirprompt(TravelPlan, requirement, budget, days, departure, CultureContent)), executor);
+
+                CompletableFuture<String> foodFuture = CompletableFuture.supplyAsync(() ->
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getFoodprompt(TravelPlan, requirement, budget, days, departure, CultureContent)), executor);
+
+                CompletableFuture<String> hotelFuture = CompletableFuture.supplyAsync(() ->
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getHotelprompt(TravelPlan, requirement, budget, days, departure)), executor);
+
+                CompletableFuture<String> budgetFuture = CompletableFuture.supplyAsync(() ->
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getBudgetprompt(TravelPlan, requirement, budget, days, departure)), executor);
+
+                CompletableFuture<String> cultureFuture = CompletableFuture.supplyAsync(() ->
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getCultureprompt(CultureContent)), executor);
+
+                CompletableFuture<String> cityFuture = CompletableFuture.supplyAsync(() ->
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getCityExtractionPrompt(TravelPlan)), executor);
 
 
-                deepSeekResponseModel.setCitiesResponse(DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getCityExtractionPrompt(TravelPlan)));
+                CompletableFuture.allOf(attractionFuture, souvenirFuture, foodFuture, hotelFuture, budgetFuture, cultureFuture, cityFuture).join();
 
 
-                deepSeekResponseModel.setBudgetResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getBudgetprompt(TravelPlan,requirement,budget,days,departure))
-                );
+                deepSeekResponseModel.setAttractionResponse(attractionFuture.join());
+                deepSeekResponseModel.setSouvenirResponse(souvenirFuture.join());
+                deepSeekResponseModel.setFoodResponse(foodFuture.join());
+                deepSeekResponseModel.setHotelResponse(hotelFuture.join());
+                deepSeekResponseModel.setBudgetResponse(budgetFuture.join());
+                deepSeekResponseModel.setCultureResponse(cultureFuture.join());
+                deepSeekResponseModel.setCitiesResponse(cityFuture.join());
+
+                executor.shutdown();
+
+
+
+
+
+
 
 
                 Platform.runLater(() -> {

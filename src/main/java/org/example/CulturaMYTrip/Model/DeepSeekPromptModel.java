@@ -107,10 +107,10 @@ public class DeepSeekPromptModel {
                 + "- Be compact, practical, and easy to carry while traveling\n"
                 + "- Reflect Malaysian cultural identity: traditional arts, crafts, foods, symbols, attire, or local materials\n"
                 + "- Consider the user's background or preferences based on their departure point and selected cultural theme\n\n"
-                + "Output Format (strictly follow this):\n"
+                + "Strict output format:\n"
                 + "Souvenir:\n"
-                + "[Souvenir Name]: [One-sentence description explaining its cultural relevance and why it suits the user's trip and budget]\n"
-                + "[Souvenir Name]: [description]\n"
+                + "- [Souvenir Name]: [One-sentence description explaining its cultural relevance and why it suits the user's trip and budget]\n"
+                + "- [Souvenir Name]: [description]\n"
                 + "[...]\n\n"
                 + "Avoid generic or empty recommendations. If the travel information is truly insufficient, return exactly: \"insufficient data\".";
     }
