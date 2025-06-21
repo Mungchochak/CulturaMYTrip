@@ -276,7 +276,7 @@ public class AnalysisPageController {
     @FXML
     protected void handleOpenStreamlit() {
         try {
-            Desktop.getDesktop().browse(new URI("https://bobbyjobby.streamlit.app/"));
+            Desktop.getDesktop().browse(new URI("https://myculturalens.streamlit.app/"));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
