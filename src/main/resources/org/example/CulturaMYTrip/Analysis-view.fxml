@@ -22,44 +22,18 @@
       <children>
          <HBox>
             <children>
-               <VBox alignment="CENTER" prefHeight="854.0" prefWidth="56.0" spacing="20.0" style="-fx-background-color: #0D005F;" HBox.hgrow="ALWAYS">
+               <VBox alignment="TOP_CENTER" prefHeight="854.0" prefWidth="74.0" style="-fx-background-color: #0D005F;" HBox.hgrow="ALWAYS">
                   <children>
-                     <VBox alignment="TOP_CENTER" prefHeight="817.0" prefWidth="60.0">
-                        <children>
-      
-                           <!-- ✅ New Button to Open Streamlit App -->
-                           <Button fx:id="openStreamlitButton" onAction="#handleOpenStreamlit" prefHeight="31.0" prefWidth="50.0" style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" text="Bobby" wrapText="true">
-                              <VBox.margin>
-                                 <Insets right="5.0" top="20.0" />
-                              </VBox.margin>
-                           </Button>
-                           <VBox alignment="BOTTOM_CENTER" prefHeight="730.0" prefWidth="60.0">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                              <children>
-                                 <Button fx:id="gearButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="29.0" style="-fx-background-color: #0D005F;" stylesheets="@../../../CSS/ButtonPress.css" text="Gear " textFill="#041636">
-                                    <graphic>
-                                       <ImageView fx:id="gearIcon" fitHeight="37.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                                          <image>
-                                             <Image url="@icons8-settings-64 (1).png" />
-                                          </image>
-                                       </ImageView>
-                                    </graphic>
-                                    <padding>
-                                       <Insets left="10.0" />
-                                    </padding>
-                                 </Button>
-                              </children>
-                           </VBox>
-                        </children>
-                     </VBox>
+                  
+                                                                                 <!-- ✅ New Button to Open Streamlit App -->
+                     <Button fx:id="openStreamlitButton" onAction="#handleOpenStreamlit" prefHeight="31.0" prefWidth="63.0" style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" text="Bobby" wrapText="true">
+                        <VBox.margin>
+                           <Insets top="20.0" />
+                        </VBox.margin>
+                     </Button>
                   </children>
-                  <padding>
-                     <Insets left="5.0" top="10.0" />
-                  </padding>
                </VBox>
-               <VBox alignment="CENTER" prefHeight="668.0" prefWidth="335.0" spacing="50.0" style="-fx-background-color: #9cbefb;">
+               <VBox alignment="CENTER" prefHeight="668.0" prefWidth="335.0" spacing="50.0" style="-fx-background-color: #c5ddff;">
                   <children>
                      <VBox alignment="CENTER" prefHeight="801.0" prefWidth="335.0" spacing="20.0" VBox.vgrow="ALWAYS">
                         <children>
@@ -67,7 +41,7 @@
                               <children>
                                  <ImageView fitHeight="104.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                     <image>
-                                       <Image url="@LOGO.png" />
+                                       <Image url="@Blue%20and%20Yellow%20Illustrative%20Travel%20Agency%20Logo.png" />
                                     </image>
                                     <effect>
                                        <Blend />
@@ -173,7 +147,7 @@
                                              <Font name="System Bold" size="17.0" />
                                           </font>
                                        </Label>
-                                       <TextArea fx:id="Requirement" prefHeight="319.0" prefWidth="315.0" promptText="Any requirements" style="-fx-background-radius: 20; -fx-border-radius: 20;" VBox.vgrow="ALWAYS" />
+                                       <TextArea fx:id="Requirement" prefHeight="319.0" prefWidth="315.0" promptText="Any requirements" style="-fx-background-radius: 20; -fx-background-color: #c5ddff; -fx-border-radius: 20; -fx-border-color: #c5ddff;" wrapText="true" VBox.vgrow="ALWAYS" />
                                     </children>
                                     <padding>
                                        <Insets left="10.0" right="10.0" />
@@ -200,7 +174,7 @@
                      <Insets />
                   </VBox.margin>
                   <children>
-                     <Label maxHeight="-Infinity" prefHeight="83.0" prefWidth="1144.0" style="-fx-background-color: #0D005F;" text="Analysis Report" textFill="WHITE">
+                     <Label maxHeight="-Infinity" prefHeight="83.0" prefWidth="1144.0" style="-fx-background-color: #0D005F;" textFill="WHITE">
                         <font>
                            <Font name="System Bold" size="29.0" />
                         </font>
@@ -391,7 +365,7 @@
                                        </VBox>
                                        <HBox alignment="CENTER" prefHeight="157.0" prefWidth="564.0" VBox.vgrow="ALWAYS">
                                           <children>
-                                             <VBox alignment="CENTER" prefHeight="206.0" prefWidth="564.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                             <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
                                                 <children>
                                                    <VBox alignment="CENTER" prefHeight="29.0" prefWidth="232.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                       <children>
@@ -403,12 +377,12 @@
                                                                <Insets left="8.0" top="5.0" />
                                                             </VBox.margin>
                                                          </Label>
-                                                         <HBox alignment="CENTER_LEFT" prefHeight="188.0" prefWidth="564.0">
+                                                         <HBox alignment="CENTER" fillHeight="false" prefHeight="188.0" prefWidth="564.0" VBox.vgrow="ALWAYS">
                                                             <children>
                                                                <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0">
                                                                   <children>
-                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #FFE0B2; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Food" />
-                                                                     <Label fx:id="FoodLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #FF7043; -fx-text-fill: black; -fx-background-radius: 20;">
+                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #FFE0B2; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Food" VBox.vgrow="ALWAYS" />
+                                                                     <Label fx:id="FoodLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #FF7043; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                                         <font>
                                                                            <Font size="15.0" />
                                                                         </font>
@@ -421,11 +395,14 @@
                                                                      <Insets bottom="5.0" left="5.0" top="5.0" />
                                                                   </padding>
                                                                </VBox>
-                                                               <Label alignment="CENTER" prefHeight="115.0" prefWidth="49.0" text="+" />
+                                                               <Label alignment="CENTER" prefHeight="115.0" prefWidth="49.0" text="+" HBox.hgrow="ALWAYS">
+                                                                  <font>
+                                                                     <Font size="20.0" />
+                                                                  </font></Label>
                                                                <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0">
                                                                   <children>
-                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #D1C4E9; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Live" />
-                                                                     <Label fx:id="LiveLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #7E57C2; -fx-text-fill: black; -fx-background-radius: 20;">
+                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #D1C4E9; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Live" VBox.vgrow="ALWAYS" />
+                                                                     <Label fx:id="LiveLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #7E57C2; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                                         <font>
                                                                            <Font size="15.0" />
                                                                         </font>
@@ -438,11 +415,14 @@
                                                                      <Insets bottom="5.0" left="5.0" top="5.0" />
                                                                   </padding>
                                                                </VBox>
-                                                               <Label alignment="CENTER" prefHeight="132.0" prefWidth="49.0" text="+" />
+                                                               <Label alignment="CENTER" prefHeight="132.0" prefWidth="49.0" text="+" HBox.hgrow="ALWAYS">
+                                                                  <font>
+                                                                     <Font size="20.0" />
+                                                                  </font></Label>
                                                                <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0">
                                                                   <children>
-                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #B3E5FC; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Transport" />
-                                                                     <Label fx:id="TransportLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #039BE5; -fx-text-fill: black; -fx-background-radius: 20;">
+                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #B3E5FC; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Transport" VBox.vgrow="ALWAYS" />
+                                                                     <Label fx:id="TransportLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #039BE5; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                                         <font>
                                                                            <Font size="15.0" />
                                                                         </font>
@@ -455,11 +435,14 @@
                                                                      <Insets bottom="5.0" left="5.0" top="5.0" />
                                                                   </padding>
                                                                </VBox>
-                                                               <Label alignment="CENTER" prefHeight="132.0" prefWidth="49.0" text="+" />
+                                                               <Label alignment="CENTER" prefHeight="132.0" prefWidth="49.0" text="=" HBox.hgrow="ALWAYS">
+                                                                  <font>
+                                                                     <Font size="20.0" />
+                                                                  </font></Label>
                                                                <VBox prefHeight="115.0" prefWidth="252.0" spacing="10.0">
                                                                   <children>
-                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="235.0" style="-fx-background-color: #FFF9C4; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Total" />
-                                                                     <Label fx:id="TotalLabel" alignment="CENTER" prefHeight="78.0" prefWidth="262.0" style="-fx-background-color: #FDD835; -fx-text-fill: black; -fx-background-radius: 20;">
+                                                                     <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="235.0" style="-fx-background-color: #FFF9C4; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Total" VBox.vgrow="ALWAYS" />
+                                                                     <Label fx:id="TotalLabel" alignment="CENTER" prefHeight="78.0" prefWidth="262.0" style="-fx-background-color: #FDD835; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                                         <font>
                                                                            <Font name="System Bold" size="42.0" />
                                                                         </font>

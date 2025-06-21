@@ -5,8 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.example.CulturaMYTrip.api.GeocodingService;
-
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -14,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -39,7 +36,6 @@ public class DisplayUIModel {
                 String attractionLine = line.substring(1).trim(); // Remove dash
                 String[] parts = attractionLine.split(":", 2);     // Split name: description
                 String name = parts[0].trim();
-                String desc = parts.length > 1 ? parts[1].trim() : "No description available.";
 
                 Label tag = new Label(name);
                 tag.setStyle(
