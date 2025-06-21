@@ -15,9 +15,9 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Analysis-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1500, 800);
-        stage.setTitle("JOBBY");
+        stage.setTitle("CulturalMY Trip");
         stage.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("/CSS/ButtonPress.css").toExternalForm());
+
 
 
 

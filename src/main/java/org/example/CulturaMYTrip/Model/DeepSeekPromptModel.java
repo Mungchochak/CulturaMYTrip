@@ -91,6 +91,30 @@ public class DeepSeekPromptModel {
 //                + "If the travel information is too vague, return exactly: \"insufficient data\".";
 //    }
 
+//    public String getSouvenirprompt(String travelplan, String requirement, String budget, String days, String departure, String cultureType) {
+//        return "You are a Malaysian cultural tourism AI assistant. Based on the user's travel plan, preferences, and cultural interests, recommend authentic and meaningful Malaysian souvenirs that reflect cultural identity.\n\n"
+//                + "User Travel Information:\n"
+//                + "Departure Point: " + departure + "\n"
+//                + "Number of Travel Days: " + days + "\n"
+//                + "Budget: " + budget + " USD\n"
+//                + "Special Requirements: " + requirement + "\n"
+//                + "Cultural Theme or Interest: " + cultureType + "\n"
+//                + "Travel Plan Summary: " + travelplan + "\n\n"
+//                + "Your recommendations must:\n"
+//                + "- Match the cities and regions in the user's travel route\n"
+//                + "- Be culturally tied to specific locations (e.g., recommend Kek Lapis only if visiting Sarawak)\n"
+//                + "- Be suitable for the given budget and number of days (avoid luxury or bulky items if budget or time is limited)\n"
+//                + "- Be compact, practical, and easy to carry while traveling\n"
+//                + "- Reflect Malaysian cultural identity: traditional arts, crafts, foods, symbols, attire, or local materials\n"
+//                + "- Consider the user's background or preferences based on their departure point and selected cultural theme\n\n"
+//                + "Strict output format:\n"
+//                + "Souvenir:\n"
+//                + "- [Souvenir Name]: [One-sentence description explaining its cultural relevance and why it suits the user's trip and budget]\n"
+//                + "- [Souvenir Name]: [description]\n"
+//                + "[...]\n\n"
+//                + "Avoid generic or empty recommendations. If the travel information is truly insufficient, return exactly: \"insufficient data\".";
+//    }
+
     public String getSouvenirprompt(String travelplan, String requirement, String budget, String days, String departure, String cultureType) {
         return "You are a Malaysian cultural tourism AI assistant. Based on the user's travel plan, preferences, and cultural interests, recommend authentic and meaningful Malaysian souvenirs that reflect cultural identity.\n\n"
                 + "User Travel Information:\n"
@@ -112,6 +136,7 @@ public class DeepSeekPromptModel {
                 + "- [Souvenir Name]: [One-sentence description explaining its cultural relevance and why it suits the user's trip and budget]\n"
                 + "- [Souvenir Name]: [description]\n"
                 + "[...]\n\n"
+                + "Do not use bold symbols (**) or any Markdown formatting. Output should be in plain text only.\n"
                 + "Avoid generic or empty recommendations. If the travel information is truly insufficient, return exactly: \"insufficient data\".";
     }
 

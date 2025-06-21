@@ -49,7 +49,7 @@
                                  </ImageView>
                                  <VBox prefHeight="53.0" prefWidth="211.0" HBox.hgrow="ALWAYS">
                                     <children>
-                                       <Text fill="#0d354d" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-family: Jomhuria;" text="CulturaMY" VBox.vgrow="ALWAYS">
+                                       <Text fill="#0d354d" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-family: Jomhuria;" text="CulturalMY" VBox.vgrow="ALWAYS">
                                           <font>
                                              <Font size="43.0" />
                                           </font>
@@ -131,7 +131,7 @@
                                  </VBox>
                                  <VBox alignment="CENTER" prefHeight="41.0" prefWidth="307.0">
                                     <children>
-                                       <ComboBox fx:id="positionComboBox" prefHeight="41.0" prefWidth="321.0" promptText="Interest choice" style="-fx-background-radius: 20;" />
+                                       <ComboBox fx:id="CulturesComboBox" prefHeight="41.0" prefWidth="321.0" promptText="Cultures of interest" style="-fx-background-radius: 20;" />
                                     </children>
                                     <padding>
                                        <Insets left="10.0" right="30.0" />

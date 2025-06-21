@@ -9,10 +9,12 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 
+import javafx.scene.control.*;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,7 +23,6 @@ import javafx.util.Duration;
 import org.example.CulturaMYTrip.Model.*;
 
 import java.awt.*;
-import javafx.scene.control.TextArea;
 
 import java.io.IOException;
 import java.net.URI;
@@ -64,6 +65,9 @@ public class AnalysisPageController {
     @FXML
     private  Label FoodLabel,LiveLabel,TransportLabel,TotalLabel;
 
+    @FXML
+    private ComboBox<String> CulturesComboBox;
+
 
 
     @FXML private VBox contentVBox;
@@ -80,6 +84,47 @@ public class AnalysisPageController {
     @FXML
     public void initialize() {
 
+        DeparturePoint.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z\\s]*")) {
+                DeparturePoint.setText(oldValue);
+            }
+        });
+
+        TravelDays.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                TravelDays.setText(oldValue);
+            }
+        });
+        Budget.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                Budget.setText(oldValue);
+            }
+        });
+
+
+        CulturesComboBox.getItems().addAll(
+                "Malay Heritage",
+                "Chinese Culture",
+                "Indian Traditions",
+                "Peranakan (Baba Nyonya)",
+                "Indigenous (Orang Asli)",
+                "Sarawak Iban Culture",
+                "Sabah Kadazan-Dusun Culture",
+                "Dayak Traditions",
+                "Orang Ulu Crafts and Music",
+                "Islamic Malay Architecture",
+                "Hokkien Chinese Traditions",
+                "Tamil Hindu Practices",
+                "Chitty Melakan Heritage",
+                "Eurasian Portuguese Influence",
+                "Borneo Longhouse Life",
+                "Kelantanese Wayang Kulit",
+                "Silat Martial Arts Culture",
+                "Wau Kite Crafting",
+                "Batik and Songket Textile Art",
+                "Traditional Malaysian Festivals"
+        );
+
 
 
 
@@ -89,7 +134,7 @@ public class AnalysisPageController {
 
     @FXML
     protected void ComfirmClick() {
-        String CultureContent ="Malaysia Chinese";
+        String CultureContent = CulturesComboBox.getValue();;
 
         String departure = DeparturePoint.getText();
         String days = TravelDays.getText();
