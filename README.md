@@ -37,6 +37,24 @@ MyCulturaLens (Streamlit Web App)
 📁 JamAIBase Action Table examples: https://drive.google.com/drive/folders/1OG1UnPgKVYiIlXYmKLsZyj73nOqwMNpf?usp=sharing
  
 🚀 How to Run
+
+▶️ CulturaMyTrip (Java Desktop App)
+1.	Clone the repository and install dependencies: https://github.com/Mungchochak/CulturaMYTrip.git
+2.	Import into IntelliJ IDEA or other Java IDE
+3.	Run Launcher.java in src/
+4.	JavaFX UI will allow image input + cultural trip generation
+
+How Geocoding Works (Google Maps Integration)
+
+After generating a travel plan using CulturaMyTrip, users will see **Famous Attractions** as clickable location suggestions.  
+When a user clicks on any of these locations:
+
+✅ The system automatically opens Google Maps in the browser  
+✅ It uses geocoding (based on the location name or coordinates) to provide real-time directions  
+✅ This helps tourists seamlessly transition from virtual recommendations to **real-world navigation**
+
+🔗 Example: Clicking on “Kampung Morten” will open its exact location in Google Maps for further exploration.
+
 ▶️ MyCulturaLens (Streamlit Web App)
 MyCulturaLens is deployed and ready to use here:
 
@@ -45,11 +63,9 @@ MyCulturaLens is deployed and ready to use here:
  (link placeholder — replace with actual CulturaMyLens deployment)
 You don’t need to run it locally. It's triggered directly from the CulturaMyTrip desktop app.
  
-▶️ CulturaMyTrip (Java Desktop App)
-1.	Clone the repository and install dependencies: https://github.com/Mungchochak/CulturaMYTrip.git
-2.	Import into IntelliJ IDEA or other Java IDE
-3.	Run Launcher.java in src/
-4.	JavaFX UI will allow image input + cultural trip generation
+
+This makes the app not just informative but **actionable** — turning suggestions into real cultural experiences.
+
  
 🧭 Why It Matters
 Created for the Visit Malaysia 2026 Hackathon, this suite bridges tradition and technology. By using AI to tell stories and suggest experiences, we hope to inspire deeper appreciation of Malaysia’s living heritage — one photo and one journey at a time.
