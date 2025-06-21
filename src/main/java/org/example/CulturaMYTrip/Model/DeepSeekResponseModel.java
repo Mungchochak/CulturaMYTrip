@@ -1,206 +1,86 @@
 package org.example.CulturaMYTrip.Model;
 
 public class DeepSeekResponseModel {
-    private String SkillMatchingResponse;
-    private String WorkExperienceResponse;
-    private String PersonalityResponse;
-    private String SoftSkillsResponse;
-    private String PositionResponse;
-    private String InformationResponse;
-    private String SalaryResponse;
-    private String ScoreResponse;
-    private String NameResponse;
-    private String GraduatedResponse;
+    private String TravelPlanResponse;
 
-    private String SecondSkillMatchingResponse;
-    private String SecondWorkExperienceResponse;
-    private String SecondPersonalityResponse;
-    private String SecondSoftSkillsResponse;
-    private String SecondPositionResponse;
-    private String SecondInformationResponse;
-    private String SecondSalaryResponse;
-    private String SecondScoreResponse;
-    private String SecondNameResponse;
-    private String SecondGraduatedResponse;
-    private String CgpaResponse;
+    private String AttractionResponse;
 
-    public String getCgpaResponse() {
-        return CgpaResponse;
+    private String SouvenirResponse;
+
+    private String FoodResponse;
+
+    private String HotelResponse;
+
+    private String BudgetResponse;
+
+    private String CultureResponse;
+
+    public String getCitiesResponse() {
+        return CitiesResponse;
     }
 
-    public void setCgpaResponse(String cgpaResponse) {
-        CgpaResponse = cgpaResponse;
+    public void setCitiesResponse(String citiesResponse) {
+        CitiesResponse = citiesResponse;
     }
 
+    private String CitiesResponse;
 
-
-    public String getSecondGraduatedResponse() {
-        return SecondGraduatedResponse;
+    public String getCultureResponse() {
+        return CultureResponse;
     }
 
-    public void setSecondGraduatedResponse(String secondGraduatedResponse) {
-        SecondGraduatedResponse = secondGraduatedResponse;
+    public void setCultureResponse(String cultureResponse) {
+        CultureResponse = cultureResponse;
     }
 
 
 
-
-    public String getSecondSkillMatchingResponse() {
-        return SecondSkillMatchingResponse;
+    public String getTravelPlanResponse() {
+        return TravelPlanResponse;
     }
 
-    public void setSecondSkillMatchingResponse(String secondSkillMatchingResponse) {
-        SecondSkillMatchingResponse = secondSkillMatchingResponse;
+    public void setTravelPlanResponse(String travelPlanResponse) {
+        TravelPlanResponse = travelPlanResponse;
     }
 
-    public String getSecondWorkExperienceResponse() {
-        return SecondWorkExperienceResponse;
+    public String getAttractionResponse() {
+        return AttractionResponse;
     }
 
-    public void setSecondWorkExperienceResponse(String secondWorkExperienceResponse) {
-        SecondWorkExperienceResponse = secondWorkExperienceResponse;
+    public void setAttractionResponse(String attractionResponse) {
+        AttractionResponse = attractionResponse;
     }
 
-    public String getSecondPersonalityResponse() {
-        return SecondPersonalityResponse;
+    public String getSouvenirResponse() {
+        return SouvenirResponse;
     }
 
-    public void setSecondPersonalityResponse(String secondPersonalityResponse) {
-        SecondPersonalityResponse = secondPersonalityResponse;
+    public void setSouvenirResponse(String souvenirResponse) {
+        SouvenirResponse = souvenirResponse;
     }
 
-    public String getSecondSoftSkillsResponse() {
-        return SecondSoftSkillsResponse;
+    public String getFoodResponse() {
+        return FoodResponse;
     }
 
-    public void setSecondSoftSkillsResponse(String secondSoftSkillsResponse) {
-        SecondSoftSkillsResponse = secondSoftSkillsResponse;
+    public void setFoodResponse(String foodResponse) {
+        FoodResponse = foodResponse;
     }
 
-    public String getSecondPositionResponse() {
-        return SecondPositionResponse;
+    public String getHotelResponse() {
+        return HotelResponse;
     }
 
-    public void setSecondPositionResponse(String secondPositionResponse) {
-        SecondPositionResponse = secondPositionResponse;
+    public void setHotelResponse(String hotelResponse) {
+        HotelResponse = hotelResponse;
     }
 
-    public String getSecondInformationResponse() {
-        return SecondInformationResponse;
+    public String getBudgetResponse() {
+        return BudgetResponse;
     }
 
-    public void setSecondInformationResponse(String secondInformationResponse) {
-        SecondInformationResponse = secondInformationResponse;
-    }
-
-    public String getSecondSalaryResponse() {
-        return SecondSalaryResponse;
-    }
-
-    public void setSecondSalaryResponse(String secondSalaryResponse) {
-        SecondSalaryResponse = secondSalaryResponse;
-    }
-
-    public String getSecondScoreResponse() {
-        return SecondScoreResponse;
-    }
-
-    public void setSecondScoreResponse(String secondScoreResponse) {
-        SecondScoreResponse = secondScoreResponse;
-    }
-
-    public String getSecondNameResponse() {
-        return SecondNameResponse;
-    }
-
-    public void setSecondNameResponse(String secondNameResponse) {
-        SecondNameResponse = secondNameResponse;
-    }
-
-
-
-    public String getNameResponse() {
-        return NameResponse;
-    }
-
-    public void setNameResponse(String nameResponse) {
-        NameResponse = nameResponse;
-    }
-
-    public String getGraduatedResponse() {
-        return GraduatedResponse;
-    }
-
-    public void setGraduatedResponse(String graduatedResponse) {
-        GraduatedResponse = graduatedResponse;
-    }
-
-
-
-
-    public String getWorkExperienceResponse() {
-        return WorkExperienceResponse;
-    }
-
-    public void setWorkExperienceResponse(String workExperienceResponse) {
-        WorkExperienceResponse = workExperienceResponse;
-    }
-
-    public String getPersonalityResponse() {
-        return PersonalityResponse;
-    }
-
-    public void setPersonalityResponse(String personalityResponse) {
-        PersonalityResponse = personalityResponse;
-    }
-
-    public String getSoftSkillsResponse() {
-        return SoftSkillsResponse;
-    }
-
-    public void setSoftSkillsResponse(String softSkillsResponse) {
-        SoftSkillsResponse = softSkillsResponse;
-    }
-
-    public String getPositionResponse() {
-        return PositionResponse;
-    }
-
-    public void setPositionResponse(String positionResponse) {
-        PositionResponse = positionResponse;
-    }
-
-    public String getInformationResponse() {
-        return InformationResponse;
-    }
-
-    public void setInformationResponse(String informationResponse) {
-        InformationResponse = informationResponse;
-    }
-
-    public String getSalaryResponse() {
-        return SalaryResponse;
-    }
-
-    public void setSalaryResponse(String salaryResponse) {
-        SalaryResponse = salaryResponse;
-    }
-
-    public String getScoreResponse() {
-        return ScoreResponse;
-    }
-
-    public void setScoreResponse(String scoreResponse) {
-        ScoreResponse = scoreResponse;
-    }
-
-
-    public String getSkillMatchingResponse() {
-        return SkillMatchingResponse;
-    }
-
-    public void setSkillMatchingResponse(String skillMatchingResponse) {
-        SkillMatchingResponse = skillMatchingResponse;
+    public void setBudgetResponse(String budgetResponse) {
+        BudgetResponse = budgetResponse;
     }
 
 

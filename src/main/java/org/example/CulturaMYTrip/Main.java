@@ -35,13 +35,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        String[] fileNames = {
-                "Company_Info.txt",
-                "PositionDesc.txt"
-        };
-        FileData.initializeFiles(fileNames);
-
-
         launch();
     }
 }

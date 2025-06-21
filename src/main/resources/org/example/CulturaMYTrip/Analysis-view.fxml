@@ -181,7 +181,7 @@
                                  </VBox>
                                  <VBox alignment="CENTER" prefHeight="94.0" prefWidth="335.0">
                                     <children>
-                                       <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="147.0" style="-fx-border-radius: 20; -fx-background-radius: 20;" text="Comfirm" VBox.vgrow="ALWAYS" />
+                                       <Button fx:id="UploadFile" mnemonicParsing="false" onAction="#ComfirmClick" prefHeight="60.0" prefWidth="147.0" style="-fx-border-radius: 20; -fx-background-radius: 20;" text="Comfirm" VBox.vgrow="ALWAYS" />
                                     </children>
                                  </VBox>
                               </children>
@@ -223,7 +223,7 @@
                                     <children>
                                        <VBox prefHeight="389.0" prefWidth="504.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
                                           <children>
-                                             <Label fx:id="SoftSkillsContent12" prefHeight="0.0" prefWidth="523.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Travel Plan:" wrapText="true">
+                                             <Label fx:id="TravelPlan" prefHeight="0.0" prefWidth="523.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Travel Plan:" wrapText="true">
                                                 <font>
                                                    <Font name="Helvetica Bold" size="20.0" />
                                                 </font>
@@ -231,12 +231,12 @@
                                                    <Insets left="8.0" top="5.0" />
                                                 </VBox.margin>
                                              </Label>
-                                             <VBox fx:id="experienceUI" prefHeight="155.0" prefWidth="511.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" />
+                                             <VBox fx:id="experienceUI" prefHeight="362.0" prefWidth="503.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" />
                                           </children>
                                        </VBox>
                                        <VBox prefHeight="173.0" prefWidth="503.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
                                           <children>
-                                             <VBox prefHeight="287.0" prefWidth="503.0">
+                                             <VBox prefHeight="196.0" prefWidth="503.0">
                                                 <children>
                                                    <VBox prefHeight="30.0" prefWidth="504.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
                                                       <children>
@@ -253,9 +253,9 @@
                                                          </Label>
                                                       </children>
                                                    </VBox>
-                                                   <VBox prefHeight="260.0" prefWidth="503.0">
+                                                   <VBox prefHeight="173.0" prefWidth="503.0">
                                                       <children>
-                                                         <FlowPane fx:id="certificateBox" prefHeight="236.0" prefWidth="504.0">
+                                                         <FlowPane fx:id="attractionPane" prefHeight="236.0" prefWidth="504.0">
                                                             <padding>
                                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                             </padding>
@@ -266,7 +266,7 @@
                                              </VBox>
                                           </children>
                                        </VBox>
-                                       <VBox prefHeight="175.0" prefWidth="503.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                       <VBox prefHeight="172.0" prefWidth="503.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
                                           <children>
                                              <Label fx:id="GraduatedContent11111" prefHeight="25.0" prefWidth="699.0" text="Souvenir:" wrapText="true" VBox.vgrow="ALWAYS">
                                                 <font>
@@ -279,11 +279,11 @@
                                                    <Insets left="8.0" top="5.0" />
                                                 </VBox.margin>
                                              </Label>
-                                             <VBox spacing="5.0">
+                                             <VBox prefHeight="136.0" prefWidth="503.0" spacing="5.0">
                                                 <children>
-                                                   <VBox prefHeight="133.0" prefWidth="504.0" VBox.vgrow="ALWAYS">
+                                                   <VBox prefHeight="169.0" prefWidth="503.0" VBox.vgrow="ALWAYS">
                                                       <children>
-                                                         <FlowPane fx:id="certificateBox2" prefHeight="96.0" prefWidth="504.0" VBox.vgrow="ALWAYS">
+                                                         <FlowPane fx:id="SouvenirPane" prefHeight="96.0" prefWidth="504.0" VBox.vgrow="ALWAYS">
                                                             <padding>
                                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                             </padding>
@@ -323,7 +323,7 @@
                                                       <content>
                                                          <VBox alignment="TOP_CENTER" prefHeight="363.0" prefWidth="523.0">
                                                             <children>
-                                                               <Label fx:id="PersonalityContent" alignment="TOP_LEFT" prefHeight="363.0" prefWidth="528.0" wrapText="true">
+                                                               <Label fx:id="CulturalContent" alignment="TOP_LEFT" prefHeight="363.0" prefWidth="528.0" wrapText="true">
                                                                   <font>
                                                                      <Font name="Helvetica" size="18.0" />
                                                                   </font>
@@ -340,7 +340,7 @@
                                                    </ScrollPane>
                                                 </children>
                                              </VBox>
-                                             <VBox alignment="CENTER" prefHeight="205.0" prefWidth="563.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+                                             <VBox alignment="CENTER" prefHeight="84.0" prefWidth="563.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                 <children>
                                                    <Label fx:id="SoftSkillsContent122" prefHeight="25.0" prefWidth="587.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Food Suggested:" wrapText="true">
                                                       <font>
@@ -350,13 +350,13 @@
                                                          <Insets left="8.0" top="5.0" />
                                                       </VBox.margin>
                                                    </Label>
-                                                   <VBox fx:id="positionBox" alignment="CENTER" prefHeight="192.0" prefWidth="563.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                                   <VBox fx:id="FoodBox" alignment="CENTER" prefHeight="192.0" prefWidth="563.0" spacing="5.0" VBox.vgrow="ALWAYS">
                                                       <VBox.margin>
                                                          <Insets bottom="5.0" />
                                                       </VBox.margin></VBox>
                                                 </children>
                                              </VBox>
-                                             <VBox alignment="CENTER" prefHeight="202.0" prefWidth="563.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
+                                             <VBox alignment="CENTER" prefHeight="144.0" prefWidth="563.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;">
                                                 <children>
                                                    <Label fx:id="SoftSkillsContent1221" prefHeight="25.0" prefWidth="587.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Hotel Suggested:" wrapText="true">
                                                       <font>
@@ -366,7 +366,7 @@
                                                          <Insets left="8.0" top="5.0" />
                                                       </VBox.margin>
                                                    </Label>
-                                                   <VBox fx:id="positionBox1" alignment="CENTER" prefHeight="192.0" prefWidth="563.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                                   <VBox fx:id="HotelBox" alignment="CENTER" prefHeight="192.0" prefWidth="563.0" spacing="5.0" VBox.vgrow="ALWAYS">
                                                       <VBox.margin>
                                                          <Insets bottom="5.0" />
                                                       </VBox.margin>
@@ -377,11 +377,11 @@
                                        </VBox>
                                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="563.0" VBox.vgrow="ALWAYS">
                                           <children>
-                                             <VBox alignment="CENTER" prefHeight="103.0" prefWidth="252.0" spacing="5.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                                             <VBox alignment="CENTER" prefHeight="89.0" prefWidth="372.0" spacing="5.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
                                                 <children>
-                                                   <VBox alignment="BOTTOM_CENTER" prefHeight="29.0" prefWidth="321.0" VBox.vgrow="ALWAYS">
+                                                   <VBox prefHeight="89.0" prefWidth="359.0" VBox.vgrow="ALWAYS">
                                                       <children>
-                                                         <Label fx:id="GraduatedContent2" prefHeight="0.0" prefWidth="344.0" text="Location:" VBox.vgrow="ALWAYS">
+                                                         <Label fx:id="GraduatedContent2" prefHeight="0.0" prefWidth="344.0" text="Cities:">
                                                             <font>
                                                                <Font name="Helvetica Bold" size="18.0" />
                                                             </font>
@@ -389,14 +389,7 @@
                                                                <Insets left="8.0" top="5.0" />
                                                             </VBox.margin>
                                                          </Label>
-                                                         <Label fx:id="GraduatedContent" alignment="CENTER" prefHeight="80.0" prefWidth="311.0" style="-fx-background-radius: 20;" textAlignment="JUSTIFY" wrapText="true" VBox.vgrow="ALWAYS">
-                                                            <font>
-                                                               <Font name="Helvetica" size="15.0" />
-                                                            </font>
-                                                            <VBox.margin>
-                                                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                                                            </VBox.margin>
-                                                         </Label>
+                                                         <VBox fx:id="CitiesBox" />
                                                       </children>
                                                    </VBox>
                                                 </children>
@@ -405,7 +398,7 @@
                                                 <children>
                                                    <VBox alignment="CENTER" prefHeight="29.0" prefWidth="232.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                       <children>
-                                                         <Label fx:id="SoftSkillsContent1222" prefHeight="0.0" prefWidth="523.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Recommended budget:" wrapText="true" VBox.vgrow="ALWAYS">
+                                                         <Label fx:id="BudgetContent" prefHeight="0.0" prefWidth="523.0" style="-fx-background-color: EAEAEA; -fx-background-radius: 20;" text="Estimated budget:" wrapText="true" VBox.vgrow="ALWAYS">
                                                             <font>
                                                                <Font name="Helvetica Bold" size="17.0" />
                                                             </font>
@@ -442,7 +435,7 @@
                            </HBox>
                         </children>
                         <padding>
-                           <Insets top="10.0" />
+                           <Insets bottom="10.0" top="10.0" />
                         </padding>
                      </VBox>
                   </content>

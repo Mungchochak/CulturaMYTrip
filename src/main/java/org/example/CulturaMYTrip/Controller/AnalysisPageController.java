@@ -3,6 +3,8 @@ package org.example.CulturaMYTrip.Controller;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -36,32 +38,24 @@ import java.util.List;
 
 public class AnalysisPageController {
 
+    public DeepSeekResponseModel deepSeekResponseModel = new DeepSeekResponseModel();
+    public DeepSeekPromptModel deepSeekPromptModel = new DeepSeekPromptModel();
 
-    @FXML
-    private Label PersonalityContent;
 
-    @FXML
-    private Label SalaryContent;
-    @FXML
-    private Label ScoreContent;
-    @FXML
-    private Label NameContent;
-    @FXML
-    private Label GraduatedContent;
+
     @FXML
     private Button UploadFile;
+    @FXML
+    private VBox experienceUI,FoodBox,HotelBox,CitiesBox;
 
     @FXML
-    private VBox mainPane;
+    private Label CulturalContent;
 
     @FXML
-    private VBox experienceUI;
+    private FlowPane attractionPane, SouvenirPane;
 
-    @FXML
-    private VBox LanguageVbox;
 
-    @FXML
-    private VBox SoftSkillsVbox;
+
 
     @FXML private Label locationLabel;
     @FXML private Label majorLabel;
@@ -77,17 +71,6 @@ public class AnalysisPageController {
     private Label loadingLabel;
     private Timeline loadingAnimation;
     private final List<Node> cachedContent = new ArrayList<>();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -115,116 +98,112 @@ public class AnalysisPageController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @FXML
-    protected void UploadFileClick() {
+    protected void ComfirmClick() {
+        String content = "KLCC,SUBANG JAYA";
+        String CultureContent ="Malaysia Chinese";
 
+        ShardResponseData.responseModel = deepSeekResponseModel;
 
-        PDFScanner scanner = new PDFScanner();
+        UploadFile.setDisable(true);
+        setupLoadingLabel(contentVBox);
+        showLoadingState(contentVBox);
         LoadPersonalInformation();
 
-
-
-
-
-        scanner.PDFScanner(
-                () -> {
-                    UploadFile.setDisable(true);
-                    setupLoadingLabel(contentVBox);
-                    showLoadingState(contentVBox);
-
-
-
-                },
-                () -> {
-                    if (DeepSeekChat.FaildConnection){
-
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                if (DeepSeekChat.FaildConnection) {
+                    Platform.runLater(() -> {
                         ModulModel.WarningPopup();
-                        DeepSeekChat.FaildConnection=false;
+                        DeepSeekChat.FaildConnection = false;
                         UploadFile.setDisable(false);
                         hideLoadingState(contentVBox);
-                    }else {
-
-                        UploadFile.setDisable(false);
-                        hideLoadingState(contentVBox);
-
-
-
-                        mainPane.getChildren().clear();
-                        String skills=ShardResponseData.responseModel.getSkillMatchingResponse();
-                        FlowPane skillBox = DisplayUIModel.buildSkillLabels(skills);
-                        mainPane.getChildren().add(skillBox);
-
-
-                        experienceUI.getChildren().clear();
-                        String aiResponse = ShardResponseData.responseModel.getWorkExperienceResponse(); // 得到结构化文本
-                        VBox maincontent = DisplayUIModel.CategorizedExperienceUI(aiResponse);
-                        experienceUI.getChildren().add(maincontent);
-
-
-
-                        PersonalityContent.setText(ShardResponseData.responseModel.getPersonalityResponse());
-
-
-
-                        String aiReply = ShardResponseData.responseModel.getSoftSkillsResponse();
-                        DisplayUIModel.displayLanguageAndSoftSkills(aiReply,LanguageVbox,SoftSkillsVbox);
-
-
-                        aiResponse = ShardResponseData.responseModel.getInformationResponse();// AI 回复字符串
-                        DisplayUIModel.updateBasicInfoUI(aiResponse,locationLabel,majorLabel,certificateBox);
-
-
-
-                        positionBox.getChildren().clear();
-                        aiResponse = ShardResponseData.responseModel.getPositionResponse();
-                        maincontent = DisplayUIModel.CategorizedPositionUI(aiResponse);
-                        positionBox.getChildren().add(maincontent);
-
-
-                        aiReply=ShardResponseData.responseModel.getSalaryResponse();
-                        DisplayUIModel.CategorizedSalary(aiReply, SalaryContent);
-
-                        aiReply=ShardResponseData.responseModel.getScoreResponse();
-                        DisplayUIModel.CategorizedScore(aiReply,ScoreContent);
-
-                        NameContent.setText(ShardResponseData.responseModel.getNameResponse());
-
-
-
-                        aiReply=ShardResponseData.responseModel.getGraduatedResponse();
-                        DisplayUIModel.CategorizedUni(aiReply,GraduatedContent);
-
-                        CGPAContent.setText(ShardResponseData.responseModel.getCgpaResponse());
-
-                        System.out.println("Finished Analysis");
-
-
-
-                    }
-
-
-
-
+                    });
+                    return null;
                 }
 
-        );
+                // === 后台线程中做 API 调用 ===
+                deepSeekResponseModel.setTravelPlanResponse(
+                        DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getTravelPlanprompt(content))
+                );
+                deepSeekResponseModel.setAttractionResponse(
+                        DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getAttractionprompt(content))
+                );
+                deepSeekResponseModel.setSouvenirResponse(
+                        DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getSouvenirprompt())
+                );
+                deepSeekResponseModel.setFoodResponse(
+                        DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getFoodprompt())
+                );
+                deepSeekResponseModel.setHotelResponse(
+                        DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getHotelprompt())
+                );
+                deepSeekResponseModel.setBudgetResponse(
+                        DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getBudgetprompt())
+                );
+
+                deepSeekResponseModel.setCultureResponse(
+                        DeepSeekChat.callDeepSeekAPI(CultureContent, deepSeekPromptModel.getCultureprompt(CultureContent))
+                );
+
+                String TravelPlan = ShardResponseData.responseModel.getTravelPlanResponse();
+                deepSeekResponseModel.setCitiesResponse(DeepSeekChat.callDeepSeekAPI(content, deepSeekPromptModel.getCityExtractionPrompt(TravelPlan)));
+
+                // === 回到主线程更新界面 ===
+                Platform.runLater(() -> {
+                    UploadFile.setDisable(false);
+                    hideLoadingState(contentVBox);
+
+                    attractionPane.getChildren().clear();
+                    String aiResponse = ShardResponseData.responseModel.getAttractionResponse();
+                    DisplayUIModel.updateAttractionTagsOnlyUI(aiResponse, attractionPane);
+
+                    experienceUI.getChildren().clear();
+                    aiResponse = ShardResponseData.responseModel.getTravelPlanResponse();
+                    VBox maincontent = DisplayUIModel.CategorizedTravelUI(aiResponse);
+                    experienceUI.getChildren().add(maincontent);
+
+                    SouvenirPane.getChildren().clear();
+                    aiResponse = ShardResponseData.responseModel.getSouvenirResponse();
+                    DisplayUIModel.SouvenirUI(aiResponse, SouvenirPane);
+
+                    aiResponse= ShardResponseData.responseModel.getCultureResponse();
+                    CulturalContent.setText(aiResponse);
+
+                    // 1. 处理美食显示
+                    aiResponse = ShardResponseData.responseModel.getFoodResponse();
+                    VBox root = DisplayUIModel.CategorizedFoodUI(aiResponse);
+                    FoodBox.getChildren().clear();
+                    FoodBox.getChildren().add(root);
+
+                    // 2. 处理酒店显示
+                    aiResponse = ShardResponseData.responseModel.getHotelResponse();
+                    VBox root2 = DisplayUIModel.CategorizedHotelUI(aiResponse);
+                    HotelBox.getChildren().clear(); // hotelPane 同上
+                    HotelBox.getChildren().add(root2);
 
 
+                    aiResponse= ShardResponseData.responseModel.getCitiesResponse();
+                    VBox cityLabelBox = DisplayUIModel.CategorizedCityLabels(aiResponse);
+                    CitiesBox.getChildren().clear();
+                    CitiesBox.getChildren().add(cityLabelBox);
+
+
+
+                    System.out.println("Finished Analysis");
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(task).start(); // 启动后台线程
     }
+
+
+
+
 
     public void RefreshpositionComboBox() {
         try {
@@ -443,14 +422,7 @@ public class AnalysisPageController {
 
     }
 
-    public static boolean BoolSpecialAnalysis() {
-        if (selectedPosition =="No specified analysis"){
-            return false;
-        }else {
-            return true;
-        }
 
-    }
 
 
 

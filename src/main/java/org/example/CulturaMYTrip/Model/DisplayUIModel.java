@@ -7,224 +7,147 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Random;
-
+import java.util.Set;
 
 
 public class DisplayUIModel {
 
 
 
-    public static void displayLanguageAndSoftSkills(String aiResponse, VBox languageBox, VBox softSkillsBox) {
-        String languageLine = null;
-        String softSkillsLine = null;
-        languageBox.getChildren().clear();
-        softSkillsBox.getChildren().clear();
-
-        for (String line : aiResponse.split("\n")) {
-            if (line.toLowerCase().startsWith("language:")) {
-                languageLine = line.replace("Language:", "").trim();
-            } else if (line.toLowerCase().startsWith("soft skills:")) {
-                softSkillsLine = line.replace("Soft Skills:", "").trim();
-            }
-        }
-
-        if (languageLine != null && !languageLine.equalsIgnoreCase("insufficient data")) {
-            languageBox.getChildren().add(buildMutipleLabels(languageLine));
-        } else {
-            Label noLang = new Label("No language data found.");
-            noLang.setStyle("-fx-text-fill: #999; -fx-font-style: italic;");
-            noLang.setPadding(new Insets(5, 10, 5, 10));
-            languageBox.getChildren().add(noLang);
-
-
-        }
-
-        if (softSkillsLine != null && !softSkillsLine.equalsIgnoreCase("Insufficient data")) {
-            softSkillsBox.getChildren().add(buildMutipleLabels(softSkillsLine));
-        } else {
-            Label noSkill = new Label("No soft skills data found.");
-            noSkill.setStyle("-fx-text-fill: #999; -fx-font-style: italic;");
-            noSkill.setPadding(new Insets(5, 10, 5, 10));
-            softSkillsBox.getChildren().add(noSkill);
-        }
-    }
-
-    public static void updateBasicInfoUI(String aiReplyText, Label locationLabel, Label majorLabel, FlowPane certificatePane) {
-        locationLabel.setText("N/A");
-        majorLabel.setText("N/A");
-        certificatePane.getChildren().clear();
+    public static FlowPane updateAttractionTagsOnlyUI(String aiReplyText, FlowPane attractionPane) {
+        attractionPane.getChildren().clear();
 
         String[] lines = aiReplyText.split("\n");
-        boolean collectingCertificates = false;
+        boolean collectingAttractions = false;
 
         for (String line : lines) {
             line = line.trim();
 
-            if (line.startsWith("Location:")) {
-                locationLabel.setText(line.substring("Location:".length()).trim());
+            if (line.startsWith("Famous Attractions:")) {
+                collectingAttractions = true;
+            } else if (collectingAttractions && line.startsWith("-")) {
+                String attractionLine = line.substring(1).trim(); // Remove dash
+                String[] parts = attractionLine.split(":", 2);     // Split name: description
+                String name = parts[0].trim();
+                String desc = parts.length > 1 ? parts[1].trim() : "No description available.";
 
-            } else if (line.startsWith("Major:")) {
-                majorLabel.setText(line.substring("Major:".length()).trim());
-
-            } else if (line.startsWith("Certificates:")) {
-                collectingCertificates = true;
-
-            } else if (collectingCertificates && line.startsWith("-")) {
-                String certLine = line.substring(1).trim(); // Remove dash
-                String[] certParts = certLine.split(":", 2); // Split by colon
-                String certName = certParts[0].trim();
-                String certDesc = certParts.length > 1 ? certParts[1].trim() : "No additional information.";
-
-                Label certLabel = new Label(certName);
-                certLabel.setStyle(
-                        "-fx-background-color: #FFFFFF;" +
+                Label tag = new Label(name);
+                tag.setStyle(
+                        "-fx-background-color: #F0F8FF;" +
                                 "-fx-padding: 8 12;" +
                                 "-fx-background-radius: 10;" +
+                                "-fx-border-color: #B0C4DE;" +
                                 "-fx-font-size: 13px;"
                 );
 
-                ClickDisplayFullcontent(certName,  certDesc, "certificate explanation", certLabel);
-                certificatePane.getChildren().add(certLabel);
-
-
+                ClickDisplayFullcontent(name, desc, "Famous Attraction", tag);
+                attractionPane.getChildren().add(tag);
             }
         }
 
-        certificatePane.setHgap(8);
-        certificatePane.setVgap(8);
-        certificatePane.setPrefWrapLength(300);
+        attractionPane.setHgap(8);
+        attractionPane.setVgap(8);
+        attractionPane.setPrefWrapLength(300);
+        return attractionPane;
     }
 
 
-    public static FlowPane buildMutipleLabels(String content) {
-        FlowPane flowPane = new FlowPane();
-        flowPane.setHgap(8);
-        flowPane.setVgap(8);
-        flowPane.setPadding(new javafx.geometry.Insets(10));
-        flowPane.setPrefWrapLength(500);
+    public static VBox SouvenirUI(String aiReplyText, FlowPane pane) {
+        pane.getChildren().clear();
 
+        String[] lines = aiReplyText.split("\n");
+        boolean collectingAttractions = false;
 
-        String[] skillList = content.split("\\|");
+        for (String line : lines) {
+            line = line.trim();
 
+            if (line.startsWith("Souvenir:")) {
+                collectingAttractions = true;
+            } else if (collectingAttractions && line.startsWith("-")) {
+                String attractionLine = line.substring(1).trim(); // Remove dash
+                String[] parts = attractionLine.split(":", 2);     // Split name: description
+                String name = parts[0].trim();
+                String desc = parts.length > 1 ? parts[1].trim() : "No description available.";
 
-        String[] colors = {
-                "#E3F2FD", "#FCE4EC", "#FFF3E0", "#E8F5E9", "#EDE7F6",
-                "#FFF8E1", "#E0F7FA", "#F3E5F5", "#FFEBEE", "#F1F8E9"
-        };
+                Label tag = new Label(name);
+                tag.setStyle(
+                        "-fx-background-color: #F0F8FF;" +
+                                "-fx-padding: 8 12;" +
+                                "-fx-background-radius: 10;" +
+                                "-fx-border-color: #B0C4DE;" +
+                                "-fx-font-size: 13px;"
+                );
 
-        Random rand = new Random();
-
-        for (String skill : skillList) {
-            String trimmed = skill.trim();
-            Label label = new Label(trimmed);
-            label.setPadding(new Insets(5, 10, 5, 10));
-            label.setStyle("-fx-background-color: " + colors[rand.nextInt(colors.length)] + ";"
-                    + "-fx-background-radius: 10;"
-                    + "-fx-font-size: 13px;"
-                    + "-fx-border-color: #ccc;"
-                    + "-fx-border-radius: 10;"
-                    + "-fx-text-fill: #333;");
-
-            flowPane.getChildren().add(label);
+                ClickDisplayFullcontent(name, desc, "Souvenir", tag);
+                pane.getChildren().add(tag);
+            }
         }
 
-        return flowPane;
-    }
-
-    public static FlowPane buildSkillLabels(String skills) {
-        FlowPane flowPane = new FlowPane();
-        flowPane.setHgap(8);
-        flowPane.setVgap(8);
-        flowPane.setPadding(new javafx.geometry.Insets(10));
-        flowPane.setPrefWrapLength(500);
-        flowPane.setAlignment(Pos.CENTER);
-
-
-        String[] skillList = skills.split("\\|");
-
-        // 定义一组颜色
-        String[] colors = {
-                "#E3F2FD", "#FCE4EC", "#FFF3E0", "#E8F5E9", "#EDE7F6",
-                "#FFF8E1", "#E0F7FA", "#F3E5F5", "#FFEBEE", "#F1F8E9"
-        };
-
-        Random rand = new Random();
-
-        for (String skill : skillList) {
-            String trimmed = skill.trim();
-            Label label = new Label(trimmed);
-            label.setPadding(new Insets(5, 10, 5, 10));
-            label.setStyle("-fx-background-color: " + colors[rand.nextInt(colors.length)] + ";"
-                    + "-fx-background-radius: 10;"
-                    + "-fx-font-size: 13px;"
-                    + "-fx-border-color: #ccc;"
-                    + "-fx-border-radius: 10;"
-                    + "-fx-text-fill: #333;");
-
-            flowPane.getChildren().add(label);
-        }
-
-        return flowPane;
+        pane.setHgap(8);
+        pane.setVgap(8);
+        pane.setPrefWrapLength(300);
+        return null;
     }
 
 
 
 
 
-    public static VBox CategorizedExperienceUI(String aiOutput) {
+
+    public static VBox CategorizedTravelUI(String aiOutput) {
         VBox root = new VBox(10);
         root.setPadding(new Insets(10));
-        Map<String, VBox> groupedMap = new LinkedHashMap<>();
-
+        Map<String, VBox> dayMap = new LinkedHashMap<>();
         boolean hasValidEntry = false;
 
-        String[] blocks = aiOutput.split("Category:");
+        String[] blocks = aiOutput.split("Day ");
         for (String block : blocks) {
             if (block.trim().isEmpty()) continue;
 
             String[] lines = block.trim().split("\n");
-            if (lines.length < 5) continue;
+            if (lines.length < 2) continue;
 
-            if (!lines[1].contains("→ Role:") || !lines[2].contains("→ Organization:") ||
-                    !lines[3].contains("→ Year:") || !lines[4].contains("→ Description:")) {
-                continue;
+            String dayLine = lines[0].trim(); // e.g., "1: Explore Kuala Lumpur Heritage"
+            String dayTitle = "Day " + dayLine;
+
+            VBox dayBox = new VBox(8);
+            Label title = new Label("📅 " + dayTitle);
+            title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
+            dayBox.getChildren().add(title);
+            dayBox.setPadding(new Insets(5));
+            dayBox.setPrefWidth(480);
+            dayBox.setMaxWidth(480);
+
+            // Parse locations under this day
+            for (int i = 1; i < lines.length - 1; i++) {
+                if (!lines[i].contains("→ Name:")) continue;
+                String name = lines[i].replace("→ Name:", "").trim();
+                String descLine = lines[i + 1].trim();
+                if (!descLine.contains("→ Description:")) continue;
+                String desc = descLine.replace("→ Description:", "").trim();
+
+                Label placeLabel = new Label("🏛️ " + name);
+                placeLabel.setPrefWidth(460);
+                placeLabel.setWrapText(true);
+                placeLabel.setStyle("-fx-background-color: #FAFAFA; -fx-padding: 8px; -fx-background-radius: 8px; -fx-font-size: 13px;");
+
+                // Attach click event to show full description
+                ClickDisplayFullcontent(name, desc, "Cultural Site Details", placeLabel);
+                dayBox.getChildren().add(placeLabel);
+
+                i++; // skip next line (already used as description)
+                hasValidEntry = true;
             }
 
-            String category = lines[0].trim();
-            String role = lines[1].replace("→ Role:", "").trim();
-            String org = lines[2].replace("→ Organization:", "").trim();
-            String year = lines[3].replace("→ Year:", "").trim();
-            String desc = lines[4].replace("→ Description:", "").trim();
-
-            VBox groupBox = groupedMap.computeIfAbsent(category, k -> {
-                VBox box = new VBox(8);
-                Label title = new Label("📁 " + k);
-                title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
-                box.setPrefWidth(450);
-                box.setMaxWidth(450);
-                box.getChildren().add(title);
-                box.setPadding(new Insets(5));
-                return box;
-            });
-
-            String previewText = "( " + role + " ) - " + org + " ( " + year + " )";
-
-            Label item = new Label(previewText);
-            item.setPrefWidth(450);
-            item.setMinWidth(450);
-            item.setMaxWidth(450);
-            item.setWrapText(true);
-            item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 8px; -fx-font-size: 13px;");
-            ClickDisplayFullcontent(previewText, desc, "Working experience details", item);
-
-            groupBox.getChildren().add(item);
-            hasValidEntry = true;
+            if (hasValidEntry) {
+                dayMap.put(dayTitle, dayBox);
+            }
         }
 
         if (hasValidEntry) {
-            root.getChildren().addAll(groupedMap.values());
+            root.getChildren().addAll(dayMap.values());
         } else {
             Label noData = new Label("Insufficient data");
             noData.setStyle("-fx-text-fill: #999; -fx-font-style: italic; -fx-font-size: 13px;");
@@ -234,7 +157,12 @@ public class DisplayUIModel {
         return root;
     }
 
-    public static VBox CategorizedPositionUI(String aiOutput) {
+
+
+
+
+
+    public static VBox CategorizedFoodUI(String aiOutput) {
         VBox root = new VBox(0);
         root.setAlignment(Pos.CENTER);
 
@@ -247,108 +175,122 @@ public class DisplayUIModel {
             String[] lines = block.trim().split("\n");
             if (lines.length < 4) continue;
 
-            String category = lines[0].trim();
-            String Position = lines[1].replace("→ Position:", "").trim();
-            String Match = lines[2].replace("→ Match:", "").trim();
+            String category = lines[0].trim(); // e.g., Penang
+            String food = lines[1].replace("→ Food:", "").trim();
+            String popularity = lines[2].replace("→ Popularity:", "").trim();
             String desc = lines[3].replace("→ Description:", "").trim();
 
             VBox groupBox = groupedMap.computeIfAbsent(category, k -> {
                 VBox box = new VBox(5);
-                VBox.setMargin(box, new Insets(3, 10, 3, 10));
+                Label header = new Label("🍽️ Region: " + k);
+                header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+                box.getChildren().add(header);
+                VBox.setMargin(box, new Insets(6, 10, 6, 10));
                 return box;
             });
 
-            String previewText = "(" + Position + ") --- " + "Matching: [ " + Match + " ]";
+            String previewText = "(" + food + ") --- Popularity: [ " + popularity + " ]";
 
             Label item = new Label(previewText);
             item.setPrefWidth(600);
             item.setMaxWidth(600);
             item.setWrapText(true);
-            item.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 5px; -fx-background-radius: 10px; -fx-font-size: 13px;");
-            ClickDisplayFullcontent(previewText, desc, "Position matching details", item);
+            item.setStyle("-fx-background-color: #FFF8E1; -fx-padding: 6px; -fx-background-radius: 10px; -fx-font-size: 13px;");
+            ClickDisplayFullcontent(previewText, desc, "Food Details", item);
 
             groupBox.getChildren().add(item);
-
         }
 
         root.getChildren().addAll(groupedMap.values());
         return root;
     }
 
-    public static void CategorizedSalary(String aiOutput,Label SalaryLabel) {
 
-        String salary = "N/A";
-        String explanation = "No explanation provided.";
+    public static VBox CategorizedHotelUI(String aiOutput) {
+        VBox root = new VBox(0);
+        root.setAlignment(Pos.CENTER);
+
+        Map<String, VBox> groupedMap = new LinkedHashMap<>();
+
+        String[] blocks = aiOutput.split("Category:");
+        for (String block : blocks) {
+            if (block.trim().isEmpty()) continue;
+
+            String[] lines = block.trim().split("\n");
+            if (lines.length < 4) continue;
+
+            String category = lines[0].trim(); // e.g., George Town
+            String hotel = lines[1].replace("→ Hotel:", "").trim();
+            String rating = lines[2].replace("→ Rating:", "").trim();
+            String desc = lines[3].replace("→ Description:", "").trim();
+
+            VBox groupBox = groupedMap.computeIfAbsent(category, k -> {
+                VBox box = new VBox(5);
+                Label header = new Label("🏨 Area: " + k);
+                header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+                box.getChildren().add(header);
+                VBox.setMargin(box, new Insets(6, 10, 6, 10));
+                return box;
+            });
+
+            String previewText = "(" + hotel + ") --- Rating: [ " + rating + " ]";
+
+            Label item = new Label(previewText);
+            item.setPrefWidth(600);
+            item.setMaxWidth(600);
+            item.setWrapText(true);
+            item.setStyle("-fx-background-color: #E3F2FD; -fx-padding: 6px; -fx-background-radius: 10px; -fx-font-size: 13px;");
+            ClickDisplayFullcontent(previewText, desc, "Hotel Info", item);
+
+            groupBox.getChildren().add(item);
+        }
+
+        root.getChildren().addAll(groupedMap.values());
+        return root;
+    }
+
+
+    public static VBox CategorizedCityLabels(String aiOutput) {
+        VBox root = new VBox(6);
+        root.setPadding(new Insets(10));
+        root.setAlignment(Pos.TOP_LEFT);
+
+        Set<String> citySet = new LinkedHashSet<>();
 
         String[] lines = aiOutput.split("\n");
         for (String line : lines) {
             line = line.trim();
-            if (line.toLowerCase().startsWith("recommended salary:")) {
-                salary = line.substring("Recommended Salary:".length()).trim();
-            } else if (line.toLowerCase().startsWith("explanation:")) {
-                explanation = line.substring("Explanation:".length()).trim();
+            if (line.startsWith("-")) {
+                String city = line.substring(1).trim();
+                if (!city.isEmpty()) {
+                    citySet.add(city);
+                }
             }
         }
 
-        SalaryLabel.setText(salary);
-        SalaryLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 0px; -fx-background-radius: 15px; -fx-font-size: 25px;");
-
-        ClickDisplayFullcontent(salary, explanation,"Salary analysis explanation",SalaryLabel);
-
-
-    }
-
-    public static void CategorizedUni(String aiOutput, Label uniLabel) {
-        String uni = "N/A";
-        StringBuilder explanationBuilder = new StringBuilder();
-
-        String[] lines = aiOutput.split("\n");
-        boolean readingExplanation = false;
-
-        for (int i = 0; i < lines.length; i++) {
-            String line = lines[i].trim();
-
-            if (i == 0 && !line.toLowerCase().startsWith("explanation")) {
-                uni = line;
-            } else if (line.toLowerCase().startsWith("explanation:")) {
-                readingExplanation = true;
-            } else if (readingExplanation && !line.isEmpty()) {
-                explanationBuilder.append(line).append("\n\n");
-            }
+        for (String city : citySet) {
+            Label cityLabel = new Label(city);
+            cityLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333333; -fx-padding: 5 0 5 0;");
+            root.getChildren().add(cityLabel);
         }
 
-        uniLabel.setText(uni);
-        uniLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 15px;");
-
-        String explanation = explanationBuilder.toString().trim();
-        ClickDisplayFullcontent(uni, explanation, "University Details", uniLabel);
-    }
-
-    public static void CategorizedScore(String aiOutput, Label ScoreLabel) {
-        String score = "N/A";
-        StringBuilder explanationBuilder = new StringBuilder();
-
-        String[] lines = aiOutput.split("\n");
-        boolean readingExplanation = false;
-
-        for (int i = 0; i < lines.length; i++) {
-            String line = lines[i].trim();
-
-            if (i == 0 && line.matches("^\\d{2,3}/100$")) {
-                score = line;
-            } else if (line.toLowerCase().startsWith("explanation:")) {
-                readingExplanation = true;
-            } else if (readingExplanation && !line.isEmpty()) {
-                explanationBuilder.append(line).append("\n\n");
-            }
+        if (citySet.isEmpty()) {
+            Label noData = new Label("No valid cities found.");
+            noData.setStyle("-fx-text-fill: #999999; -fx-font-style: italic;");
+            root.getChildren().add(noData);
         }
 
-        ScoreLabel.setText(score);
-        ScoreLabel.setStyle("-fx-background-color: #F8F8F8; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 18px;");
-
-        String explanation = explanationBuilder.toString().trim();
-        ClickDisplayFullcontent(score, explanation, "Resume Score Explanation", ScoreLabel);
+        return root;
     }
+
+
+
+
+
+
+
+
+
 
 
 
