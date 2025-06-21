@@ -379,7 +379,7 @@
                                                          </Label>
                                                          <HBox alignment="CENTER" fillHeight="false" prefHeight="188.0" prefWidth="564.0" VBox.vgrow="ALWAYS">
                                                             <children>
-                                                               <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0">
+                                                               <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                                   <children>
                                                                      <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #FFE0B2; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Food" VBox.vgrow="ALWAYS" />
                                                                      <Label fx:id="FoodLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #FF7043; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
@@ -399,7 +399,7 @@
                                                                   <font>
                                                                      <Font size="20.0" />
                                                                   </font></Label>
-                                                               <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0">
+                                                               <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                                   <children>
                                                                      <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #D1C4E9; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Live" VBox.vgrow="ALWAYS" />
                                                                      <Label fx:id="LiveLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #7E57C2; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
@@ -419,7 +419,7 @@
                                                                   <font>
                                                                      <Font size="20.0" />
                                                                   </font></Label>
-                                                               <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0">
+                                                               <VBox prefHeight="115.0" prefWidth="123.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                                   <children>
                                                                      <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: #B3E5FC; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Transport" VBox.vgrow="ALWAYS" />
                                                                      <Label fx:id="TransportLabel" alignment="CENTER" prefHeight="98.0" prefWidth="141.0" style="-fx-background-color: #039BE5; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
@@ -439,12 +439,12 @@
                                                                   <font>
                                                                      <Font size="20.0" />
                                                                   </font></Label>
-                                                               <VBox prefHeight="115.0" prefWidth="252.0" spacing="10.0">
+                                                               <VBox prefHeight="115.0" prefWidth="252.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                                   <children>
                                                                      <Label alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="235.0" style="-fx-background-color: #FFF9C4; -fx-text-fill: #6D4C41; -fx-background-radius: 20;" text="Total" VBox.vgrow="ALWAYS" />
                                                                      <Label fx:id="TotalLabel" alignment="CENTER" prefHeight="78.0" prefWidth="262.0" style="-fx-background-color: #FDD835; -fx-text-fill: black; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
                                                                         <font>
-                                                                           <Font name="System Bold" size="42.0" />
+                                                                           <Font name="System Bold" size="36.0" />
                                                                         </font>
                                                                      </Label>
                                                                   </children>
