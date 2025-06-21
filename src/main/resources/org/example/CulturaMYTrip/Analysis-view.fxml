@@ -28,7 +28,7 @@
                         <children>
       
                            <!-- ✅ New Button to Open Streamlit App -->
-                           <Button fx:id="openStreamlitButton" onAction="#handleOpenStreamlit" prefHeight="31.0" prefWidth="50.0" style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" text="Bobby" wrapText="true">
+                           <Button fx:id="openStreamlitButton" onAction="#handleOpenStreamlit" prefHeight="31.0" prefWidth="50.0" style="-fx-background-radius: 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;" text="Lens" wrapText="true">
                               <VBox.margin>
                                  <Insets right="5.0" top="20.0" />
                               </VBox.margin>
