@@ -11,6 +11,5 @@ module org.example.CulturaMYTrip {
     opens org.example.CulturaMYTrip to javafx.fxml;
     exports org.example.CulturaMYTrip;
     exports org.example.CulturaMYTrip.Controller;
-    exports org.example.CulturaMYTrip.api to com.myculture.api;
     opens org.example.CulturaMYTrip.Controller to javafx.fxml;
 }
