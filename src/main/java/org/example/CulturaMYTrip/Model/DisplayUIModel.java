@@ -248,10 +248,51 @@ public class DisplayUIModel {
     }
 
 
-    public static VBox CategorizedCityLabels(String aiOutput) {
-        VBox root = new VBox(5);
-        root.setAlignment(Pos.CENTER);
-        root.setPadding(new Insets(5));
+//    public static VBox CategorizedCityLabels(String aiOutput) {
+//        VBox root = new VBox(5);
+//        root.setAlignment(Pos.CENTER);
+//        root.setPadding(new Insets(5));
+//
+//        String[] blocks = aiOutput.split("Category:");
+//
+//        for (String block : blocks) {
+//            if (block.trim().isEmpty()) continue;
+//
+//            String[] lines = block.trim().split("\n");
+//            if (lines.length < 2) continue;
+//
+//            String city = lines[0].replace("→ category:", "").trim();
+//            if (city.isEmpty()) continue;
+//
+//            String descLine = lines[1].trim();
+//            if (!descLine.startsWith("→ Description:")) continue;
+//
+//            String desc = descLine.replace("→ Description:", "").trim();
+//
+//
+//            Label cityLabel = new Label(city);
+//            cityLabel.setWrapText(true);
+//            cityLabel.setPrefWidth(260);
+//            cityLabel.setAlignment(Pos.CENTER);
+//            cityLabel.setStyle("-fx-background-color: #E0F7FA; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 14px;");
+//
+//
+//            ClickDisplayFullcontent(city, desc, "City Info", cityLabel);
+//
+//            root.getChildren().add(cityLabel);
+//        }
+//
+//        if (root.getChildren().isEmpty()) {
+//            Label noData = new Label("No valid cities found.");
+//            noData.setStyle("-fx-text-fill: #999999; -fx-font-style: italic;");
+//            root.getChildren().add(noData);
+//        }
+//
+//        return root;
+//    }
+
+    public static void  CategorizedCityLabels(String aiOutput, FlowPane pane) {
+        pane.getChildren().clear();
 
         String[] blocks = aiOutput.split("Category:");
 
@@ -261,34 +302,29 @@ public class DisplayUIModel {
             String[] lines = block.trim().split("\n");
             if (lines.length < 2) continue;
 
-            String city = lines[0].replace("→ category:", "").trim();
-            if (city.isEmpty()) continue;
-
+            String city = lines[0].trim();
             String descLine = lines[1].trim();
+
             if (!descLine.startsWith("→ Description:")) continue;
 
             String desc = descLine.replace("→ Description:", "").trim();
 
+            Label cityTag = new Label(city);
+            cityTag.setStyle(
+                    "-fx-background-color: #F0F8FF;" +
+                            "-fx-padding: 8 12;" +
+                            "-fx-background-radius: 10;" +
+                            "-fx-border-color: #B0C4DE;" +
+                            "-fx-font-size: 13px;"
+            );
 
-            Label cityLabel = new Label(city);
-            cityLabel.setWrapText(true);
-            cityLabel.setPrefWidth(260);
-            cityLabel.setAlignment(Pos.CENTER);
-            cityLabel.setStyle("-fx-background-color: #E0F7FA; -fx-padding: 10px; -fx-background-radius: 15px; -fx-font-size: 14px;");
-
-
-            ClickDisplayFullcontent(city, desc, "City Info", cityLabel);
-
-            root.getChildren().add(cityLabel);
+            ClickDisplayFullcontent(city, desc, "City Info", cityTag);
+            pane.getChildren().add(cityTag);
         }
 
-        if (root.getChildren().isEmpty()) {
-            Label noData = new Label("No valid cities found.");
-            noData.setStyle("-fx-text-fill: #999999; -fx-font-style: italic;");
-            root.getChildren().add(noData);
-        }
-
-        return root;
+        pane.setHgap(8);
+        pane.setVgap(8);
+        pane.setPrefWrapLength(300); // Adjust based on container size
     }
 
 

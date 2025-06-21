@@ -23,7 +23,7 @@ public class DeepSeekChat {
 
 
 
-    public static String callDeepSeekAPI(String conversation, String systemPrompt) {
+    public static String callDeepSeekAPI(String systemPrompt) {
         try {
 
             JSONObject requestBody = new JSONObject();
@@ -35,7 +35,6 @@ public class DeepSeekChat {
             messages.put(new JSONObject().put("role", "system").put("content", systemPrompt));
 
 
-            messages.put(new JSONObject().put("role", "user").put("content", conversation));
 
 
             requestBody.put("messages", messages);
@@ -75,7 +74,7 @@ public class DeepSeekChat {
                         .getString("content");
 
 
-                MessagesHistory.put(new JSONObject().put("role", "user").put("content", conversation));
+
                 MessagesHistory.put(new JSONObject().put("role", "assistant").put("content", content));
                 messages.put(new JSONObject().put("role", "assistant").put("content", content));
 
