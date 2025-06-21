@@ -371,5 +371,42 @@ public class DisplayUIModel {
 
 
 
+    public static void bindBudgetLabelWithExplanation(String aiResponse, Label foodLabel, Label liveLabel, Label transportLabel, Label totalLabel) {
+        String[] lines = aiResponse.split("\n");
+
+        for (String line : lines) {
+            line = line.trim();
+
+            if (line.startsWith("Food:")) {
+                applyLabelData(line, "Food", foodLabel, "🍱 Food Info");
+            } else if (line.startsWith("Live:")) {
+                applyLabelData(line, "Live", liveLabel, "🏨 Accommodation Info");
+            } else if (line.startsWith("Transport:")) {
+                applyLabelData(line, "Transport", transportLabel, "🚗 Transport Info");
+            } else if (line.startsWith("Total:")) {
+                applyLabelData(line, "Total", totalLabel, "💰 Total Budget Info");
+            }
+        }
+    }
+
+    private static void applyLabelData(String line, String key, Label label, String title) {
+        try {
+            String[] mainParts = line.split("→");
+            String amountPart = mainParts[0].split("USD")[1].trim();
+            String explanation = mainParts.length > 1 ? mainParts[1].trim() : "No explanation provided.";
+
+            label.setText("USD " + amountPart);
+            ClickDisplayFullcontent(key, explanation, title, label);
+        } catch (Exception e) {
+            label.setText("N/A");
+            ClickDisplayFullcontent(key, "Unable to extract explanation.", title, label);
+        }
+    }
+
+
+
+
+
+
 
 }

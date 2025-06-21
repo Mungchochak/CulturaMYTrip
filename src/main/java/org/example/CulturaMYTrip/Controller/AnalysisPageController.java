@@ -31,6 +31,9 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import static org.example.CulturaMYTrip.Model.DisplayUIModel.bindBudgetLabelWithExplanation;
+
+
 public class AnalysisPageController {
 
     public DeepSeekResponseModel deepSeekResponseModel = new DeepSeekResponseModel();
@@ -54,6 +57,9 @@ public class AnalysisPageController {
 
     @FXML
     private TextArea Requirement;
+
+    @FXML
+    private  Label FoodLabel,LiveLabel,TransportLabel,TotalLabel;
 
 
 
@@ -80,7 +86,6 @@ public class AnalysisPageController {
 
     @FXML
     protected void ComfirmClick() {
-        String content = "KLCC,SUBANG JAYA";
         String CultureContent ="Malaysia Chinese";
 
         String departure = DeparturePoint.getText();
@@ -110,13 +115,11 @@ public class AnalysisPageController {
 
 
 
-                // === 后台线程中做 API 调用 ===
                 deepSeekResponseModel.setTravelPlanResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getTravelPlanprompt(content,requirement,budget,days,departure,CultureContent))
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getTravelPlanprompt(requirement,budget,days,departure,CultureContent))
                 );
 
                 String fullUserInput =
-                        "Cities or Regions: " + content + "\n" +
                                 "User Requirements: " + requirement + "\n" +
                                 "Budget: " + budget + "\n" +
                                 "Travel Days: " + days + "\n" +
@@ -140,7 +143,7 @@ public class AnalysisPageController {
                         DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getHotelprompt(TravelPlan,requirement,budget,days,departure))
                 );
                 deepSeekResponseModel.setBudgetResponse(
-                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getBudgetprompt(content,requirement,budget,days,departure))
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getBudgetprompt(TravelPlan,requirement,budget,days,departure))
                 );
 
                 deepSeekResponseModel.setCultureResponse(
@@ -150,7 +153,12 @@ public class AnalysisPageController {
 
                 deepSeekResponseModel.setCitiesResponse(DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getCityExtractionPrompt(TravelPlan)));
 
-                // === 回到主线程更新界面 ===
+
+                deepSeekResponseModel.setBudgetResponse(
+                        DeepSeekChat.callDeepSeekAPI(deepSeekPromptModel.getBudgetprompt(TravelPlan,requirement,budget,days,departure))
+                );
+
+
                 Platform.runLater(() -> {
                     UploadFile.setDisable(false);
                     hideLoadingState(contentVBox);
@@ -171,28 +179,26 @@ public class AnalysisPageController {
                     aiResponse= ShardResponseData.responseModel.getCultureResponse();
                     CulturalContent.setText(aiResponse);
 
-                    // 1. 处理美食显示
+
                     aiResponse = ShardResponseData.responseModel.getFoodResponse();
                     VBox root = DisplayUIModel.CategorizedFoodUI(aiResponse);
                     FoodBox.getChildren().clear();
                     FoodBox.getChildren().add(root);
 
-                    // 2. 处理酒店显示
+
                     aiResponse = ShardResponseData.responseModel.getHotelResponse();
                     VBox root2 = DisplayUIModel.CategorizedHotelUI(aiResponse);
-                    HotelBox.getChildren().clear(); // hotelPane 同上
+                    HotelBox.getChildren().clear();
                     HotelBox.getChildren().add(root2);
 
-
-//                    aiResponse= ShardResponseData.responseModel.getCitiesResponse();
-//                    VBox cityLabelBox = DisplayUIModel.CategorizedCityLabels(aiResponse);
-//                    CitiesBox.getChildren().clear();
-//                    CitiesBox.getChildren().add(cityLabelBox);
 
                     aiResponse = ShardResponseData.responseModel.getCitiesResponse();
                     CitiesBox.getChildren().clear();
                     DisplayUIModel.CategorizedCityLabels(aiResponse, CitiesBox);
 
+
+                    aiResponse = ShardResponseData.responseModel.getBudgetResponse();
+                    bindBudgetLabelWithExplanation(aiResponse, FoodLabel, LiveLabel, TransportLabel, TotalLabel);
 
 
                     System.out.println("Finished Analysis");
