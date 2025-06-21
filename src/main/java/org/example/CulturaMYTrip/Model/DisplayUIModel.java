@@ -1,13 +1,23 @@
 package org.example.CulturaMYTrip.Model;
+import java.awt.Desktop;
+import java.net.URI;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.example.CulturaMYTrip.api.GeocodingService;
+
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 
 public class DisplayUIModel {
@@ -40,7 +50,7 @@ public class DisplayUIModel {
                                 "-fx-font-size: 13px;"
                 );
 
-                ClickDisplayFullcontent(name, desc, "Famous Attraction", tag);
+                handleOpenStreetView(name, "Street View" ,tag);
                 attractionPane.getChildren().add(tag);
             }
         }
@@ -50,6 +60,37 @@ public class DisplayUIModel {
         attractionPane.setPrefWrapLength(300);
         return attractionPane;
     }
+
+
+
+    private static void handleOpenStreetView(String placeName, String WindowTitle, Label label) {
+        label.setCursor(Cursor.HAND);
+
+        label.setOnMouseClicked(event -> {
+            try {
+                double[] coords = GeocodingService.getCoordinates(placeName);
+                StreetViewOpener.openStreetView(coords[0], coords[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        
+    }
+
+    public class StreetViewOpener {
+    public static void openStreetView(double lat, double lng) {
+        String url = String.format("https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=%f,%f", lat, lng);
+        try {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                System.err.println("Desktop browsing is not supported.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 
     public static VBox SouvenirUI(String aiReplyText, FlowPane pane) {
